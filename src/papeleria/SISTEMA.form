@@ -867,7 +867,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="486" y="896" width="519" height="-1"/>
+                          <AbsoluteConstraints x="240" y="920" width="519" height="250"/>
                         </Constraint>
                       </Constraints>
 
@@ -948,7 +948,7 @@
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="Detalle"/>
+                                <Property name="text" type="java.lang.String" value="Valores totales:"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2138,7 +2138,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="res_num_cli" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jpDatos_cli" alignment="1" pref="1236" max="32767" attributes="0"/>
+                          <Component id="jpDatos_cli" alignment="1" pref="1244" max="32767" attributes="0"/>
                           <Component id="jsTabla_cat7" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -3318,7 +3318,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="res_num_emp" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jpDatos_emp" alignment="1" pref="1236" max="32767" attributes="0"/>
+                          <Component id="jpDatos_emp" alignment="1" pref="1244" max="32767" attributes="0"/>
                           <Component id="jsTabla_cat8" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>

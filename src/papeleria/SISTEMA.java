@@ -984,7 +984,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel25.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Detalle");
+        jLabel25.setText("Valores totales:");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1053,7 +1053,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JPfactura.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 896, 519, -1));
+        JPfactura.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 920, 519, 250));
 
         jScrollPane.setViewportView(JPfactura);
 
@@ -2116,7 +2116,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(lim_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(res_num_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_cli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1236, Short.MAX_VALUE)
+                    .addComponent(jpDatos_cli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
                     .addComponent(jsTabla_cat7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -2828,7 +2828,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(lim_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(res_num_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 1236, Short.MAX_VALUE)
+                    .addComponent(jpDatos_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
                     .addComponent(jsTabla_cat8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
