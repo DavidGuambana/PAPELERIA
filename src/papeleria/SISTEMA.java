@@ -984,7 +984,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel25.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Valores totales:");
+        jLabel25.setText("Totales");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
