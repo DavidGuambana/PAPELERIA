@@ -279,6 +279,15 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 3: //eliminar cliente
                         Cliente cl = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
                         resultado = base.gettear(cl);
+                        Encabezado_fac fact =new Encabezado_fac(0,jlCedula_cli.getText(),null,0,null);
+                        resultado2 = base.gettear(fact);
+                        if (resultado2.size()==0) {
+                        cl = (Cliente) resultado.next();
+                        base.eliminar(cl);   
+                        }else{
+                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Factura asignado!");
+                        eliminado = false;         
+                        }
                         cl = (Cliente) resultado.next();
                         base.eliminar(cl);
                         break;
