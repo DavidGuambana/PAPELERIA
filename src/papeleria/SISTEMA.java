@@ -254,7 +254,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         resultado2 = base.gettear(prod);
                         if (resultado2.size() == 0) {
                             cate = (Categoria) resultado.next();
-                            base.eliminar(cate);
+                            base.eliminar(cate); 
+                            limpiar(1);
                         } else {
                             JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un producto asignado!");
                             eliminado = false;
@@ -268,17 +269,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         resultado2 = base.gettear(prov);
                         if (resultado2.size() == 0) {
                             
-                          c = (Ciudad) resultado.next();
+                        c = (Ciudad) resultado.next();
                         base.eliminar(c);   
                         }else{
-                         JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Proveedor asignado!");
-                         eliminado = false;   
+                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Proveedor asignado!");
+                        eliminado = false;   
                         }
                        
                         break;
                     case 3: //eliminar cliente
                         Cliente cl = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
-                        resultado = base.gettear(cl);
+                        resultado = base.gettear(cl);         
                         Encabezado_fac fact =new Encabezado_fac(0,jlCedula_cli.getText(),null,0,null);
                         resultado2 = base.gettear(fact);
                         if (resultado2.size()==0) {
@@ -287,9 +288,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         }else{
                         JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Factura asignado!");
                         eliminado = false;         
-                        }
-                        cl = (Cliente) resultado.next();
-                        base.eliminar(cl);
+                        }                       
                         break;
                     case 4: //eliminar descuento
                         Descuento d = new Descuento(jlNombre_des.getText(), 0);
@@ -1225,7 +1224,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jScrollPane2.setBorder(null);
 
         jtaDescripcion_cat.setEditable(false);
-        jtaDescripcion_cat.setBackground(new java.awt.Color(255, 255, 255));
         jtaDescripcion_cat.setColumns(20);
         jtaDescripcion_cat.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jtaDescripcion_cat.setLineWrap(true);
@@ -1443,7 +1441,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTcategorias.setOpaque(false);
         JTcategorias.setRowHeight(30);
         JTcategorias.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        JTcategorias.setSelectionForeground(new java.awt.Color(255, 255, 255));
         JTcategorias.getTableHeader().setResizingAllowed(false);
         JTcategorias.getTableHeader().setReorderingAllowed(false);
         jsTabla_cat.setViewportView(JTcategorias);
@@ -2171,7 +2168,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTclientes.setOpaque(false);
         JTclientes.setRowHeight(30);
         JTclientes.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        JTclientes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         JTclientes.getTableHeader().setResizingAllowed(false);
         JTclientes.getTableHeader().setReorderingAllowed(false);
         jsTabla_cat7.setViewportView(JTclientes);
@@ -2201,7 +2197,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(lim_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(res_num_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_cli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
+                    .addComponent(jpDatos_cli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1239, Short.MAX_VALUE)
                     .addComponent(jsTabla_cat7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -2462,7 +2458,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTdescuentos.setOpaque(false);
         JTdescuentos.setRowHeight(30);
         JTdescuentos.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        JTdescuentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         JTdescuentos.getTableHeader().setResizingAllowed(false);
         JTdescuentos.getTableHeader().setReorderingAllowed(false);
         jsTabla_des.setViewportView(JTdescuentos);
@@ -2913,7 +2908,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(lim_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(res_num_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
+                    .addComponent(jpDatos_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 1239, Short.MAX_VALUE)
                     .addComponent(jsTabla_cat8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -3313,7 +3308,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                             .addComponent(jl_titulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)
                         .addComponent(jsTabla_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                    .addComponent(jpDatos_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 423, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(res_num_pro)
                 .addGap(127, 127, 127))
@@ -3547,7 +3542,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGroup(jpDatos_provLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_Eliminar_prov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbModificar_prov, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jcBuscar_prov.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
@@ -3626,7 +3621,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTproveedores.setOpaque(false);
         JTproveedores.setRowHeight(30);
         JTproveedores.setSelectionBackground(new java.awt.Color(0, 204, 204));
-        JTproveedores.setSelectionForeground(new java.awt.Color(255, 255, 255));
         JTproveedores.getTableHeader().setResizingAllowed(false);
         JTproveedores.getTableHeader().setReorderingAllowed(false);
         jsTabla_cat6.setViewportView(JTproveedores);
@@ -4866,7 +4860,37 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 new SISTEMA().setVisible(true);
             }
         });
+      
     }
+     public  void limpiar(int num){
+      switch(num){
+          case 1 ://categoria
+           jlNombre_cat.setText(" ");
+           jtaDescripcion_cat.setText(" ");
+           
+          break;
+           case 2 :
+          break;
+           case 3 :
+          break;
+           case 4 :
+          break;
+           case 5 :
+          break;
+           case 6 :
+          break;
+           case 7 :
+          break;
+           case 8 :
+          break;
+           case 9 :
+          break;
+           case 10 :
+          break;
+          
+              
+      }   
+     } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FECHA_HORA;
@@ -5109,7 +5133,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JTextField jtBuscar_emp;
     public static javax.swing.JTextField jtBuscar_pro;
     public static javax.swing.JTextField jtBuscar_prov;
-    private javax.swing.JTextArea jtaDescripcion_cat;
+    public static javax.swing.JTextArea jtaDescripcion_cat;
     private javax.swing.JLabel lim_cat;
     private javax.swing.JLabel lim_ciu;
     private javax.swing.JLabel lim_cli;
