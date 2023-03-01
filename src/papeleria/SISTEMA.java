@@ -42,6 +42,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     //otras variables útiles:
     public static boolean actualizado = false;
     ObjectSet resultado;
+    ObjectSet resultado2;
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
     
@@ -247,8 +248,13 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 1: //eliminar categoria
                         Categoria cate = new Categoria(jlNombre_cat.getText(), null);
                         resultado = base.gettear(cate);
+                        Producto prod=new Producto(0, null, 0, 0,jlNombre_cat.getText(),null,null, null);
+                        resultado2 = base.gettear(prod);
+                        if (resultado2.size()==0) {                           
                         cate = (Categoria) resultado.next();
-                        base.eliminar(cate);
+                        base.eliminar(cate);   
+                        }
+
                         break;
                     case 2: //eliminar ciudad
                         Ciudad c = new Ciudad(Integer.parseInt(jlCodigo_ciu.getText()), null, null);
