@@ -669,79 +669,54 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JPencabezado2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         v10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/-local-shipping_90041.png"))); // NOI18N
         v10.setText("0000");
+        JPencabezado2.add(v10, new org.netbeans.lib.awtextra.AbsoluteConstraints(793, 0, 100, 40));
 
         v3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/-person_90382.png"))); // NOI18N
         v3.setText("0000");
+        JPencabezado2.add(v3, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 0, 100, 40));
 
         v6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/employee_solid_icon_235377.png"))); // NOI18N
         v6.setText("0000");
+        JPencabezado2.add(v6, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 0, 100, 40));
 
         v9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/products_new_cube_product_design_icon_153845.png"))); // NOI18N
         v9.setText("0000");
+        JPencabezado2.add(v9, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 0, 100, 40));
 
         v1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/category_icon_214824.png"))); // NOI18N
         v1.setText("0000");
+        JPencabezado2.add(v1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 0, 100, 40));
 
         v4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/badge_discount_icon_178995.png"))); // NOI18N
         v4.setText("0000");
+        JPencabezado2.add(v4, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 0, 100, 40));
 
         v2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         v2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         v2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flag_icon-icons.com_50393.png"))); // NOI18N
         v2.setText("0000");
+        JPencabezado2.add(v2, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 0, 100, 40));
 
         V0.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         V0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         V0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/home-button_icon-icons.com_72700.png"))); // NOI18N
-
-        javax.swing.GroupLayout JPencabezado2Layout = new javax.swing.GroupLayout(JPencabezado2);
-        JPencabezado2.setLayout(JPencabezado2Layout);
-        JPencabezado2Layout.setHorizontalGroup(
-            JPencabezado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPencabezado2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(V0)
-                .addGap(36, 36, 36)
-                .addComponent(v1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(v2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(v3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(v4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(v6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(v9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(v10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        JPencabezado2Layout.setVerticalGroup(
-            JPencabezado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(V0, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(v10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        JPencabezado2.add(V0, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 0, -1, 40));
 
         getContentPane().add(JPencabezado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1264, -1));
 
@@ -3693,60 +3668,34 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         getContentPane().add(MENU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1264, 560));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sistema_titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         sistema_titulo.setForeground(new java.awt.Color(255, 255, 255));
         sistema_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sistema_titulo.setText("Sistema Papelería");
+        jPanel1.add(sistema_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         FECHA_HORA.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         FECHA_HORA.setForeground(new java.awt.Color(255, 255, 255));
         FECHA_HORA.setText("FECHA_HORA");
+        jPanel1.add(FECHA_HORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(691, 6, 230, 28));
 
         USUARIO.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         USUARIO.setForeground(new java.awt.Color(255, 255, 255));
         USUARIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario-de-perfil.png"))); // NOI18N
         USUARIO.setText("USUARIO");
         USUARIO.setIconTextGap(10);
+        jPanel1.add(USUARIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(973, 6, 233, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(939, 6, 16, 28));
 
         SALIR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         SALIR.setForeground(new java.awt.Color(255, 255, 255));
         SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion (1).png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(sistema_titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(FECHA_HORA, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(USUARIO, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(SALIR)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sistema_titulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(USUARIO)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(FECHA_HORA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SALIR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jPanel1.add(SALIR, new org.netbeans.lib.awtextra.AbsoluteConstraints(1234, 6, -1, 28));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1264, -1));
 
