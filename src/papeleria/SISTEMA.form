@@ -91,7 +91,6 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="0" green="0" red="0" type="rgb"/>
     </Property>
-    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -2178,7 +2177,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="res_num_cli" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jpDatos_cli" alignment="1" pref="1248" max="32767" attributes="0"/>
+                          <Component id="jpDatos_cli" alignment="1" pref="1250" max="32767" attributes="0"/>
                           <Component id="jsTabla_cat7" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -3352,7 +3351,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="res_num_emp" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jpDatos_emp" alignment="1" pref="1248" max="32767" attributes="0"/>
+                          <Component id="jpDatos_emp" alignment="1" pref="1250" max="32767" attributes="0"/>
                           <Component id="jsTabla_cat8" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
