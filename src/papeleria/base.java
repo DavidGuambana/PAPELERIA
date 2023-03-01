@@ -15,7 +15,7 @@ public class base {
 
     public static void abrir() {
         try {
-            bd = Db4o.openFile("C:\\Users\\davic\\OneDrive\\Escritorio\\Proyectos_bd\\Papeleria.yap");
+            bd = Db4o.openFile("C:\\Users\\ariel\\OneDrive\\Desktop\\PAPELERIA AVANZADA\\Papeleria.yap");
         } catch (DatabaseFileLockedException | DatabaseReadOnlyException | Db4oIOException | IncompatibleFileFormatException | OldFormatException e) {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "¡Error al abrir la base de datos!", null, JOptionPane.ERROR_MESSAGE);
