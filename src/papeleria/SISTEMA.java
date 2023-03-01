@@ -696,7 +696,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         INICIO.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
 
         JPfactura.setBackground(new java.awt.Color(204, 204, 204));
-        JPfactura.setPreferredSize(new java.awt.Dimension(1135, 1000));
+        JPfactura.setPreferredSize(new java.awt.Dimension(1135, 1300));
+        JPfactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -871,6 +872,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        JPfactura.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 0, -1, -1));
+
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel6.setBackground(new java.awt.Color(0, 51, 153));
@@ -974,6 +977,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        JPfactura.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 521, -1, -1));
+
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(0, 51, 153));
@@ -1065,6 +1070,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        JPfactura.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 920, -1, -1));
+
         jButton2.setBackground(new java.awt.Color(0, 51, 153));
         jButton2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -1075,40 +1082,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout JPfacturaLayout = new javax.swing.GroupLayout(JPfactura);
-        JPfactura.setLayout(JPfacturaLayout);
-        JPfacturaLayout.setHorizontalGroup(
-            JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addGroup(JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPfacturaLayout.createSequentialGroup()
-                        .addGap(351, 351, 351)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPfacturaLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPfacturaLayout.createSequentialGroup()
-                        .addGap(408, 408, 408)
-                        .addComponent(jButton2)))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPfacturaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(277, 277, 277))
-        );
-        JPfacturaLayout.setVerticalGroup(
-            JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        JPfactura.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1150, -1, 38));
 
         jScrollPane.setViewportView(JPfactura);
 
@@ -1127,7 +1101,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JPventas.setLayout(JPventasLayout);
         JPventasLayout.setHorizontalGroup(
             JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1135, Short.MAX_VALUE)
+            .addGap(0, 1137, Short.MAX_VALUE)
             .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(JPventasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
