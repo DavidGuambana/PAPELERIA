@@ -4,7 +4,9 @@ import clases.Categoria;
 import clases.Ciudad;
 import clases.Cliente;
 import clases.Descuento;
+import clases.Detalle_fac;
 import clases.Empleado;
+import clases.Encabezado_fac;
 import clases.Producto;
 import clases.Proveedor;
 import com.db4o.ObjectSet;
@@ -42,6 +44,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     //otras variables útiles:
     public static boolean actualizado = false;
     ObjectSet resultado;
+    ObjectSet resultado2;
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
     
@@ -247,14 +250,31 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 1: //eliminar categoria
                         Categoria cate = new Categoria(jlNombre_cat.getText(), null);
                         resultado = base.gettear(cate);
-                        cate = (Categoria) resultado.next();
-                        base.eliminar(cate);
+                        Producto prod = new Producto(0, null, 0, 0, jlNombre_cat.getText(), null, null, null);
+                        resultado2 = base.gettear(prod);
+                        if (resultado2.size() == 0) {
+                            cate = (Categoria) resultado.next();
+                            base.eliminar(cate);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un producto asignado!");
+                            eliminado = false;
+                        }
+
                         break;
                     case 2: //eliminar ciudad
                         Ciudad c = new Ciudad(Integer.parseInt(jlCodigo_ciu.getText()), null, null);
                         resultado = base.gettear(c);
-                        c = (Ciudad) resultado.next();
-                        base.eliminar(c);
+                        Proveedor prov=new Proveedor(null,null,jlCodigo_ciu.getText(),null,null,null);
+                        resultado2 = base.gettear(prov);
+                        if (resultado2.size() == 0) {
+                            
+                          c = (Ciudad) resultado.next();
+                        base.eliminar(c);   
+                        }else{
+                         JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Proveedor asignado!");
+                         eliminado = false;   
+                        }
+                       
                         break;
                     case 3: //eliminar cliente
                         Cliente cl = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
@@ -265,8 +285,18 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 4: //eliminar descuento
                         Descuento d = new Descuento(jlNombre_des.getText(), 0);
                         resultado = base.gettear(d);
-                        d = (Descuento) resultado.next();
-                        base.eliminar(d);
+                        Cliente cli2 = new Cliente(jlNombre_des.getText(), null, null, null, null, null, null, null, null, null);
+                        resultado2 = base.gettear(cli2);
+                        if (resultado2.size() == 0) {
+                         d = (Descuento) resultado.next();
+                        base.eliminar(d);                     
+                        }else{
+                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Cliente asignado!");
+                        eliminado = false;      
+                        }
+                      
+                        
+                        
                         break;
                     case 6: //eliminar empleado
                         Empleado e = new Empleado(0, jlCedula_emp.getText(), null, null, null, null, null, null, null, null);
@@ -279,14 +309,31 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 9: //eliminar producto
                         Producto pr = new Producto(Integer.parseInt(jlCodigo_pro.getText()), null, 0, 0, null, null, null, null);
                         resultado = base.gettear(pr);
+                        Detalle_fac enca=new Detalle_fac(0,Integer.parseInt(jlCodigo_pro.getText()),0,0); 
+                        resultado2 = base.gettear(enca);
+                        if (resultado2.size()==0) {
                         pr = (Producto) resultado.next();
-                        base.eliminar(pr);
+                        base.eliminar(pr);     
+                        }else{
+                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que se encuantra en una factura!");
+                        eliminado = false;     
+                        }
+                       
+                        
                         break;
                     case 10: //eliminar proveedor
                         Proveedor p = new Proveedor(jlRUC.getText(), null, null, null, null, null);
-                        resultado = base.gettear(p);
+                        resultado = base.gettear(p); 
+                        Producto pr2 = new Producto(0, null, 0, 0, null, null, jlRUC.getText(), null);
+                        resultado2= base.gettear(pr2);
+                        if (resultado2.size()==0) {
                         p = (Proveedor) resultado.next();
-                        base.eliminar(p);
+                        base.eliminar(p);   
+                        }else{
+                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Producto asignado!");
+                        eliminado = false;        
+                        }
+                       
                         break;
 
                 }
