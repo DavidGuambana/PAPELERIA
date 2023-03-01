@@ -4673,11 +4673,24 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     jlReg_cli.setText(JTclientes.getValueAt(JTclientes.getSelectedRow(), 9).toString());
                 }
                 if (Mouse_evt.getClickCount() == 2) {
-                    /*
-                    JFfactura.jt_ciudad.setText(jlCodigo_ciu.getText());
-                    SISTEMA.MENU.setSelectedIndex(1);
-                    JFfac.setVisible(true);
-                     */
+                    base.abrir();
+                    Cliente c = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
+                    resultado = base.gettear(c);
+                    if (!resultado.isEmpty()) {
+                        c = (Cliente) resultado.next();
+                        enc_cedula.setText(c.getCedula());
+                        enc_nombre_apellido.setText(c.getNombre() + " " + c.getApellido());
+                        enc_direccion.setText(c.getDireccion());
+                        enc_telefono.setText(c.getTelefono());
+                        enc_correo.setText(c.getCorreo());
+                        Descuento d = new Descuento(c.getDescuento(), 0);
+                        resultado = base.gettear(d);
+                        d = (Descuento) resultado.next();
+                        descuento = d.getPorcentaje();
+                        MENU.setSelectedIndex(0);
+                        INICIO.setSelectedIndex(0);
+                    }
+                    base.cerrar();
 
                 }
             }
