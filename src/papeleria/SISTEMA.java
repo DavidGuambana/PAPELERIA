@@ -48,6 +48,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
     
+    
     ArrayList<String> detalles = new ArrayList<>();
     JButton boton1 = new JButton();
 
@@ -55,7 +56,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     Thread hilo;
     
     //variables para factura:
-    public static int descuento = 0 ,total = 0, num_det = 0;
+    public static int descuento = 0 , num_det = 0;
+    public static double total = 0, total_descuento = 0;
+    public static int xcolum,xrow;
     
     //instancias de los frames:
     public static JFcategoria JFcat = new JFcategoria();//fr1
@@ -251,9 +254,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         resultado = base.gettear(cate);
                         Producto prod = new Producto(0, null, 0, 0, jlNombre_cat.getText(), null, null, null);
                         resultado2 = base.gettear(prod);
-                        if (resultado2.size() == 0) {
+                        if (resultado2.isEmpty()) {
                             cate = (Categoria) resultado.next();
-                            base.eliminar(cate); 
+                            base.eliminar(cate);
                             limpiar(1);
                         } else {
                             JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un producto asignado!");
@@ -264,46 +267,44 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 2: //eliminar ciudad
                         Ciudad c = new Ciudad(Integer.parseInt(jlCodigo_ciu.getText()), null, null);
                         resultado = base.gettear(c);
-                        Proveedor prov=new Proveedor(null,null,jlCodigo_ciu.getText(),null,null,null);
+                        Proveedor prov = new Proveedor(null, null, jlCodigo_ciu.getText(), null, null, null);
                         resultado2 = base.gettear(prov);
-                        if (resultado2.size() == 0) {
-                            
-                        c = (Ciudad) resultado.next();
-                        base.eliminar(c);   
-                        }else{
-                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Proveedor asignado!");
-                        eliminado = false;   
+                        if (resultado2.isEmpty()) {
+
+                            c = (Ciudad) resultado.next();
+                            base.eliminar(c);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Proveedor asignado!");
+                            eliminado = false;
                         }
-                       
+
                         break;
                     case 3: //eliminar cliente
                         Cliente cl = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
-                        resultado = base.gettear(cl);         
-                        Encabezado_fac fact =new Encabezado_fac(0,jlCedula_cli.getText(),null,0,null);
+                        resultado = base.gettear(cl);
+                        Encabezado_fac fact = new Encabezado_fac(0, jlCedula_cli.getText(), null, 0, null);
                         resultado2 = base.gettear(fact);
-                        if (resultado2.size()==0) {
-                        cl = (Cliente) resultado.next();
-                        base.eliminar(cl);   
-                        }else{
-                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Factura asignado!");
-                        eliminado = false;         
-                        }                       
+                        if (resultado2.isEmpty()) {
+                            cl = (Cliente) resultado.next();
+                            base.eliminar(cl);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Factura asignado!");
+                            eliminado = false;
+                        }
                         break;
                     case 4: //eliminar descuento
                         Descuento d = new Descuento(jlNombre_des.getText(), 0);
                         resultado = base.gettear(d);
                         Cliente cli2 = new Cliente(jlNombre_des.getText(), null, null, null, null, null, null, null, null, null);
                         resultado2 = base.gettear(cli2);
-                        if (resultado2.size() == 0) {
-                         d = (Descuento) resultado.next();
-                        base.eliminar(d);                     
-                        }else{
-                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Cliente asignado!");
-                        eliminado = false;      
+                        if (resultado2.isEmpty()) {
+                            d = (Descuento) resultado.next();
+                            base.eliminar(d);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Cliente asignado!");
+                            eliminado = false;
                         }
-                      
-                        
-                        
+
                         break;
                     case 6: //eliminar empleado
                         Empleado e = new Empleado(0, jlCedula_emp.getText(), null, null, null, null, null, null, null, null);
@@ -316,31 +317,30 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     case 9: //eliminar producto
                         Producto pr = new Producto(Integer.parseInt(jlCodigo_pro.getText()), null, 0, 0, null, null, null, null);
                         resultado = base.gettear(pr);
-                        Detalle_fac enca=new Detalle_fac(0,Integer.parseInt(jlCodigo_pro.getText()),0,0); 
+                        Detalle_fac enca = new Detalle_fac(0, Integer.parseInt(jlCodigo_pro.getText()), 0, 0);
                         resultado2 = base.gettear(enca);
-                        if (resultado2.size()==0) {
-                        pr = (Producto) resultado.next();
-                        base.eliminar(pr);     
-                        }else{
-                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que se encuantra en una factura!");
-                        eliminado = false;     
+                        if (resultado2.isEmpty()) {
+                            pr = (Producto) resultado.next();
+                            base.eliminar(pr);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que se encuantra en una factura!");
+                            eliminado = false;
                         }
-                       
-                        
+
                         break;
                     case 10: //eliminar proveedor
                         Proveedor p = new Proveedor(jlRUC.getText(), null, null, null, null, null);
-                        resultado = base.gettear(p); 
+                        resultado = base.gettear(p);
                         Producto pr2 = new Producto(0, null, 0, 0, null, null, jlRUC.getText(), null);
-                        resultado2= base.gettear(pr2);
-                        if (resultado2.size()==0) {
-                        p = (Proveedor) resultado.next();
-                        base.eliminar(p);   
-                        }else{
-                        JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Producto asignado!");
-                        eliminado = false;        
+                        resultado2 = base.gettear(pr2);
+                        if (resultado2.isEmpty()) {
+                            p = (Proveedor) resultado.next();
+                            base.eliminar(p);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Producto asignado!");
+                            eliminado = false;
                         }
-                       
+
                         break;
 
                 }
@@ -408,7 +408,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jl_num_det3 = new javax.swing.JLabel();
         jl_num_det4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        JBcrear_factura = new javax.swing.JButton();
         jScrollPanew = new javax.swing.JScrollPane();
         JPventas = new javax.swing.JPanel();
         jl_titulo6 = new javax.swing.JLabel();
@@ -910,6 +910,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTdetalle.setSelectionBackground(new java.awt.Color(0, 204, 204));
         JTdetalle.getTableHeader().setResizingAllowed(false);
         JTdetalle.getTableHeader().setReorderingAllowed(false);
+        JTdetalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTdetalleMouseClicked(evt);
+            }
+        });
         jsTabla_ciu1.setViewportView(JTdetalle);
 
         jButton1.setBackground(new java.awt.Color(0, 51, 153));
@@ -1068,14 +1073,14 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap())
         );
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 153));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("CREAR FACTURA");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JBcrear_factura.setBackground(new java.awt.Color(0, 51, 153));
+        JBcrear_factura.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        JBcrear_factura.setForeground(new java.awt.Color(255, 255, 255));
+        JBcrear_factura.setText("CREAR FACTURA");
+        JBcrear_factura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBcrear_factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JBcrear_facturaActionPerformed(evt);
             }
         });
 
@@ -1096,7 +1101,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPfacturaLayout.createSequentialGroup()
                         .addGap(409, 409, 409)
-                        .addComponent(jButton2)))
+                        .addComponent(JBcrear_factura)))
                 .addContainerGap())
         );
         JPfacturaLayout.setVerticalGroup(
@@ -1109,7 +1114,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JBcrear_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(177, 177, 177))
         );
 
@@ -4462,23 +4467,20 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         if (cantidad > 0 && cantidad <= Integer.parseInt(jlExistencias_pro.getText())) {
                             Double xprecio = Double.valueOf(jlPrecio_pro.getText());
                             JTdetalle.setDefaultRenderer(Object.class, new BotonTabla());
-                            Object detalle[] = {jlCodigo_pro.getText(), jlNombre_pro.getText(), cantidad, xprecio,descuento+"%", xprecio - ((descuento*xprecio)/100), Math.round((cantidad * (xprecio - ((descuento*xprecio)/100))) * 100.0) / 100.0, boton1};
+                            Object detalle[] = {jlCodigo_pro.getText(), jlNombre_pro.getText(), cantidad, xprecio, descuento + "%", xprecio - ((descuento * xprecio) / 100), Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0, boton1};
 
                             detalles.add(jlCodigo_pro.getText());
                             //-------------- Agrega un detalle a la tabla
                             tabla_detalle.addRow(detalle);
                             JTdetalle.setModel(tabla_detalle);
-                            JTdetalle.setRowHeight(35);
                             //Confirmar_venta.setEnabled(true);
                             //--------------- Actualiza variables
-                            
-                            
+
                             num_det++;
-                            jl_num_det.setText("Detalles: "+String.valueOf(num_det));
-                            total += (Math.round((cantidad * (xprecio - ((descuento*xprecio)/100))) * 100.0) / 100.0);
-                            jl_total.setText(String.valueOf("Total: $"+total));
-                            
-                            //valor_total.setText("VALOR TOTAL: $" + String.valueOf(xvalor_total));
+                            jl_num_det.setText("Detalles: " + String.valueOf(num_det));
+                            total += (Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0);
+                            jl_num_det.setText("Detalles: " + num_det);
+                            jl_total.setText("Total: $" + total);
 
                             //---------- Redireccionar
                             MENU.setSelectedIndex(0);
@@ -4681,9 +4683,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         MENU.setSelectedIndex(3);
     }//GEN-LAST:event_enc_cedulaMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void JBcrear_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBcrear_facturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_JBcrear_facturaActionPerformed
 
     private void lim_cliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_cliMouseClicked
         lim_cli.setVisible(false);
@@ -4691,6 +4693,46 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jtBuscar_cli.select(0, 0);
         visualizar();
     }//GEN-LAST:event_lim_cliMouseClicked
+
+    private void JTdetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTdetalleMouseClicked
+        xcolum = JTdetalle.getColumnModel().getColumnIndexAtX(evt.getX());
+        xrow = evt.getY() / JTdetalle.getRowHeight();
+        
+        if (xcolum <= JTdetalle.getColumnCount() && xcolum >= 0 && xrow <= JTdetalle.getRowCount() && xrow >= 0) {
+            Object obj = JTdetalle.getValueAt(xrow, xcolum);
+            if (obj instanceof JButton) {
+                int valor = JOptionPane.showConfirmDialog(this, "¿Desea remover este producto?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (valor == JOptionPane.YES_OPTION) {
+                    int codigo_pro = Integer.parseInt(JTdetalle.getValueAt(JTdetalle.getSelectedRow(), 0).toString());
+
+                    //Actualiza variables:
+                    num_det--;
+                    total -= Double.parseDouble(JTdetalle.getValueAt(JTdetalle.getSelectedRow(), 6).toString());
+                    total = Math.round(total*100.0)/100.0; //deja al valor con dos decimales
+                    
+                    jl_num_det.setText("Detalles: " + num_det);
+                    jl_total.setText("Total: $" + total);
+                    
+                    //----> Eliminar un detalle a la tabla:
+                    tabla_detalle.removeRow(JTdetalle.getSelectedRow());
+                    JTdetalle.setModel(tabla_detalle);
+                    //-- > Deseleccinar al producto eliminado
+                    for (int i = 0; i < detalles.size(); i++) {
+                        if (detalles.get(i).equals(String.valueOf(codigo_pro))) {
+                            detalles.remove(String.valueOf(codigo_pro));
+                            i = detalles.size();
+                        }
+                    }
+                    
+                    if (tabla_detalle.getRowCount() == 0) {
+                        JBcrear_factura.setEnabled(false);
+                    }
+                    JOptionPane.showMessageDialog(null, "¡Producto '" + codigo_pro + "' removido!", null, JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+            }
+        }
+    }//GEN-LAST:event_JTdetalleMouseClicked
 
     
     public void InsertarIcono(JButton bot, String ruta){ //insertar icono en boton:
@@ -4822,11 +4864,59 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     jlReg_pro.setText(JTproductos.getValueAt(JTproductos.getSelectedRow(), 6).toString());
                 }
                 if (Mouse_evt.getClickCount() == 2) {
-                    /*
-                    JFproveedor.jt_ciudad.setText(jlCodigo_ciu.getText());
-                    SISTEMA.MENU.setSelectedIndex(1);
-                    JFprov.setVisible(true);
-                     */
+                    int existencias = Integer.parseInt(jlExistencias_pro.getText());
+                    if (existencias > 0) {
+                        boolean repetido = false;
+                        for (int i = 0; i < detalles.size(); i++) {
+                            if (detalles.get(i).equals(jlCodigo_pro.getText())) {
+                                repetido = true;
+                                break;
+                            }
+                        }
+                        if (repetido) {
+                            JOptionPane.showMessageDialog(null, "¡Este producto ya fué seleccionado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            try {
+                                int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad:", 1));
+                                if (cantidad > 0 && cantidad <= Integer.parseInt(jlExistencias_pro.getText())) {
+                                    Double xprecio = Double.valueOf(jlPrecio_pro.getText());
+                                    JTdetalle.setDefaultRenderer(Object.class, new BotonTabla());
+                                    Object detalle[] = {jlCodigo_pro.getText(), jlNombre_pro.getText(), cantidad, xprecio, descuento + "%", xprecio - ((descuento * xprecio) / 100), Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0, boton1};
+
+                                    detalles.add(jlCodigo_pro.getText());
+                                    //-------------- Agrega un detalle a la tabla
+                                    tabla_detalle.addRow(detalle);
+                                    JTdetalle.setModel(tabla_detalle);
+                                    //Confirmar_venta.setEnabled(true);
+                                    //--------------- Actualiza variables
+
+                                    num_det++;
+                                    jl_num_det.setText("Detalles: " + String.valueOf(num_det));
+                                    total += (Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0);
+                                    jl_num_det.setText("Detalles: " + num_det);
+                                    jl_total.setText("Total: $" + total);
+
+                                    //---------- Redireccionar
+                                    MENU.setSelectedIndex(0);
+                                    INICIO.setSelectedIndex(0);
+                                } else {
+                                    if (cantidad > Integer.parseInt(jlExistencias_pro.getText())) {
+                                        JOptionPane.showMessageDialog(null, "¡Solo existen '" + jlExistencias_pro.getText() + "' de este producto!", null, JOptionPane.WARNING_MESSAGE);
+                                    }
+                                    if (cantidad <= 0) {
+                                        JOptionPane.showMessageDialog(null, "¡El mínimo de venta es de 1!", null, JOptionPane.WARNING_MESSAGE);
+                                    }
+
+                                }
+
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, "¡Cantiadad inválida!", null, JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "¡Producto agotado!, Seleccione otro!", null, JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
         });
@@ -4947,6 +5037,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel FECHA_HORA;
     private javax.swing.JLabel FONDO;
     private javax.swing.JTabbedPane INICIO;
+    private javax.swing.JButton JBcrear_factura;
     private javax.swing.JPanel JPcategorias;
     private javax.swing.JPanel JPciudades;
     private javax.swing.JPanel JPclientes;
@@ -4978,7 +5069,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField enc_nombre_apellido;
     private javax.swing.JTextField enc_telefono;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
