@@ -5,12 +5,17 @@ public class Detalle_fac {
     private int codigo_pro;
     private int cant;
     private double subtotal;
+    private int codigo_fac;
 
-    public Detalle_fac(int codigo, int codigo_pro, int cant, double subtotal) {
+    public Detalle_fac() {
+    }
+
+    public Detalle_fac(int codigo, int codigo_pro, int cant, double subtotal, int codigo_fac) {
         this.codigo = codigo;
         this.codigo_pro = codigo_pro;
         this.cant = cant;
         this.subtotal = subtotal;
+        this.codigo_fac = codigo_fac;
     }
 
     public int getCodigo() {
@@ -45,8 +50,14 @@ public class Detalle_fac {
         this.subtotal = subtotal;
     }
 
-    @Override
-    public String toString() {
-        return "Detalle_fac{" + "codigo=" + codigo + ", codigo_pro=" + codigo_pro + ", cant=" + cant + ", subtotal=" + subtotal + '}';
+    public int getCodigo_fac() {
+        return codigo_fac;
     }
+
+    public void setCodigo_fac(int codigo_fac) {
+        this.codigo_fac = codigo_fac;
+    }
+
+    
+    
 }
