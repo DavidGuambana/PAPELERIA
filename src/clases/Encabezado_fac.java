@@ -8,7 +8,6 @@ public class Encabezado_fac {
     private Date fecha;
     private double total;
     private String estado;
-    
 
     public Encabezado_fac() {
     }

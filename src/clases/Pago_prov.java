@@ -2,24 +2,26 @@ package clases;
 
 import java.util.Date;
 
-public class Gasto {
+public class Pago_prov {
     private int codigo;
     private double valor;
     private String cedula_emp;
     private String RUC_prov;
     private String descripcion;
     private Date fecha_reg;
+    private String estado;
 
-    public Gasto() {
+    public Pago_prov() {
     }
 
-    public Gasto(int codigo, double valor, String cedula_emp, String RUC_prov, String descripcion, Date fecha_reg) {
+    public Pago_prov(int codigo, double valor, String cedula_emp, String RUC_prov, String descripcion, Date fecha_reg, String estado) {
         this.codigo = codigo;
         this.valor = valor;
         this.cedula_emp = cedula_emp;
         this.RUC_prov = RUC_prov;
         this.descripcion = descripcion;
         this.fecha_reg = fecha_reg;
+        this.estado = estado;
     }
 
     public int getCodigo() {
@@ -70,10 +72,14 @@ public class Gasto {
         this.fecha_reg = fecha_reg;
     }
 
-    @Override
-    public String toString() {
-        return "Gasto{" + "codigo=" + codigo + ", valor=" + valor + ", cedula_emp=" + cedula_emp + ", RUC_prov=" + RUC_prov + ", descripcion=" + descripcion + ", fecha_reg=" + fecha_reg + '}';
+    public String getEstado() {
+        return estado;
     }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
     
 }
