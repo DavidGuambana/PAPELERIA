@@ -512,6 +512,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JBseleccionar_pro = new javax.swing.JButton();
         jl_num_det = new javax.swing.JLabel();
         jl_total = new javax.swing.JLabel();
+        JBcrear_factura1 = new javax.swing.JButton();
+        JBcrear_factura = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -522,8 +524,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jlTotal_descuento = new javax.swing.JLabel();
         jlTotal = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        JBcrear_factura = new javax.swing.JButton();
-        JBcrear_factura1 = new javax.swing.JButton();
         jScrollPanew = new javax.swing.JScrollPane();
         JPventas = new javax.swing.JPanel();
         jsTabla_ciu2 = new javax.swing.JScrollPane();
@@ -551,15 +551,19 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel53 = new javax.swing.JLabel();
         RUC_fac16 = new javax.swing.JLabel();
         jsTabla_cat3 = new javax.swing.JScrollPane();
-        jtTabla_det2 = new javax.swing.JTable();
+        JTdetallesv = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         RUC_fac15 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jlAgregar_fac = new javax.swing.JLabel();
-        jcBuscar_des1 = new javax.swing.JComboBox<>();
+        jcBuscar_enc = new javax.swing.JComboBox<>();
         jLabel43 = new javax.swing.JLabel();
-        jtBuscar_des1 = new javax.swing.JTextField();
-        lim_des1 = new javax.swing.JLabel();
+        jtBuscar_enc = new javax.swing.JTextField();
+        lim_enc = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jcBuscar_det = new javax.swing.JComboBox<>();
+        jtBuscar_det = new javax.swing.JTextField();
+        lim_det = new javax.swing.JLabel();
         JPgastos = new javax.swing.JPanel();
         JPcategorias = new javax.swing.JPanel();
         jl_titulo5 = new javax.swing.JLabel();
@@ -1098,41 +1102,27 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jl_total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jl_total.setText("Total: $0");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(JBseleccionar_pro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                        .addComponent(jl_total, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jl_num_det, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jsTabla_ciu1)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jsTabla_ciu1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(JBseleccionar_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jl_total)
-                            .addComponent(jl_num_det))))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
+        JBcrear_factura1.setBackground(new java.awt.Color(255, 0, 0));
+        JBcrear_factura1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        JBcrear_factura1.setForeground(new java.awt.Color(255, 255, 255));
+        JBcrear_factura1.setText("VOLVER A EMPEZAR");
+        JBcrear_factura1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBcrear_factura1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBcrear_factura1ActionPerformed(evt);
+            }
+        });
+
+        JBcrear_factura.setBackground(new java.awt.Color(0, 204, 102));
+        JBcrear_factura.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        JBcrear_factura.setForeground(new java.awt.Color(255, 255, 255));
+        JBcrear_factura.setText("CREAR FACTURA");
+        JBcrear_factura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBcrear_factura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBcrear_facturaActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1231,46 +1221,71 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap())
         );
 
-        JBcrear_factura.setBackground(new java.awt.Color(0, 204, 102));
-        JBcrear_factura.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        JBcrear_factura.setForeground(new java.awt.Color(255, 255, 255));
-        JBcrear_factura.setText("CREAR FACTURA");
-        JBcrear_factura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        JBcrear_factura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBcrear_facturaActionPerformed(evt);
-            }
-        });
-
-        JBcrear_factura1.setBackground(new java.awt.Color(255, 0, 0));
-        JBcrear_factura1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        JBcrear_factura1.setForeground(new java.awt.Color(255, 255, 255));
-        JBcrear_factura1.setText("VOLVER A EMPEZAR");
-        JBcrear_factura1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        JBcrear_factura1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBcrear_factura1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(JBseleccionar_pro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                        .addComponent(jl_total, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jl_num_det, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jsTabla_ciu1)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(JBcrear_factura1)
+                        .addGap(41, 41, 41)
+                        .addComponent(JBcrear_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(189, 189, 189))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jsTabla_ciu1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(JBseleccionar_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_total)
+                            .addComponent(jl_num_det))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JBcrear_factura1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBcrear_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout JPfacturaLayout = new javax.swing.GroupLayout(JPfactura);
         JPfactura.setLayout(JPfacturaLayout);
         JPfacturaLayout.setHorizontalGroup(
             JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addGap(231, 231, 231)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(JPfacturaLayout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(JBcrear_factura1)
-                .addGap(41, 41, 41)
-                .addComponent(JBcrear_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPfacturaLayout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPfacturaLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         JPfacturaLayout.setVerticalGroup(
             JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1279,12 +1294,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBcrear_factura1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBcrear_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(76, 76, 76))
         );
 
         jScrollPane.setViewportView(JPfactura);
@@ -1357,9 +1367,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         VISTA_FACTURA.setBackground(new java.awt.Color(255, 255, 255));
         VISTA_FACTURA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        VISTA_FACTURA.setMaximumSize(new java.awt.Dimension(520, 510));
-        VISTA_FACTURA.setMinimumSize(new java.awt.Dimension(520, 510));
-        VISTA_FACTURA.setPreferredSize(new java.awt.Dimension(520, 510));
+        VISTA_FACTURA.setMaximumSize(new java.awt.Dimension(485, 520));
+        VISTA_FACTURA.setMinimumSize(new java.awt.Dimension(485, 520));
+        VISTA_FACTURA.setPreferredSize(new java.awt.Dimension(485, 520));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -1405,7 +1415,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RUC_fac7)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1424,7 +1434,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
                     .addComponent(RUC_fac10))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -1433,16 +1443,16 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel48.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
-        jLabel48.setText("Nombre y Apellido:");
+        jLabel48.setText("Razon social:");
         jPanel10.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         RUC_fac11.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         RUC_fac11.setText("Nombre Apellido");
-        jPanel10.add(RUC_fac11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
+        jPanel10.add(RUC_fac11, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 40, 160, -1));
 
         RUC_fac12.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         RUC_fac12.setText("0000000000");
-        jPanel10.add(RUC_fac12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        jPanel10.add(RUC_fac12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 90, -1));
 
         jLabel49.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel49.setText("Identificación:");
@@ -1458,29 +1468,29 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         jLabel51.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel51.setText("Teléfono:");
-        jPanel10.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        jPanel10.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         RUC_fac14.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         RUC_fac14.setText("Teléfono");
-        jPanel10.add(RUC_fac14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+        jPanel10.add(RUC_fac14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 60, -1));
 
         jLabel53.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel53.setText("Correo:");
-        jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
         RUC_fac16.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         RUC_fac16.setText("Correo");
-        jPanel10.add(RUC_fac16, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 40, 50, -1));
+        jPanel10.add(RUC_fac16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 50, -1));
 
-        jtTabla_encabezados = new javax.swing.JTable(){
+        JTdetallesv = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
         };
-        jtTabla_det2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jtTabla_det2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jtTabla_det2.setForeground(new java.awt.Color(51, 51, 51));
-        jtTabla_det2.setModel(new javax.swing.table.DefaultTableModel(
+        JTdetallesv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        JTdetallesv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        JTdetallesv.setForeground(new java.awt.Color(51, 51, 51));
+        JTdetallesv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -1491,19 +1501,19 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
             }
         ));
-        jtTabla_det2.setFocusable(false);
-        jtTabla_det2.setGridColor(new java.awt.Color(255, 255, 255));
-        jtTabla_det2.setOpaque(false);
-        jtTabla_det2.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        jtTabla_det2.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jtTabla_det2.getTableHeader().setResizingAllowed(false);
-        jtTabla_det2.getTableHeader().setReorderingAllowed(false);
-        jtTabla_det2.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTdetallesv.setFocusable(false);
+        JTdetallesv.setGridColor(new java.awt.Color(255, 255, 255));
+        JTdetallesv.setOpaque(false);
+        JTdetallesv.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        JTdetallesv.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        JTdetallesv.getTableHeader().setResizingAllowed(false);
+        JTdetallesv.getTableHeader().setReorderingAllowed(false);
+        JTdetallesv.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTabla_det2MouseClicked(evt);
+                JTdetallesvMouseClicked(evt);
             }
         });
-        jsTabla_cat3.setViewportView(jtTabla_det2);
+        jsTabla_cat3.setViewportView(JTdetallesv);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -1520,16 +1530,16 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(133, 133, 133)
                 .addComponent(jLabel52)
                 .addGap(12, 12, 12)
                 .addComponent(RUC_fac15)
-                .addGap(201, 201, 201))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel52)
                     .addComponent(RUC_fac15))
@@ -1551,81 +1561,127 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         VISTA_FACTURALayout.setHorizontalGroup(
             VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VISTA_FACTURALayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(9, 9, 9)
                 .addGroup(VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(VISTA_FACTURALayout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(jlAgregar_fac, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jsTabla_cat3, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlAgregar_fac, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addComponent(jsTabla_cat3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         VISTA_FACTURALayout.setVerticalGroup(
             VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(VISTA_FACTURALayout.createSequentialGroup()
-                .addGroup(VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(VISTA_FACTURALayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(VISTA_FACTURALayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jlAgregar_fac)))
                 .addGap(10, 10, 10)
+                .addGroup(VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlAgregar_fac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jsTabla_cat3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jcBuscar_des1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
-        jcBuscar_des1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje" }));
-        jcBuscar_des1.addItemListener(new java.awt.event.ItemListener() {
+        jcBuscar_enc.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jcBuscar_enc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje" }));
+        jcBuscar_enc.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcBuscar_des1ItemStateChanged(evt);
+                jcBuscar_encItemStateChanged(evt);
             }
         });
 
         jLabel43.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel43.setText("Buscar encabezado factura por");
+        jLabel43.setText("Buscar encabezado de factura por");
 
-        jtBuscar_des1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        jtBuscar_des1.setText("Buscar");
-        jtBuscar_des1.setMinimumSize(new java.awt.Dimension(317, 31));
-        jtBuscar_des1.setPreferredSize(new java.awt.Dimension(317, 35));
-        jtBuscar_des1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jtBuscar_des1.setSelectionColor(new java.awt.Color(153, 204, 255));
-        jtBuscar_des1.setSelectionEnd(0);
-        jtBuscar_des1.setSelectionStart(0);
-        jtBuscar_des1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtBuscar_enc.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jtBuscar_enc.setText("Buscar");
+        jtBuscar_enc.setMinimumSize(new java.awt.Dimension(317, 31));
+        jtBuscar_enc.setPreferredSize(new java.awt.Dimension(317, 35));
+        jtBuscar_enc.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jtBuscar_enc.setSelectionColor(new java.awt.Color(153, 204, 255));
+        jtBuscar_enc.setSelectionEnd(0);
+        jtBuscar_enc.setSelectionStart(0);
+        jtBuscar_enc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtBuscar_des1MouseClicked(evt);
+                jtBuscar_encMouseClicked(evt);
             }
         });
-        jtBuscar_des1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtBuscar_enc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtBuscar_des1KeyPressed(evt);
+                jtBuscar_encKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtBuscar_des1KeyReleased(evt);
+                jtBuscar_encKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtBuscar_des1KeyTyped(evt);
+                jtBuscar_encKeyTyped(evt);
             }
         });
 
-        lim_des1.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
-        lim_des1.setForeground(new java.awt.Color(0, 102, 102));
-        lim_des1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lim_des1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
-        lim_des1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lim_des1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lim_enc.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
+        lim_enc.setForeground(new java.awt.Color(0, 102, 102));
+        lim_enc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lim_enc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
+        lim_enc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lim_enc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lim_des1MouseClicked(evt);
+                lim_encMouseClicked(evt);
+            }
+        });
+
+        jLabel46.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel46.setText("Buscar detalle de factura por");
+
+        jcBuscar_det.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jcBuscar_det.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje" }));
+        jcBuscar_det.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcBuscar_detItemStateChanged(evt);
+            }
+        });
+
+        jtBuscar_det.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jtBuscar_det.setText("Buscar");
+        jtBuscar_det.setMinimumSize(new java.awt.Dimension(317, 31));
+        jtBuscar_det.setPreferredSize(new java.awt.Dimension(317, 35));
+        jtBuscar_det.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jtBuscar_det.setSelectionColor(new java.awt.Color(153, 204, 255));
+        jtBuscar_det.setSelectionEnd(0);
+        jtBuscar_det.setSelectionStart(0);
+        jtBuscar_det.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtBuscar_detMouseClicked(evt);
+            }
+        });
+        jtBuscar_det.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtBuscar_detKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtBuscar_detKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtBuscar_detKeyTyped(evt);
+            }
+        });
+
+        lim_det.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
+        lim_det.setForeground(new java.awt.Color(0, 102, 102));
+        lim_det.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lim_det.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
+        lim_det.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lim_det.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lim_detMouseClicked(evt);
             }
         });
 
@@ -1633,46 +1689,66 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JPventas.setLayout(JPventasLayout);
         JPventasLayout.setHorizontalGroup(
             JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPventasLayout.createSequentialGroup()
+            .addGroup(JPventasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                        .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jtBuscar_des1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPventasLayout.createSequentialGroup()
+                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JPventasLayout.createSequentialGroup()
                                 .addComponent(jLabel43)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcBuscar_des1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lim_des1)))
-                .addGap(40, 40, 40))
+                                .addComponent(jcBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(lim_enc))
+                    .addGroup(JPventasLayout.createSequentialGroup()
+                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(JPventasLayout.createSequentialGroup()
+                                .addComponent(jLabel46)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcBuscar_det, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(lim_det))))
         );
         JPventasLayout.setVerticalGroup(
             JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPventasLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
+                .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(JPventasLayout.createSequentialGroup()
                 .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPventasLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(lim_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPventasLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
                         .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPventasLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jcBuscar_des1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtBuscar_des1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lim_des1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addComponent(jtBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPventasLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jtBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(JPventasLayout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(lim_det, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jScrollPanew.setViewportView(JPventas);
@@ -5229,8 +5305,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
             int valor = JOptionPane.showConfirmDialog(this, "¿Desea continuar con la creación de la factura?", "Crear factura", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (valor == JOptionPane.YES_OPTION) {
                 generar_factura();
-                //reiniciar_factura();
+                reiniciar_factura();
                 visualizar();
+                INICIO.setSelectedIndex(1);
             }
         }
     }//GEN-LAST:event_JBcrear_facturaActionPerformed
@@ -5317,37 +5394,61 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_fec_encActionPerformed
 
-    private void jcBuscar_des1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBuscar_des1ItemStateChanged
+    private void jcBuscar_encItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBuscar_encItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcBuscar_des1ItemStateChanged
+    }//GEN-LAST:event_jcBuscar_encItemStateChanged
 
-    private void jtBuscar_des1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_des1MouseClicked
+    private void jtBuscar_encMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_encMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtBuscar_des1MouseClicked
+    }//GEN-LAST:event_jtBuscar_encMouseClicked
 
-    private void jtBuscar_des1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_des1KeyPressed
+    private void jtBuscar_encKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtBuscar_des1KeyPressed
+    }//GEN-LAST:event_jtBuscar_encKeyPressed
 
-    private void jtBuscar_des1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_des1KeyReleased
+    private void jtBuscar_encKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtBuscar_des1KeyReleased
+    }//GEN-LAST:event_jtBuscar_encKeyReleased
 
-    private void jtBuscar_des1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_des1KeyTyped
+    private void jtBuscar_encKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtBuscar_des1KeyTyped
+    }//GEN-LAST:event_jtBuscar_encKeyTyped
 
-    private void lim_des1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_des1MouseClicked
+    private void lim_encMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_encMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_lim_des1MouseClicked
+    }//GEN-LAST:event_lim_encMouseClicked
 
     private void jlAgregar_facMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAgregar_facMouseClicked
-        jtVENDER.setSelectedIndex(0);
+        INICIO.setSelectedIndex(0);
     }//GEN-LAST:event_jlAgregar_facMouseClicked
 
-    private void jtTabla_det2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTabla_det2MouseClicked
+    private void JTdetallesvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTdetallesvMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtTabla_det2MouseClicked
+    }//GEN-LAST:event_JTdetallesvMouseClicked
+
+    private void jcBuscar_detItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBuscar_detItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcBuscar_detItemStateChanged
+
+    private void jtBuscar_detMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_detMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_detMouseClicked
+
+    private void jtBuscar_detKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_detKeyPressed
+
+    private void jtBuscar_detKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_detKeyReleased
+
+    private void jtBuscar_detKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_detKeyTyped
+
+    private void lim_detMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_detMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lim_detMouseClicked
 
     
     public void InsertarIcono(JButton bot, String ruta){ //insertar icono en boton:
@@ -5683,6 +5784,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable JTdescuentos;
     private javax.swing.JTable JTdet_fac;
     public transient javax.swing.JTable JTdetalle;
+    public static javax.swing.JTable JTdetallesv;
     public static javax.swing.JTable JTempleados;
     private javax.swing.JTable JTenc_fac;
     public static javax.swing.JTable JTproductos;
@@ -5734,6 +5836,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
@@ -5805,8 +5908,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox<String> jcBuscar_ciu;
     private javax.swing.JComboBox<String> jcBuscar_cli;
     private javax.swing.JComboBox<String> jcBuscar_des;
-    private javax.swing.JComboBox<String> jcBuscar_des1;
+    private javax.swing.JComboBox<String> jcBuscar_det;
     private javax.swing.JComboBox<String> jcBuscar_emp;
+    private javax.swing.JComboBox<String> jcBuscar_enc;
     private javax.swing.JComboBox<String> jcBuscar_pro;
     private javax.swing.JComboBox<String> jcBuscar_prov;
     private javax.swing.JLabel jlAgregar_fac;
@@ -5930,18 +6034,19 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JTextField jtBuscar_ciu;
     public static javax.swing.JTextField jtBuscar_cli;
     public static javax.swing.JTextField jtBuscar_des;
-    public static javax.swing.JTextField jtBuscar_des1;
+    public static javax.swing.JTextField jtBuscar_det;
     public static javax.swing.JTextField jtBuscar_emp;
+    public static javax.swing.JTextField jtBuscar_enc;
     public static javax.swing.JTextField jtBuscar_pro;
     public static javax.swing.JTextField jtBuscar_prov;
-    private javax.swing.JTable jtTabla_det2;
     public static javax.swing.JTextArea jtaDescripcion_cat;
     private javax.swing.JLabel lim_cat;
     private javax.swing.JLabel lim_ciu;
     private javax.swing.JLabel lim_cli;
     private javax.swing.JLabel lim_des;
-    private javax.swing.JLabel lim_des1;
+    private javax.swing.JLabel lim_det;
     private javax.swing.JLabel lim_emp;
+    private javax.swing.JLabel lim_enc;
     private javax.swing.JLabel lim_pro;
     private javax.swing.JLabel lim_prov;
     private javax.swing.JLabel res_num_cat;
