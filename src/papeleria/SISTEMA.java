@@ -1551,27 +1551,27 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         jLabel50.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel50.setText("Dirección:");
-        jPanel10.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jPanel10.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         VF_DIRECCION.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         VF_DIRECCION.setText("Dirección");
-        jPanel10.add(VF_DIRECCION, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        jPanel10.add(VF_DIRECCION, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 190, -1));
 
         jLabel51.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel51.setText("Teléfono:");
-        jPanel10.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+        jPanel10.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         VF_TELEFONO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         VF_TELEFONO.setText("Teléfono");
-        jPanel10.add(VF_TELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 120, -1));
+        jPanel10.add(VF_TELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 120, -1));
 
         jLabel53.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel53.setText("Correo:");
-        jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+        jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
         VF_CORREO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         VF_CORREO.setText("Correo");
-        jPanel10.add(VF_CORREO, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, -1));
+        jPanel10.add(VF_CORREO, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 190, -1));
 
         VF_DETALLES = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
