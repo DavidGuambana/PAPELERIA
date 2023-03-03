@@ -3089,14 +3089,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jpDatos_cli.setMaximumSize(new java.awt.Dimension(980, 185));
         jpDatos_cli.setMinimumSize(new java.awt.Dimension(980, 185));
         jpDatos_cli.setPreferredSize(new java.awt.Dimension(980, 185));
+        jpDatos_cli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Cliente seleccionado:");
+        jpDatos_cli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 882, 30));
 
         jlR2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlR2.setForeground(new java.awt.Color(51, 51, 51));
         jlR2.setText("Cédula:");
+        jpDatos_cli.add(jlR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 42, -1, -1));
 
         jbEnviar_cli.setBackground(new java.awt.Color(255, 102, 51));
         jbEnviar_cli.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3117,6 +3120,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbEnviar_cliActionPerformed(evt);
             }
         });
+        jpDatos_cli.add(jbEnviar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 190, 44));
 
         jb_Eliminar_cli.setBackground(new java.awt.Color(255, 0, 51));
         jb_Eliminar_cli.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3137,6 +3141,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jb_Eliminar_cliActionPerformed(evt);
             }
         });
+        jpDatos_cli.add(jb_Eliminar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 190, 44));
 
         jbModificar_cli.setBackground(new java.awt.Color(0, 153, 255));
         jbModificar_cli.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3157,39 +3162,50 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbModificar_cliActionPerformed(evt);
             }
         });
+        jpDatos_cli.add(jbModificar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 140, 190, 44));
 
         jlN2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlN2.setForeground(new java.awt.Color(51, 51, 51));
         jlN2.setText("Nombre:");
+        jpDatos_cli.add(jlN2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 64, -1, -1));
 
         jlC2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlC2.setForeground(new java.awt.Color(51, 51, 51));
         jlC2.setText("Apellido:");
+        jpDatos_cli.add(jlC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 86, -1, -1));
 
         jlT1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlT1.setForeground(new java.awt.Color(51, 51, 51));
         jlT1.setText("Fecha de nacimiento:");
+        jpDatos_cli.add(jlT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 108, -1, -1));
 
         jlF1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlF1.setForeground(new java.awt.Color(51, 51, 51));
         jlF1.setText("Fecha de registro:");
+        jpDatos_cli.add(jlF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 64, -1, -1));
 
         jlCedula_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlCedula_cli.setText(" ");
+        jpDatos_cli.add(jlCedula_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 42, 161, -1));
 
         jlNombre_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlNombre_cli.setText(" ");
+        jpDatos_cli.add(jlNombre_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 64, 152, -1));
 
         jlApellido_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlApellido_cli.setText(" ");
+        jpDatos_cli.add(jlApellido_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 86, 154, -1));
 
         jlNac_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlNac_cli.setText(" ");
+        jpDatos_cli.add(jlNac_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 108, 110, -1));
 
         jlReg_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlReg_cli.setText(" ");
+        jpDatos_cli.add(jlReg_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 64, 101, -1));
 
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
+        jpDatos_cli.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 32, 927, 10));
 
         jbRegistrar_cli.setBackground(new java.awt.Color(0, 204, 102));
         jbRegistrar_cli.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3210,156 +3226,55 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbRegistrar_cliActionPerformed(evt);
             }
         });
+        jpDatos_cli.add(jbRegistrar_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 140, 190, 44));
 
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
+        jpDatos_cli.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 130, 1170, 4));
 
         jlE2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE2.setForeground(new java.awt.Color(51, 51, 51));
         jlE2.setText("Género:");
+        jpDatos_cli.add(jlE2, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 42, -1, -1));
 
         jlGenero_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlGenero_cli.setText(" ");
+        jpDatos_cli.add(jlGenero_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 42, 184, -1));
 
         jlE4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE4.setForeground(new java.awt.Color(51, 51, 51));
         jlE4.setText("Tipo de descuento:");
+        jpDatos_cli.add(jlE4, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 42, -1, -1));
 
         jlDescuento_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlDescuento_cli.setText(" ");
+        jpDatos_cli.add(jlDescuento_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(778, 42, 130, -1));
 
         jlE5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE5.setForeground(new java.awt.Color(51, 51, 51));
         jlE5.setText("Teléfono:");
+        jpDatos_cli.add(jlE5, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 64, -1, -1));
 
         jlTelefono_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlTelefono_cli.setText(" ");
+        jpDatos_cli.add(jlTelefono_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 64, 176, -1));
 
         jlCorreo_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlCorreo_cli.setText(" ");
+        jpDatos_cli.add(jlCorreo_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 86, 250, -1));
 
         jlE6.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE6.setForeground(new java.awt.Color(51, 51, 51));
         jlE6.setText("Correo:");
+        jpDatos_cli.add(jlE6, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 86, 55, -1));
 
         jlDireccion_cli.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlDireccion_cli.setText(" ");
+        jpDatos_cli.add(jlDireccion_cli, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 108, 240, -1));
 
         jlE7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE7.setForeground(new java.awt.Color(51, 51, 51));
         jlE7.setText("Dirección:");
-
-        javax.swing.GroupLayout jpDatos_cliLayout = new javax.swing.GroupLayout(jpDatos_cli);
-        jpDatos_cli.setLayout(jpDatos_cliLayout);
-        jpDatos_cliLayout.setHorizontalGroup(
-            jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                        .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                                .addComponent(jlR2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlCedula_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                                .addComponent(jlT1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlNac_cli, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_cliLayout.createSequentialGroup()
-                                .addComponent(jlN2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlNombre_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                                .addComponent(jlC2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlApellido_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(60, 60, 60)
-                        .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_cliLayout.createSequentialGroup()
-                                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_cliLayout.createSequentialGroup()
-                                        .addComponent(jlE2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jlGenero_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                                        .addComponent(jlE5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jlTelefono_cli, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
-                                .addGap(100, 100, 100)
-                                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_cliLayout.createSequentialGroup()
-                                        .addComponent(jlF1)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jlReg_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_cliLayout.createSequentialGroup()
-                                        .addComponent(jlE4)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jlDescuento_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_cliLayout.createSequentialGroup()
-                                    .addComponent(jlE7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jlDireccion_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                                    .addComponent(jlE6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jlCorreo_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                        .addComponent(jbRegistrar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jbEnviar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jbModificar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jb_Eliminar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jpDatos_cliLayout.setVerticalGroup(
-            jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatos_cliLayout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlR2)
-                    .addComponent(jlCedula_cli)
-                    .addComponent(jlE2)
-                    .addComponent(jlGenero_cli)
-                    .addComponent(jlE4)
-                    .addComponent(jlDescuento_cli))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlN2)
-                    .addComponent(jlNombre_cli)
-                    .addComponent(jlE5)
-                    .addComponent(jlTelefono_cli)
-                    .addComponent(jlF1)
-                    .addComponent(jlReg_cli))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlC2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlApellido_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlCorreo_cli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlE6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlT1)
-                    .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlNac_cli)
-                        .addComponent(jlE7)
-                        .addComponent(jlDireccion_cli)))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(jpDatos_cliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbRegistrar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEnviar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_Eliminar_cli, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        jpDatos_cli.add(jlE7, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 108, 67, -1));
 
         jcBuscar_cli.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jcBuscar_cli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula", "Nombre", "Apellido", "F. Nacimiento", "Género", "Teléfono", "Correo", "Dirección", "T. Descuento", "F. Registro" }));
@@ -3809,14 +3724,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jpDatos_emp.setMaximumSize(new java.awt.Dimension(980, 185));
         jpDatos_emp.setMinimumSize(new java.awt.Dimension(980, 185));
         jpDatos_emp.setPreferredSize(new java.awt.Dimension(980, 185));
+        jpDatos_emp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Empleado seleccionado:");
+        jpDatos_emp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 882, 30));
 
         jlR5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlR5.setForeground(new java.awt.Color(51, 51, 51));
         jlR5.setText("Cédula:");
+        jpDatos_emp.add(jlR5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 42, -1, -1));
 
         jbEnviar_cli1.setBackground(new java.awt.Color(255, 102, 51));
         jbEnviar_cli1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3837,6 +3755,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbEnviar_cli1ActionPerformed(evt);
             }
         });
+        jpDatos_emp.add(jbEnviar_cli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 190, 44));
 
         jb_Eliminar_cli1.setBackground(new java.awt.Color(255, 0, 51));
         jb_Eliminar_cli1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3857,6 +3776,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jb_Eliminar_cli1ActionPerformed(evt);
             }
         });
+        jpDatos_emp.add(jb_Eliminar_cli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 190, 44));
 
         jbModificar_cli1.setBackground(new java.awt.Color(0, 153, 255));
         jbModificar_cli1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3877,39 +3797,50 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbModificar_cli1ActionPerformed(evt);
             }
         });
+        jpDatos_emp.add(jbModificar_cli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 140, 190, 44));
 
         jlN5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlN5.setForeground(new java.awt.Color(51, 51, 51));
         jlN5.setText("Nombre:");
+        jpDatos_emp.add(jlN5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 64, -1, -1));
 
         jlC3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlC3.setForeground(new java.awt.Color(51, 51, 51));
         jlC3.setText("Apellido:");
+        jpDatos_emp.add(jlC3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 86, -1, -1));
 
         jlT2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlT2.setForeground(new java.awt.Color(51, 51, 51));
         jlT2.setText("Fecha de nacimiento:");
+        jpDatos_emp.add(jlT2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 108, -1, -1));
 
         jlF2.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlF2.setForeground(new java.awt.Color(51, 51, 51));
         jlF2.setText("Fecha de registro:");
+        jpDatos_emp.add(jlF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 64, -1, -1));
 
         jlCedula_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlCedula_emp.setText(" ");
+        jpDatos_emp.add(jlCedula_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 42, 161, -1));
 
         jlNombre_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlNombre_emp.setText(" ");
+        jpDatos_emp.add(jlNombre_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 64, 152, -1));
 
         jlApellido_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlApellido_emp.setText(" ");
+        jpDatos_emp.add(jlApellido_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 86, 154, -1));
 
         jlNac_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlNac_emp.setText(" ");
+        jpDatos_emp.add(jlNac_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 108, 110, -1));
 
         jlReg_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlReg_emp.setText(" ");
+        jpDatos_emp.add(jlReg_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 64, 101, -1));
 
         jSeparator14.setForeground(new java.awt.Color(0, 0, 0));
+        jpDatos_emp.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 32, 926, 10));
 
         jbRegistrar_cli1.setBackground(new java.awt.Color(0, 204, 102));
         jbRegistrar_cli1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3930,155 +3861,55 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jbRegistrar_cli1ActionPerformed(evt);
             }
         });
+        jpDatos_emp.add(jbRegistrar_cli1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 140, 190, 44));
 
         jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
+        jpDatos_emp.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 130, 1170, 4));
 
         jlGen_emp.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlGen_emp.setForeground(new java.awt.Color(51, 51, 51));
         jlGen_emp.setText("Género:");
+        jpDatos_emp.add(jlGen_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 42, -1, -1));
 
         jlGenero_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlGenero_emp.setText(" ");
+        jpDatos_emp.add(jlGenero_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 42, 184, -1));
 
         jlE10.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE10.setForeground(new java.awt.Color(51, 51, 51));
         jlE10.setText("Sueldo:");
+        jpDatos_emp.add(jlE10, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 42, -1, -1));
 
         jlSueldo_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlSueldo_emp.setText(" ");
+        jpDatos_emp.add(jlSueldo_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 42, 171, -1));
 
         jlE11.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE11.setForeground(new java.awt.Color(51, 51, 51));
         jlE11.setText("Teléfono:");
+        jpDatos_emp.add(jlE11, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 64, -1, -1));
 
         jlTelefono_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlTelefono_emp.setText(" ");
+        jpDatos_emp.add(jlTelefono_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 64, 176, -1));
 
         jlCorreo_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlCorreo_emp.setText(" ");
+        jpDatos_emp.add(jlCorreo_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 86, 270, -1));
 
         jlE12.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE12.setForeground(new java.awt.Color(51, 51, 51));
         jlE12.setText("Correo:");
+        jpDatos_emp.add(jlE12, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 86, -1, -1));
 
         jlDireccion_emp.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
         jlDireccion_emp.setText(" ");
+        jpDatos_emp.add(jlDireccion_emp, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 108, 250, -1));
 
         jlE13.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jlE13.setForeground(new java.awt.Color(51, 51, 51));
         jlE13.setText("Dirección:");
-
-        javax.swing.GroupLayout jpDatos_empLayout = new javax.swing.GroupLayout(jpDatos_emp);
-        jpDatos_emp.setLayout(jpDatos_empLayout);
-        jpDatos_empLayout.setHorizontalGroup(
-            jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDatos_empLayout.createSequentialGroup()
-                        .addComponent(jbRegistrar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jbEnviar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jbModificar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jb_Eliminar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpDatos_empLayout.createSequentialGroup()
-                        .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlR5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlCedula_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlN5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlNombre_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlC3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlApellido_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlT2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlNac_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)))
-                        .addGap(60, 60, 60)
-                        .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlE13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jlDireccion_emp, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlE12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlCorreo_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlE11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlTelefono_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlGen_emp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlGenero_emp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(100, 100, 100)
-                        .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlF2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlReg_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_empLayout.createSequentialGroup()
-                                .addComponent(jlE10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlSueldo_emp, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-            .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 926, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jpDatos_empLayout.setVerticalGroup(
-            jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpDatos_empLayout.createSequentialGroup()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlR5)
-                    .addComponent(jlCedula_emp)
-                    .addComponent(jlGen_emp)
-                    .addComponent(jlGenero_emp)
-                    .addComponent(jlE10)
-                    .addComponent(jlSueldo_emp))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlN5)
-                    .addComponent(jlNombre_emp)
-                    .addComponent(jlE11)
-                    .addComponent(jlTelefono_emp)
-                    .addComponent(jlReg_emp)
-                    .addComponent(jlF2))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlC3)
-                    .addComponent(jlApellido_emp)
-                    .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlCorreo_emp)
-                        .addComponent(jlE12)))
-                .addGap(0, 0, 0)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlT2)
-                    .addComponent(jlNac_emp)
-                    .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jlE13)
-                        .addComponent(jlDireccion_emp)))
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(jpDatos_empLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbRegistrar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEnviar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_Eliminar_cli1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jpDatos_emp.add(jlE13, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 108, -1, -1));
 
         jcBuscar_emp.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jcBuscar_emp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula", "Nombre", "Apellido", "F. Nacimiento", "Género", "Teléfono", "Correo", "Dirección", "Sueldo", "F. Registro" }));
