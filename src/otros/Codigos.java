@@ -1,7 +1,7 @@
 package otros;
 
 import com.db4o.ObjectSet;
-import papeleria.base;
+import base_datos.base;
 
 
 public class Codigos {

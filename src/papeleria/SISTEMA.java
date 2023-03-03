@@ -1,5 +1,6 @@
 package papeleria;
 
+import base_datos.base;
 import clases.Categoria;
 import clases.Ciudad;
 import clases.Cliente;

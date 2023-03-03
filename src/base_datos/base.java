@@ -1,4 +1,4 @@
-package papeleria;
+package base_datos;
 
 import com.db4o.*;
 import com.db4o.ext.DatabaseFileLockedException;
@@ -15,7 +15,7 @@ public class base {
 
     public static void abrir() {
         try {
-            bd = Db4o.openFile("src\\papeleria\\Papeleria.yap");
+            bd = Db4o.openFile("src\\base_datos\\Papeleria.yap");
         } catch (DatabaseFileLockedException | DatabaseReadOnlyException | Db4oIOException | IncompatibleFileFormatException | OldFormatException e) {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "¡Error al abrir la base de datos!", null, JOptionPane.ERROR_MESSAGE);

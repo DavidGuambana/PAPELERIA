@@ -1,4 +1,5 @@
 package papeleria;
+import base_datos.base;
 import clases.Empleado;
 import com.db4o.ObjectSet;
 import java.awt.Color;
