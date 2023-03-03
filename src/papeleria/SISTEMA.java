@@ -1562,7 +1562,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         VF_TELEFONO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         VF_TELEFONO.setText("Teléfono");
-        jPanel10.add(VF_TELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 60, -1));
+        jPanel10.add(VF_TELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 120, -1));
 
         jLabel53.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel53.setText("Correo:");
@@ -1570,7 +1570,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         VF_CORREO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         VF_CORREO.setText("Correo");
-        jPanel10.add(VF_CORREO, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 50, -1));
+        jPanel10.add(VF_CORREO, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, -1));
 
         VF_DETALLES = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -2098,7 +2098,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jl_titulo9.setText("RESUMEN");
         jl_titulo9.setIconTextGap(10);
         jl_titulo9.setVerifyInputWhenFocusTarget(false);
-        JPventas.add(jl_titulo9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 707, 892, 60));
+        JPventas.add(jl_titulo9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 890, 60));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -2420,7 +2420,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 subir_1MouseClicked(evt);
             }
         });
-        JPventas.add(subir_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1210, 70, -1));
+        JPventas.add(subir_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 1320, 70, -1));
 
         jScrollPanew.setViewportView(JPventas);
 
@@ -6283,6 +6283,30 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 }
             }
         });
+        
+        JTenc_fac.addMouseListener(new MouseAdapter() { //encabezados(7)
+            @Override
+            public void mousePressed(MouseEvent Mouse_evt) {
+                if (Mouse_evt.getClickCount() == 1) {
+                    VF_CODIGO.setText(JTenc_fac.getValueAt(JTenc_fac.getSelectedRow(), 0).toString());
+                    VF_CEDULA.setText(JTenc_fac.getValueAt(JTenc_fac.getSelectedRow(), 1).toString());
+                    VF_FECHA.setText(JTenc_fac.getValueAt(JTenc_fac.getSelectedRow(), 2).toString());
+                    VF_TOTAL.setText("$"+JTenc_fac.getValueAt(JTenc_fac.getSelectedRow(), 3).toString());
+                    base.abrir();
+                    Cliente c = new Cliente(null, VF_CEDULA.getText(), null, null, null, null, null, null, null, null);
+                    resultado = base.gettear(c);
+                    c = (Cliente) resultado.next();
+                    VF_NOMBRE_APELLIDO.setText(c.getNombre()+" "+c.getApellido());
+                    VF_DIRECCION.setText(c.getDireccion());
+                    VF_TELEFONO.setText(c.getTelefono());
+                    VF_CORREO.setText(c.getCorreo());
+                    base.cerrar();
+                }
+            }
+        });
+        
+        
+        
         JTproductos.addMouseListener(new MouseAdapter() { //productos(9)
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {

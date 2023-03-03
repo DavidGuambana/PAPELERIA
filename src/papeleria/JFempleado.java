@@ -145,8 +145,8 @@ public class JFempleado extends javax.swing.JFrame {
         base.abrir();
         Empleado emp = new Empleado(0, cedula.getText(), null, null, null, null, null, null, null, null);
         if (base.gettear(emp).isEmpty()) {
-            emp = new Empleado(Double.parseDouble(sueldo.getText()), cedula.getText(), nombre.getText(), apellido.getText(),
-                     direccion.getText(), telefono.getText(), fecha_nac, fechas.obtener_fecha(), genero.getSelectedItem().toString(), correo.getText());
+            emp = new Empleado(Double.parseDouble(sueldo.getText()), cedula.getText(), nombre.getText().toUpperCase(), apellido.getText().toUpperCase(),
+                     direccion.getText().toUpperCase(), telefono.getText(), fecha_nac, fechas.obtener_fecha(), genero.getSelectedItem().toString(), correo.getText());
             base.settear(emp);
             JOptionPane.showMessageDialog(null, "¡Registrado correctamente!");
             SISTEMA.actualizado = false;
@@ -163,13 +163,13 @@ public class JFempleado extends javax.swing.JFrame {
         resultado = base.gettear(emp);
         if (!resultado.isEmpty()) {
             emp = (Empleado) resultado.next();
-            emp.setNombre(nombre.getText());
-            emp.setApellido(apellido.getText());
+            emp.setNombre(nombre.getText().toUpperCase());
+            emp.setApellido(apellido.getText().toUpperCase());
             emp.setFecha_nac(fecha_nac);
             emp.setGenero(genero.getSelectedItem().toString());          
             emp.setTelefono(telefono.getText());
             emp.setCorreo(correo.getText());
-            emp.setDireccion(direccion.getText());
+            emp.setDireccion(direccion.getText().toUpperCase());
             emp.setSueldo(Double.parseDouble(sueldo.getText()));
             base.settear(emp);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
@@ -251,7 +251,7 @@ public class JFempleado extends javax.swing.JFrame {
         });
 
         genero.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Femenino", "Masculino" }));
+        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "FEMENINO", "MASCULINO" }));
         genero.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Género:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
 
         jb_Ejecutar.setBackground(new java.awt.Color(0, 204, 102));
