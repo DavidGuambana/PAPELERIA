@@ -28,7 +28,6 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -86,8 +85,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         seleccionar();
         //para icono en el boton y modelo en tabla JTdetalle
         InsertarIcono(boton1, "/imagenes/elim.png");
-        tabla_detalle = new DefaultTableModel(null, new Object[]{"Codigo de producto", "Descipción", "Cantidad", "Precio unitario",
-            "Descuento", "Precio con descuento", "valor total", "Aciones"});
+        tabla_detalle = new DefaultTableModel(null, new Object[]{"C. Producto", "Descipción", "Cantidad", "Precio unitario",
+            "Descuento", "Precio con descuento", "Valor total", "Aciones"});
         JTdetalle.setModel(tabla_detalle);
         //ocultar o bloquear componentes
         lim_cat.setVisible(false);
@@ -173,7 +172,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     res_num_des.setText("Resultados: " + des + " de " + des);
                     break;
                 case 5: //detalles de facturas
-                    String[] colum_det = {"Código", "Producto", "Cantidad", "Subtotal", "Código de factura"};
+                    String[] colum_det = {"Código", "C. Producto", "Cantidad", "Subtotal", "C. Factura"};
                     tabla = new DefaultTableModel(null, colum_det);
                     Detalle_fac de = new Detalle_fac(0, 0, 0, 0, 0);
                     resultado = base.gettear(de);
@@ -185,8 +184,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     } else {
                         Codigos.reiniciar_codigo("Detalle_fac");
                     }
-                    
                     JTdet_fac.setModel(tabla);
+                    det = resultado.size();
+                    res_num_det.setText("Resultados: " + det + " de " + det);
                     
                     break;
                 case 6: //empleados
@@ -205,26 +205,24 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     res_num_emp.setText("Resultados: " + emp + " de " + emp);
                     break;
                 case 7: //encabezados de facturas
-                    String[] colum_enc = {"Codigo", "Cliente", "F. Registro", "Total", "Estado"};
+                    String[] colum_enc = {"Código", "C. Cliente", "F. Registro", "Total", "Estado"};
                     tabla = new DefaultTableModel(null, colum_enc);
-                    Encabezado_fac en = new Encabezado_fac(0,null,null,0,"ACTIVO");
+                    Encabezado_fac en = new Encabezado_fac(0, null, null, 0, "ACTIVO");
                     resultado = base.gettear(en);
                     if (!resultado.isEmpty()) {
                         for (int j = 0; j < resultado.size(); j++) {
-                        en = (Encabezado_fac) resultado.next();
-                        tabla.addRow(new Object[]{en.getCodigo(),en.getCedula_cli(),fechas.transformar_fecha(en.getFecha()),en.getTotal(),en.getEstado()});
-                        
-                    }
-                    } else{
+                            en = (Encabezado_fac) resultado.next();
+                            tabla.addRow(new Object[]{en.getCodigo(), en.getCedula_cli(), fechas.transformar_fecha(en.getFecha()), en.getTotal(), en.getEstado()});
+
+                        }
+                    } else {
                         Codigos.reiniciar_codigo("Encabezado_fac");
                     }
                     
                     JTenc_fac.setModel(tabla);
-                    /*
-                    des = resultado.size();
-                    v4.setText(String.valueOf(des));
-                    res_num_des.setText("Resultados: " + des + " de " + des);
-                    */
+                    enc = resultado.size();
+                    res_num_enc.setText("Resultados: " + enc + " de " + enc);
+                    
                     break;
                 case 8: //pagos a proveedores
                     break;
@@ -408,7 +406,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-
+    
+    //método para registrar una factura (encabezado y detalles):
     public void generar_factura() {
         base.abrir();
         try {
@@ -441,6 +440,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         base.cerrar();
     }
     
+    //limpia los campos de texto y los reinicia valores:
     public void reiniciar_factura() {
         for (int i = num_det; i > 0; i--) {
             tabla_detalle.removeRow(i - 1);
@@ -533,37 +533,122 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         VISTA_FACTURA = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        RUC_fac7 = new javax.swing.JLabel();
+        VF_RUC = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        RUC_fac9 = new javax.swing.JLabel();
-        RUC_fac10 = new javax.swing.JLabel();
+        VF_CODIGO = new javax.swing.JLabel();
+        VF_FECHA = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel48 = new javax.swing.JLabel();
-        RUC_fac11 = new javax.swing.JLabel();
-        RUC_fac12 = new javax.swing.JLabel();
+        VF_NOMBRE_APELLIDO = new javax.swing.JLabel();
+        VF_CEDULA = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
-        RUC_fac13 = new javax.swing.JLabel();
+        VF_DIRECCION = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        RUC_fac14 = new javax.swing.JLabel();
+        VF_TELEFONO = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        RUC_fac16 = new javax.swing.JLabel();
+        VF_CORREO = new javax.swing.JLabel();
         jsTabla_cat3 = new javax.swing.JScrollPane();
-        JTdetallesv = new javax.swing.JTable();
+        VF_DETALLES = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
-        RUC_fac15 = new javax.swing.JLabel();
+        VF_TOTAL = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jlAgregar_fac = new javax.swing.JLabel();
         jcBuscar_enc = new javax.swing.JComboBox<>();
         jLabel43 = new javax.swing.JLabel();
         jtBuscar_enc = new javax.swing.JTextField();
         lim_enc = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
+        res_num_enc = new javax.swing.JLabel();
+        jl_titulo6 = new javax.swing.JLabel();
+        jl_titulo8 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel45 = new javax.swing.JLabel();
+        res_num_det = new javax.swing.JLabel();
         jcBuscar_det = new javax.swing.JComboBox<>();
         jtBuscar_det = new javax.swing.JTextField();
         lim_det = new javax.swing.JLabel();
+        jbEliminar_cat1 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel55 = new javax.swing.JLabel();
+        R3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        R3_A1 = new javax.swing.JLabel();
+        R3_B1 = new javax.swing.JLabel();
+        R3_C1 = new javax.swing.JLabel();
+        R3_D1 = new javax.swing.JLabel();
+        R3_E1 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel56 = new javax.swing.JLabel();
+        R1 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        R1_A1 = new javax.swing.JLabel();
+        R1_B1 = new javax.swing.JLabel();
+        R1_C1 = new javax.swing.JLabel();
+        R1_A2 = new javax.swing.JLabel();
+        R1_B2 = new javax.swing.JLabel();
+        R1_C2 = new javax.swing.JLabel();
+        R1_A3 = new javax.swing.JLabel();
+        R1_B3 = new javax.swing.JLabel();
+        R1_C3 = new javax.swing.JLabel();
+        R1_A4 = new javax.swing.JLabel();
+        R1_B4 = new javax.swing.JLabel();
+        R1_C4 = new javax.swing.JLabel();
+        R1_C5 = new javax.swing.JLabel();
+        R1_B5 = new javax.swing.JLabel();
+        R1_A5 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jl_titulo9 = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        clientes_con_factura11 = new javax.swing.JLabel();
+        clientes_sin_factura11 = new javax.swing.JLabel();
+        t_facturas_activas11 = new javax.swing.JLabel();
+        clientes_con_factura12 = new javax.swing.JLabel();
+        clientes_sin_factura12 = new javax.swing.JLabel();
+        t_facturas_activas12 = new javax.swing.JLabel();
+        clientes_con_factura13 = new javax.swing.JLabel();
+        clientes_sin_factura13 = new javax.swing.JLabel();
+        t_facturas_activas13 = new javax.swing.JLabel();
+        clientes_con_factura14 = new javax.swing.JLabel();
+        clientes_sin_factura14 = new javax.swing.JLabel();
+        t_facturas_activas14 = new javax.swing.JLabel();
+        t_facturas_activas15 = new javax.swing.JLabel();
+        clientes_sin_factura15 = new javax.swing.JLabel();
+        clientes_con_factura15 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel58 = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel61 = new javax.swing.JLabel();
+        R2 = new javax.swing.JPanel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        R2_A1 = new javax.swing.JLabel();
+        R2_B1 = new javax.swing.JLabel();
+        R2_C1 = new javax.swing.JLabel();
+        R2_A2 = new javax.swing.JLabel();
+        R2_B2 = new javax.swing.JLabel();
+        R2_C2 = new javax.swing.JLabel();
+        R2_A3 = new javax.swing.JLabel();
+        R2_B3 = new javax.swing.JLabel();
+        R2_C3 = new javax.swing.JLabel();
+        R2_A4 = new javax.swing.JLabel();
+        R2_B4 = new javax.swing.JLabel();
+        R2_C4 = new javax.swing.JLabel();
+        R2_C5 = new javax.swing.JLabel();
+        R2_B5 = new javax.swing.JLabel();
+        R2_A5 = new javax.swing.JLabel();
+        subir_1 = new javax.swing.JLabel();
         JPgastos = new javax.swing.JPanel();
         JPcategorias = new javax.swing.JPanel();
         jl_titulo5 = new javax.swing.JLabel();
@@ -1304,10 +1389,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jScrollPanew.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPanew.setPreferredSize(new java.awt.Dimension(1149, 702));
 
-        JPventas.setBackground(new java.awt.Color(204, 255, 255));
-        JPventas.setMaximumSize(new java.awt.Dimension(980, 700));
-        JPventas.setMinimumSize(new java.awt.Dimension(980, 700));
-        JPventas.setPreferredSize(new java.awt.Dimension(980, 700));
+        JPventas.setBackground(new java.awt.Color(234, 234, 234));
+        JPventas.setMaximumSize(new java.awt.Dimension(980, 1400));
+        JPventas.setMinimumSize(new java.awt.Dimension(980, 1400));
+        JPventas.setPreferredSize(new java.awt.Dimension(980, 1400));
+        JPventas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jsTabla_ciu2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -1317,7 +1403,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
             }
         };
         JTenc_fac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        JTenc_fac.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        JTenc_fac.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JTenc_fac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -1338,13 +1424,15 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTenc_fac.getTableHeader().setReorderingAllowed(false);
         jsTabla_ciu2.setViewportView(JTenc_fac);
 
+        JPventas.add(jsTabla_ciu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 152, 372, 170));
+
         JTdet_fac = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
         };
         JTdet_fac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        JTdet_fac.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        JTdet_fac.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JTdet_fac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -1365,6 +1453,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         JTdet_fac.getTableHeader().setReorderingAllowed(false);
         jsTabla_ciu3.setViewportView(JTdet_fac);
 
+        JPventas.add(jsTabla_ciu3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 490, 372, 165));
+
         VISTA_FACTURA.setBackground(new java.awt.Color(255, 255, 255));
         VISTA_FACTURA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         VISTA_FACTURA.setMaximumSize(new java.awt.Dimension(485, 520));
@@ -1377,8 +1467,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel21.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel21.setText("RUC:");
 
-        RUC_fac7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        RUC_fac7.setText("0000000000001");
+        VF_RUC.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        VF_RUC.setText("0000000000001");
 
         jLabel41.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel41.setText("F A C T U R A");
@@ -1386,11 +1476,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel42.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel42.setText("No.");
 
-        RUC_fac9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        RUC_fac9.setText("0000000000001");
+        VF_CODIGO.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        VF_CODIGO.setText("0000000000001");
 
-        RUC_fac10.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        RUC_fac10.setText("yyyy-mm-dd");
+        VF_FECHA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        VF_FECHA.setText("yyyy-mm-dd");
 
         jLabel44.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel44.setText("Fecha de emisión:");
@@ -1405,16 +1495,16 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RUC_fac10))
+                        .addComponent(VF_FECHA))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel42)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RUC_fac9))
+                        .addComponent(VF_CODIGO))
                     .addComponent(jLabel41)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(RUC_fac7)))
+                        .addComponent(VF_RUC)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -1423,17 +1513,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(RUC_fac7))
+                    .addComponent(VF_RUC))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel41)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42)
-                    .addComponent(RUC_fac9))
+                    .addComponent(VF_CODIGO))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
-                    .addComponent(RUC_fac10))
+                    .addComponent(VF_FECHA))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1446,13 +1536,13 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel48.setText("Razon social:");
         jPanel10.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        RUC_fac11.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        RUC_fac11.setText("Nombre Apellido");
-        jPanel10.add(RUC_fac11, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 40, 160, -1));
+        VF_NOMBRE_APELLIDO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        VF_NOMBRE_APELLIDO.setText("Nombre Apellido");
+        jPanel10.add(VF_NOMBRE_APELLIDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 40, 160, -1));
 
-        RUC_fac12.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        RUC_fac12.setText("0000000000");
-        jPanel10.add(RUC_fac12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 90, -1));
+        VF_CEDULA.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        VF_CEDULA.setText("0000000000");
+        jPanel10.add(VF_CEDULA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 90, -1));
 
         jLabel49.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel49.setText("Identificación:");
@@ -1462,35 +1552,35 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel50.setText("Dirección:");
         jPanel10.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        RUC_fac13.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        RUC_fac13.setText("Dirección");
-        jPanel10.add(RUC_fac13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        VF_DIRECCION.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        VF_DIRECCION.setText("Dirección");
+        jPanel10.add(VF_DIRECCION, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
         jLabel51.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel51.setText("Teléfono:");
         jPanel10.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
-        RUC_fac14.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        RUC_fac14.setText("Teléfono");
-        jPanel10.add(RUC_fac14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 60, -1));
+        VF_TELEFONO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        VF_TELEFONO.setText("Teléfono");
+        jPanel10.add(VF_TELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 60, -1));
 
         jLabel53.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel53.setText("Correo:");
         jPanel10.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
-        RUC_fac16.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        RUC_fac16.setText("Correo");
-        jPanel10.add(RUC_fac16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 50, -1));
+        VF_CORREO.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        VF_CORREO.setText("Correo");
+        jPanel10.add(VF_CORREO, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 50, -1));
 
-        JTdetallesv = new javax.swing.JTable(){
+        VF_DETALLES = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
             }
         };
-        JTdetallesv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        JTdetallesv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        JTdetallesv.setForeground(new java.awt.Color(51, 51, 51));
-        JTdetallesv.setModel(new javax.swing.table.DefaultTableModel(
+        VF_DETALLES.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        VF_DETALLES.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        VF_DETALLES.setForeground(new java.awt.Color(51, 51, 51));
+        VF_DETALLES.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -1501,26 +1591,26 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
             }
         ));
-        JTdetallesv.setFocusable(false);
-        JTdetallesv.setGridColor(new java.awt.Color(255, 255, 255));
-        JTdetallesv.setOpaque(false);
-        JTdetallesv.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        JTdetallesv.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        JTdetallesv.getTableHeader().setResizingAllowed(false);
-        JTdetallesv.getTableHeader().setReorderingAllowed(false);
-        JTdetallesv.addMouseListener(new java.awt.event.MouseAdapter() {
+        VF_DETALLES.setFocusable(false);
+        VF_DETALLES.setGridColor(new java.awt.Color(255, 255, 255));
+        VF_DETALLES.setOpaque(false);
+        VF_DETALLES.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        VF_DETALLES.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        VF_DETALLES.getTableHeader().setResizingAllowed(false);
+        VF_DETALLES.getTableHeader().setReorderingAllowed(false);
+        VF_DETALLES.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JTdetallesvMouseClicked(evt);
+                VF_DETALLESMouseClicked(evt);
             }
         });
-        jsTabla_cat3.setViewportView(JTdetallesv);
+        jsTabla_cat3.setViewportView(VF_DETALLES);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel11.setPreferredSize(new java.awt.Dimension(2, 100));
 
-        RUC_fac15.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        RUC_fac15.setText("$0.00");
+        VF_TOTAL.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        VF_TOTAL.setText("$0.00");
 
         jLabel52.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel52.setText("TOTAL PAGADO:");
@@ -1533,7 +1623,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGap(133, 133, 133)
                 .addComponent(jLabel52)
                 .addGap(12, 12, 12)
-                .addComponent(RUC_fac15)
+                .addComponent(VF_TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -1542,7 +1632,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel52)
-                    .addComponent(RUC_fac15))
+                    .addComponent(VF_TOTAL))
                 .addGap(10, 10, 10))
         );
 
@@ -1589,17 +1679,21 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        JPventas.add(VISTA_FACTURA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
         jcBuscar_enc.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
-        jcBuscar_enc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje" }));
+        jcBuscar_enc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "C. Cliente", "F. Registro", "Total" }));
         jcBuscar_enc.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcBuscar_encItemStateChanged(evt);
             }
         });
+        JPventas.add(jcBuscar_enc, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 74, 130, 35));
 
         jLabel43.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel43.setText("Buscar encabezado de factura por");
+        jLabel43.setText("Buscar por");
+        JPventas.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 74, -1, 34));
 
         jtBuscar_enc.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jtBuscar_enc.setText("Buscar");
@@ -1625,6 +1719,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jtBuscar_encKeyTyped(evt);
             }
         });
+        JPventas.add(jtBuscar_enc, new org.netbeans.lib.awtextra.AbsoluteConstraints(759, 73, 150, -1));
 
         lim_enc.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
         lim_enc.setForeground(new java.awt.Color(0, 102, 102));
@@ -1636,18 +1731,48 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 lim_encMouseClicked(evt);
             }
         });
+        JPventas.add(lim_enc, new org.netbeans.lib.awtextra.AbsoluteConstraints(912, 73, -1, 34));
 
-        jLabel46.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel46.setText("Buscar detalle de factura por");
+        res_num_enc.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        res_num_enc.setText("Resultados: 0 de 0");
+        JPventas.add(res_num_enc, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 121, 207, -1));
+
+        jl_titulo6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jl_titulo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/table_icon_128243.png"))); // NOI18N
+        jl_titulo6.setText("Encabezados de factura");
+        jl_titulo6.setIconTextGap(10);
+        jl_titulo6.setVerifyInputWhenFocusTarget(false);
+        JPventas.add(jl_titulo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 26, 369, -1));
+
+        jl_titulo8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jl_titulo8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/table_icon_128243.png"))); // NOI18N
+        jl_titulo8.setText("Detalles de factura");
+        jl_titulo8.setIconTextGap(10);
+        jl_titulo8.setVerifyInputWhenFocusTarget(false);
+        JPventas.add(jl_titulo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 364, 372, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JPventas.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 372, 12));
+
+        jLabel45.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel45.setText("Buscar por");
+        JPventas.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 412, -1, 34));
+
+        res_num_det.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        res_num_det.setText("Resultados: 0 de 0");
+        JPventas.add(res_num_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 460, 207, -1));
 
         jcBuscar_det.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
-        jcBuscar_det.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje" }));
+        jcBuscar_det.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "C. Producto", "Cantidad", "Subtotal", "C. Factura" }));
         jcBuscar_det.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcBuscar_detItemStateChanged(evt);
             }
         });
+        JPventas.add(jcBuscar_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 412, 130, 35));
 
         jtBuscar_det.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jtBuscar_det.setText("Buscar");
@@ -1673,6 +1798,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 jtBuscar_detKeyTyped(evt);
             }
         });
+        JPventas.add(jtBuscar_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(759, 411, 150, -1));
 
         lim_det.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
         lim_det.setForeground(new java.awt.Color(0, 102, 102));
@@ -1684,72 +1810,617 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 lim_detMouseClicked(evt);
             }
         });
+        JPventas.add(lim_det, new org.netbeans.lib.awtextra.AbsoluteConstraints(912, 411, -1, 34));
 
-        javax.swing.GroupLayout JPventasLayout = new javax.swing.GroupLayout(JPventas);
-        JPventas.setLayout(JPventasLayout);
-        JPventasLayout.setHorizontalGroup(
-            JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPventasLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPventasLayout.createSequentialGroup()
-                                .addComponent(jLabel43)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(lim_enc))
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(JPventasLayout.createSequentialGroup()
-                                .addComponent(jLabel46)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcBuscar_det, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jtBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(lim_det))))
+        jbEliminar_cat1.setBackground(new java.awt.Color(255, 0, 51));
+        jbEliminar_cat1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jbEliminar_cat1.setForeground(new java.awt.Color(255, 255, 255));
+        jbEliminar_cat1.setText("ELIMINAR ESTA FACTURA");
+        jbEliminar_cat1.setBorder(null);
+        jbEliminar_cat1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEliminar_cat1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbEliminar_cat1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbEliminar_cat1MouseExited(evt);
+            }
+        });
+        jbEliminar_cat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminar_cat1ActionPerformed(evt);
+            }
+        });
+        JPventas.add(jbEliminar_cat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 558, 220, 45));
+
+        jPanel13.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel13.setPreferredSize(new java.awt.Dimension(2, 100));
+
+        jLabel55.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel55.setText("Estadísticas generales");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
-        JPventasLayout.setVerticalGroup(
-            JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPventasLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(VISTA_FACTURA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(JPventasLayout.createSequentialGroup()
-                .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(lim_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPventasLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jcBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addComponent(jtBuscar_enc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jsTabla_ciu2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(JPventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addComponent(jtBuscar_det, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPventasLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(lim_det, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jsTabla_ciu3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
         );
+
+        JPventas.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1150, 600, 47));
+
+        R3.setBackground(new java.awt.Color(255, 255, 255));
+        R3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3.setPreferredSize(new java.awt.Dimension(2, 100));
+        R3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Clientes con factura");
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 21, 119, 35));
+
+        jLabel17.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Clientes sin factura");
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 21, 119, 35));
+
+        jLabel22.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("T. facturas inactivas");
+        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 21, 119, 35));
+
+        jLabel23.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("T. facturas activas");
+        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 21, 119, 35));
+
+        jLabel26.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Total en facturas");
+        jLabel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 21, 119, 35));
+
+        R3_A1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R3_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R3_A1.setText("0");
+        R3_A1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3_A1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(R3_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 56, 119, 35));
+
+        R3_B1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R3_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R3_B1.setText("0");
+        R3_B1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3_B1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(R3_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 56, 119, 35));
+
+        R3_C1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R3_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R3_C1.setText("0");
+        R3_C1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3_C1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(R3_C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 56, 119, 35));
+
+        R3_D1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R3_D1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R3_D1.setText("0");
+        R3_D1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3_D1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(R3_D1, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 56, 119, 35));
+
+        R3_E1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R3_E1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R3_E1.setText("0");
+        R3_E1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R3_E1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R3.add(R3_E1, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 56, 119, 35));
+
+        JPventas.add(R3, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 1181, 633, 98));
+
+        jPanel14.setBackground(new java.awt.Color(0, 153, 102));
+        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel14.setPreferredSize(new java.awt.Dimension(2, 100));
+
+        jLabel56.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel56.setText("Clientes con más compras");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+        );
+
+        JPventas.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 820, 392, 47));
+
+        R1.setBackground(new java.awt.Color(255, 255, 255));
+        R1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1.setPreferredSize(new java.awt.Dimension(2, 100));
+        R1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Cédula");
+        jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 21, 119, 35));
+
+        jLabel28.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Nombre y Apellido");
+        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 21, 165, 35));
+
+        jLabel30.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("Compras");
+        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 21, 119, 35));
+
+        R1_A1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_A1.setText("0");
+        R1_A1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_A1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 56, 119, 35));
+
+        R1_B1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_B1.setText("0");
+        R1_B1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_B1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 56, 165, 35));
+
+        R1_C1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_C1.setText("0");
+        R1_C1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_C1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 56, 119, 35));
+
+        R1_A2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_A2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_A2.setText("0");
+        R1_A2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_A2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_A2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 91, 119, 35));
+
+        R1_B2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_B2.setText("0");
+        R1_B2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_B2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_B2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 91, 165, 35));
+
+        R1_C2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_C2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_C2.setText("0");
+        R1_C2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_C2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_C2, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 91, 119, 35));
+
+        R1_A3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_A3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_A3.setText("0");
+        R1_A3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_A3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_A3, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 126, 119, 35));
+
+        R1_B3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_B3.setText("0");
+        R1_B3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_B3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_B3, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 126, 165, 35));
+
+        R1_C3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_C3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_C3.setText("0");
+        R1_C3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_C3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_C3, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 126, 119, 35));
+
+        R1_A4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_A4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_A4.setText("0");
+        R1_A4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_A4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_A4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 161, 119, 35));
+
+        R1_B4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_B4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_B4.setText("0");
+        R1_B4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_B4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_B4, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 161, 165, 35));
+
+        R1_C4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_C4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_C4.setText("0");
+        R1_C4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_C4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_C4, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 161, 119, 35));
+
+        R1_C5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_C5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_C5.setText("0");
+        R1_C5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_C5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_C5, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 196, 119, 35));
+
+        R1_B5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_B5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_B5.setText("0");
+        R1_B5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_B5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_B5, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 196, 165, 35));
+
+        R1_A5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R1_A5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R1_A5.setText("0");
+        R1_A5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R1_A5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R1.add(R1_A5, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 196, 119, 35));
+
+        JPventas.add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 852, 429, 238));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JPventas.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 689, 980, 12));
+
+        jl_titulo9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jl_titulo9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_titulo9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/resumen.png"))); // NOI18N
+        jl_titulo9.setText("RESUMEN");
+        jl_titulo9.setIconTextGap(10);
+        jl_titulo9.setVerifyInputWhenFocusTarget(false);
+        JPventas.add(jl_titulo9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 707, 892, 60));
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel18.setPreferredSize(new java.awt.Dimension(2, 100));
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel33.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Cédula");
+        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 21, 119, 35));
+
+        jLabel46.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setText("Nombre y Apellido");
+        jLabel46.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 21, 165, 35));
+
+        jLabel47.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setText("Compras");
+        jLabel47.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel47.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 21, 119, 35));
+
+        clientes_con_factura11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_con_factura11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_con_factura11.setText("0");
+        clientes_con_factura11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_con_factura11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_con_factura11, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 56, 119, 35));
+
+        clientes_sin_factura11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_sin_factura11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_sin_factura11.setText("0");
+        clientes_sin_factura11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_sin_factura11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_sin_factura11, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 56, 165, 35));
+
+        t_facturas_activas11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        t_facturas_activas11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t_facturas_activas11.setText("0");
+        t_facturas_activas11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        t_facturas_activas11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(t_facturas_activas11, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 56, 119, 35));
+
+        clientes_con_factura12.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_con_factura12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_con_factura12.setText("0");
+        clientes_con_factura12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_con_factura12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_con_factura12, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 91, 119, 35));
+
+        clientes_sin_factura12.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_sin_factura12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_sin_factura12.setText("0");
+        clientes_sin_factura12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_sin_factura12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_sin_factura12, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 91, 165, 35));
+
+        t_facturas_activas12.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        t_facturas_activas12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t_facturas_activas12.setText("0");
+        t_facturas_activas12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        t_facturas_activas12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(t_facturas_activas12, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 91, 119, 35));
+
+        clientes_con_factura13.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_con_factura13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_con_factura13.setText("0");
+        clientes_con_factura13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_con_factura13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_con_factura13, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 126, 119, 35));
+
+        clientes_sin_factura13.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_sin_factura13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_sin_factura13.setText("0");
+        clientes_sin_factura13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_sin_factura13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_sin_factura13, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 126, 165, 35));
+
+        t_facturas_activas13.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        t_facturas_activas13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t_facturas_activas13.setText("0");
+        t_facturas_activas13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        t_facturas_activas13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(t_facturas_activas13, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 126, 119, 35));
+
+        clientes_con_factura14.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_con_factura14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_con_factura14.setText("0");
+        clientes_con_factura14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_con_factura14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_con_factura14, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 161, 119, 35));
+
+        clientes_sin_factura14.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_sin_factura14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_sin_factura14.setText("0");
+        clientes_sin_factura14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_sin_factura14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_sin_factura14, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 161, 165, 35));
+
+        t_facturas_activas14.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        t_facturas_activas14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t_facturas_activas14.setText("0");
+        t_facturas_activas14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        t_facturas_activas14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(t_facturas_activas14, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 161, 119, 35));
+
+        t_facturas_activas15.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        t_facturas_activas15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        t_facturas_activas15.setText("0");
+        t_facturas_activas15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        t_facturas_activas15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(t_facturas_activas15, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 196, 119, 35));
+
+        clientes_sin_factura15.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_sin_factura15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_sin_factura15.setText("0");
+        clientes_sin_factura15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_sin_factura15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_sin_factura15, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 196, 165, 35));
+
+        clientes_con_factura15.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        clientes_con_factura15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientes_con_factura15.setText("0");
+        clientes_con_factura15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        clientes_con_factura15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel18.add(clientes_con_factura15, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 196, 119, 35));
+
+        JPventas.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 852, 429, 238));
+
+        jPanel19.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel19.setPreferredSize(new java.awt.Dimension(2, 100));
+
+        jLabel58.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel58.setText("Clientes con más compras");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel58, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+        );
+
+        JPventas.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 820, 392, 47));
+
+        jPanel21.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel21.setPreferredSize(new java.awt.Dimension(2, 100));
+
+        jLabel61.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("Productos más vendidos");
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+        );
+
+        JPventas.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 820, 392, 47));
+
+        R2.setBackground(new java.awt.Color(255, 255, 255));
+        R2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2.setPreferredSize(new java.awt.Dimension(2, 100));
+        R2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel54.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel54.setText("Código");
+        jLabel54.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel54.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 21, 119, 35));
+
+        jLabel59.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel59.setText("Nombre");
+        jLabel59.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel59.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 21, 165, 35));
+
+        jLabel60.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel60.setText("Ventas");
+        jLabel60.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jLabel60.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 21, 119, 35));
+
+        R2_A1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_A1.setText("0");
+        R2_A1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_A1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 56, 119, 35));
+
+        R2_B1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_B1.setText("0");
+        R2_B1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_B1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 56, 165, 35));
+
+        R2_C1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_C1.setText("0");
+        R2_C1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_C1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 56, 119, 35));
+
+        R2_A2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_A2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_A2.setText("0");
+        R2_A2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_A2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_A2, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 91, 119, 35));
+
+        R2_B2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_B2.setText("0");
+        R2_B2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_B2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_B2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 91, 165, 35));
+
+        R2_C2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_C2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_C2.setText("0");
+        R2_C2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_C2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_C2, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 91, 119, 35));
+
+        R2_A3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_A3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_A3.setText("0");
+        R2_A3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_A3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_A3, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 126, 119, 35));
+
+        R2_B3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_B3.setText("0");
+        R2_B3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_B3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_B3, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 126, 165, 35));
+
+        R2_C3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_C3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_C3.setText("0");
+        R2_C3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_C3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_C3, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 126, 119, 35));
+
+        R2_A4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_A4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_A4.setText("0");
+        R2_A4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_A4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_A4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 161, 119, 35));
+
+        R2_B4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_B4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_B4.setText("0");
+        R2_B4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_B4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_B4, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 161, 165, 35));
+
+        R2_C4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_C4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_C4.setText("0");
+        R2_C4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_C4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_C4, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 161, 119, 35));
+
+        R2_C5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_C5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_C5.setText("0");
+        R2_C5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_C5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_C5, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 196, 119, 35));
+
+        R2_B5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_B5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_B5.setText("0");
+        R2_B5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_B5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_B5, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 196, 165, 35));
+
+        R2_A5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        R2_A5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R2_A5.setText("0");
+        R2_A5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        R2_A5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        R2.add(R2_A5, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 196, 119, 35));
+
+        JPventas.add(R2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 850, 429, 238));
+
+        subir_1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        subir_1.setText("Ir arriba");
+        subir_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        subir_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subir_1MouseClicked(evt);
+            }
+        });
+        JPventas.add(subir_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1210, 70, -1));
 
         jScrollPanew.setViewportView(JPventas);
 
@@ -5399,15 +6070,27 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jcBuscar_encItemStateChanged
 
     private void jtBuscar_encMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_encMouseClicked
-        // TODO add your handling code here:
+        if (jtBuscar_enc.getText().equals("Buscar")) {
+            jtBuscar_enc.select(0, 0);
+        }
     }//GEN-LAST:event_jtBuscar_encMouseClicked
 
     private void jtBuscar_encKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyPressed
-        // TODO add your handling code here:
+        if (jtBuscar_enc.getText().equals("Buscar")) {
+            jtBuscar_enc.setText("");
+            lim_enc.setVisible(true);
+        }
     }//GEN-LAST:event_jtBuscar_encKeyPressed
 
     private void jtBuscar_encKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyReleased
-        // TODO add your handling code here:
+        if (!jtBuscar_enc.getText().equals("")) {
+            buscar(JTenc_fac, jtBuscar_enc, res_num_enc, enc, jcBuscar_enc);
+        } else {
+            lim_enc.setVisible(false);
+            jtBuscar_enc.setText("Buscar");
+            jtBuscar_enc.select(0, 0);
+            visualizar();
+        }
     }//GEN-LAST:event_jtBuscar_encKeyReleased
 
     private void jtBuscar_encKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_encKeyTyped
@@ -5415,31 +6098,46 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jtBuscar_encKeyTyped
 
     private void lim_encMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_encMouseClicked
-        // TODO add your handling code here:
+        lim_enc.setVisible(false);
+        jtBuscar_enc.setText("Buscar");
+        jtBuscar_enc.select(0, 0);
+        visualizar();
     }//GEN-LAST:event_lim_encMouseClicked
 
     private void jlAgregar_facMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlAgregar_facMouseClicked
         INICIO.setSelectedIndex(0);
     }//GEN-LAST:event_jlAgregar_facMouseClicked
 
-    private void JTdetallesvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTdetallesvMouseClicked
+    private void VF_DETALLESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VF_DETALLESMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTdetallesvMouseClicked
+    }//GEN-LAST:event_VF_DETALLESMouseClicked
 
     private void jcBuscar_detItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBuscar_detItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jcBuscar_detItemStateChanged
 
     private void jtBuscar_detMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_detMouseClicked
-        // TODO add your handling code here:
+         if (jtBuscar_det.getText().equals("Buscar")) {
+            jtBuscar_det.select(0, 0);
+        }
     }//GEN-LAST:event_jtBuscar_detMouseClicked
 
     private void jtBuscar_detKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyPressed
-        // TODO add your handling code here:
+        if (jtBuscar_det.getText().equals("Buscar")) {
+            jtBuscar_det.setText("");
+            lim_det.setVisible(true);
+        }
     }//GEN-LAST:event_jtBuscar_detKeyPressed
 
     private void jtBuscar_detKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyReleased
-        // TODO add your handling code here:
+        if (!jtBuscar_det.getText().equals("")) {
+            buscar(JTdet_fac, jtBuscar_det, res_num_det, det, jcBuscar_det);
+        } else {
+            lim_det.setVisible(false);
+            jtBuscar_det.setText("Buscar");
+            jtBuscar_det.select(0, 0);
+            visualizar();
+        }
     }//GEN-LAST:event_jtBuscar_detKeyReleased
 
     private void jtBuscar_detKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_detKeyTyped
@@ -5447,8 +6145,27 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jtBuscar_detKeyTyped
 
     private void lim_detMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_detMouseClicked
-        // TODO add your handling code here:
+        lim_det.setVisible(false);
+        jtBuscar_det.setText("Buscar");
+        jtBuscar_det.select(0, 0);
+        visualizar();
     }//GEN-LAST:event_lim_detMouseClicked
+
+    private void jbEliminar_cat1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEliminar_cat1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbEliminar_cat1MouseEntered
+
+    private void jbEliminar_cat1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEliminar_cat1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbEliminar_cat1MouseExited
+
+    private void jbEliminar_cat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar_cat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbEliminar_cat1ActionPerformed
+
+    private void subir_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subir_1MouseClicked
+        jScrollPanew.getVerticalScrollBar().setValue(0);
+    }//GEN-LAST:event_subir_1MouseClicked
 
     
     public void InsertarIcono(JButton bot, String ruta){ //insertar icono en boton:
@@ -5784,25 +6501,73 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTable JTdescuentos;
     private javax.swing.JTable JTdet_fac;
     public transient javax.swing.JTable JTdetalle;
-    public static javax.swing.JTable JTdetallesv;
     public static javax.swing.JTable JTempleados;
     private javax.swing.JTable JTenc_fac;
     public static javax.swing.JTable JTproductos;
     public static javax.swing.JTable JTproveedores;
     public static javax.swing.JTabbedPane MENU;
-    private javax.swing.JLabel RUC_fac10;
-    private javax.swing.JLabel RUC_fac11;
-    private javax.swing.JLabel RUC_fac12;
-    private javax.swing.JLabel RUC_fac13;
-    private javax.swing.JLabel RUC_fac14;
-    private javax.swing.JLabel RUC_fac15;
-    private javax.swing.JLabel RUC_fac16;
-    private javax.swing.JLabel RUC_fac7;
-    private javax.swing.JLabel RUC_fac9;
+    private javax.swing.JPanel R1;
+    private javax.swing.JLabel R1_A1;
+    private javax.swing.JLabel R1_A2;
+    private javax.swing.JLabel R1_A3;
+    private javax.swing.JLabel R1_A4;
+    private javax.swing.JLabel R1_A5;
+    private javax.swing.JLabel R1_B1;
+    private javax.swing.JLabel R1_B2;
+    private javax.swing.JLabel R1_B3;
+    private javax.swing.JLabel R1_B4;
+    private javax.swing.JLabel R1_B5;
+    private javax.swing.JLabel R1_C1;
+    private javax.swing.JLabel R1_C2;
+    private javax.swing.JLabel R1_C3;
+    private javax.swing.JLabel R1_C4;
+    private javax.swing.JLabel R1_C5;
+    private javax.swing.JPanel R2;
+    private javax.swing.JLabel R2_A1;
+    private javax.swing.JLabel R2_A2;
+    private javax.swing.JLabel R2_A3;
+    private javax.swing.JLabel R2_A4;
+    private javax.swing.JLabel R2_A5;
+    private javax.swing.JLabel R2_B1;
+    private javax.swing.JLabel R2_B2;
+    private javax.swing.JLabel R2_B3;
+    private javax.swing.JLabel R2_B4;
+    private javax.swing.JLabel R2_B5;
+    private javax.swing.JLabel R2_C1;
+    private javax.swing.JLabel R2_C2;
+    private javax.swing.JLabel R2_C3;
+    private javax.swing.JLabel R2_C4;
+    private javax.swing.JLabel R2_C5;
+    private javax.swing.JPanel R3;
+    private javax.swing.JLabel R3_A1;
+    private javax.swing.JLabel R3_B1;
+    private javax.swing.JLabel R3_C1;
+    private javax.swing.JLabel R3_D1;
+    private javax.swing.JLabel R3_E1;
     private javax.swing.JLabel SALIR;
     private javax.swing.JLabel USUARIO;
     public static javax.swing.JLabel V0;
+    private javax.swing.JLabel VF_CEDULA;
+    private javax.swing.JLabel VF_CODIGO;
+    private javax.swing.JLabel VF_CORREO;
+    public static javax.swing.JTable VF_DETALLES;
+    private javax.swing.JLabel VF_DIRECCION;
+    private javax.swing.JLabel VF_FECHA;
+    private javax.swing.JLabel VF_NOMBRE_APELLIDO;
+    private javax.swing.JLabel VF_RUC;
+    private javax.swing.JLabel VF_TELEFONO;
+    private javax.swing.JLabel VF_TOTAL;
     private javax.swing.JPanel VISTA_FACTURA;
+    private javax.swing.JLabel clientes_con_factura11;
+    private javax.swing.JLabel clientes_con_factura12;
+    private javax.swing.JLabel clientes_con_factura13;
+    private javax.swing.JLabel clientes_con_factura14;
+    private javax.swing.JLabel clientes_con_factura15;
+    private javax.swing.JLabel clientes_sin_factura11;
+    private javax.swing.JLabel clientes_sin_factura12;
+    private javax.swing.JLabel clientes_sin_factura13;
+    private javax.swing.JLabel clientes_sin_factura14;
+    private javax.swing.JLabel clientes_sin_factura15;
     private javax.swing.JTextField enc_cedula;
     private javax.swing.JTextField enc_codigo;
     private javax.swing.JTextField enc_correo;
@@ -5817,13 +6582,21 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -5836,7 +6609,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
@@ -5844,13 +6619,26 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -5872,11 +6660,14 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JButton jbEliminar_cat;
+    private javax.swing.JButton jbEliminar_cat1;
     private javax.swing.JButton jbEliminar_ciu;
     private javax.swing.JButton jbEliminar_des;
     private javax.swing.JButton jbEnviar_cat;
@@ -6009,7 +6800,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jl_titulo13;
     private javax.swing.JLabel jl_titulo14;
     private javax.swing.JLabel jl_titulo5;
+    private javax.swing.JLabel jl_titulo6;
     private javax.swing.JLabel jl_titulo7;
+    private javax.swing.JLabel jl_titulo8;
+    private javax.swing.JLabel jl_titulo9;
     private javax.swing.JLabel jl_total;
     private javax.swing.JLabel jl_total1;
     public static javax.swing.JPanel jpDatos_cat;
@@ -6053,10 +6847,18 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel res_num_ciu;
     private javax.swing.JLabel res_num_cli;
     private javax.swing.JLabel res_num_des;
+    private javax.swing.JLabel res_num_det;
     private javax.swing.JLabel res_num_emp;
+    private javax.swing.JLabel res_num_enc;
     private javax.swing.JLabel res_num_pro;
     private javax.swing.JLabel res_num_prov;
     public static javax.swing.JLabel sistema_titulo;
+    private javax.swing.JLabel subir_1;
+    private javax.swing.JLabel t_facturas_activas11;
+    private javax.swing.JLabel t_facturas_activas12;
+    private javax.swing.JLabel t_facturas_activas13;
+    private javax.swing.JLabel t_facturas_activas14;
+    private javax.swing.JLabel t_facturas_activas15;
     public static javax.swing.JLabel v1;
     public static javax.swing.JLabel v10;
     public static javax.swing.JLabel v2;
