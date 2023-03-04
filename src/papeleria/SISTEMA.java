@@ -44,16 +44,16 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     ObjectSet resultado;
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
-    
+
     ArrayList<String> detalles = new ArrayList<>();
     JButton boton1 = new JButton();
 
     String hora, minutos, segundos;
     Thread hilo;
-    
+
     //variables para factura:
-    public static int descuento = 0 ,total = 0, num_det = 0;
-    
+    public static int descuento = 0, total = 0, num_det = 0;
+
     //instancias de los frames:
     public static JFcategoria JFcat = new JFcategoria();//fr1
     public static JFciudad JFciu = new JFciudad();//fr2
@@ -72,7 +72,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }
 
     public final void iniciar() {
-        
+
         //para la fecha y hora
         hilo = new Thread(this);
         hilo.start();
@@ -94,7 +94,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         //lim_gas.setVisible(false);
         lim_pro.setVisible(false);
         lim_prov.setVisible(false);
-        
+
     }
 
     //método para cargar los datos en las tablas:
@@ -1107,7 +1107,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane.setViewportView(JPfactura);
@@ -1158,7 +1158,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         );
         JPgastosLayout.setVerticalGroup(
             JPgastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 489, Short.MAX_VALUE)
         );
 
         INICIO.addTab("GASTOS", JPgastos);
@@ -3283,7 +3283,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                             .addComponent(jl_titulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)
                         .addComponent(jsTabla_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jpDatos_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                    .addComponent(jpDatos_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 423, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(res_num_pro)
                 .addGap(127, 127, 127))
@@ -3686,6 +3686,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         SALIR.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         SALIR.setForeground(new java.awt.Color(255, 255, 255));
         SALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion (1).png"))); // NOI18N
+        SALIR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SALIRMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -3733,9 +3738,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(JPencabezado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(MENU, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MENU, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -3912,18 +3917,18 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private void jbEnviar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviar_cliActionPerformed
         if (!jlCedula_cli.getText().equals(" ")) {
             base.abrir();
-            Cliente c = new Cliente(null,jlCedula_cli.getText(),null,null,null,null,null,null,null,null);
+            Cliente c = new Cliente(null, jlCedula_cli.getText(), null, null, null, null, null, null, null, null);
             resultado = base.gettear(c);
             if (!resultado.isEmpty()) {
-                c = (Cliente)resultado.next();
+                c = (Cliente) resultado.next();
                 enc_cedula.setText(c.getCedula());
-                enc_nombre_apellido.setText(c.getNombre()+" "+c.getApellido());
+                enc_nombre_apellido.setText(c.getNombre() + " " + c.getApellido());
                 enc_direccion.setText(c.getDireccion());
                 enc_telefono.setText(c.getTelefono());
                 enc_correo.setText(c.getCorreo());
-                Descuento d = new Descuento(c.getDescuento(),0);
+                Descuento d = new Descuento(c.getDescuento(), 0);
                 resultado = base.gettear(d);
-                d = (Descuento)resultado.next();
+                d = (Descuento) resultado.next();
                 descuento = d.getPorcentaje();
                 MENU.setSelectedIndex(0);
                 INICIO.setSelectedIndex(0);
@@ -4394,7 +4399,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         if (cantidad > 0 && cantidad <= Integer.parseInt(jlExistencias_pro.getText())) {
                             Double xprecio = Double.valueOf(jlPrecio_pro.getText());
                             JTdetalle.setDefaultRenderer(Object.class, new BotonTabla());
-                            Object detalle[] = {jlCodigo_pro.getText(), jlNombre_pro.getText(), cantidad, xprecio,descuento+"%", xprecio - ((descuento*xprecio)/100), Math.round((cantidad * (xprecio - ((descuento*xprecio)/100))) * 100.0) / 100.0, boton1};
+                            Object detalle[] = {jlCodigo_pro.getText(), jlNombre_pro.getText(), cantidad, xprecio, descuento + "%", xprecio - ((descuento * xprecio) / 100), Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0, boton1};
 
                             detalles.add(jlCodigo_pro.getText());
                             //-------------- Agrega un detalle a la tabla
@@ -4403,15 +4408,13 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                             JTdetalle.setRowHeight(35);
                             //Confirmar_venta.setEnabled(true);
                             //--------------- Actualiza variables
-                            
-                            
-                            num_det++;
-                            jl_num_det.setText("Detalles: "+String.valueOf(num_det));
-                            total += (Math.round((cantidad * (xprecio - ((descuento*xprecio)/100))) * 100.0) / 100.0);
-                            jl_total.setText(String.valueOf("Total: $"+total));
-                            
-                            //valor_total.setText("VALOR TOTAL: $" + String.valueOf(xvalor_total));
 
+                            num_det++;
+                            jl_num_det.setText("Detalles: " + String.valueOf(num_det));
+                            total += (Math.round((cantidad * (xprecio - ((descuento * xprecio) / 100))) * 100.0) / 100.0);
+                            jl_total.setText(String.valueOf("Total: $" + total));
+
+                            //valor_total.setText("VALOR TOTAL: $" + String.valueOf(xvalor_total));
                             //---------- Redireccionar
                             MENU.setSelectedIndex(0);
                             INICIO.setSelectedIndex(0);
@@ -4617,12 +4620,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-    public void InsertarIcono(JButton bot, String ruta){ //insertar icono en boton:
+    private void SALIRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SALIRMouseClicked
+        // TODO add your handling code here:
+        LOGIN login = new LOGIN();
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_SALIRMouseClicked
+
+    public void InsertarIcono(JButton bot, String ruta) { //insertar icono en boton:
         bot.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
     }
-    
-    
+
     //método para dar click o doble click en las tablas:
     public void seleccionar() {
         JTcategorias.addMouseListener(new MouseAdapter() { //categorias(1)
@@ -4758,72 +4766,71 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
     }
 
-    
-    
-    public void hora(){
+    public void hora() {
         Calendar calendario = new GregorianCalendar();
         Date hora_actual = new Date();
         calendario.setTime(hora_actual);
-        hora = calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
-        minutos = calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundos = calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-    public void run(){
+
+    public void run() {
         Thread current = Thread.currentThread();
-        while (current == hilo){
+        while (current == hilo) {
             hora();
-            FECHA_HORA.setText("Ecuador, "+fechas.transformar_fecha(fechas.obtener_fecha())+" - "+hora+":"+minutos+":"+segundos);
+            FECHA_HORA.setText("Ecuador, " + fechas.transformar_fecha(fechas.obtener_fecha()) + " - " + hora + ":" + minutos + ":" + segundos);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    //1 new AluminiumLookAndFeel());
-                    //1 new GraphiteLookAndFeel()
-                    //2 new AcrylLookAndFeel()
-                    //3 new BernsteinLookAndFeel()
-                    //4 new LunaLookAndFeel() //
-                    //5 new McWinLookAndFeel()//
-                    
-                    //NimbusLookAndFeel
-                    UIManager.setLookAndFeel(new NimbusLookAndFeel() );
-                } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(SISTEMA.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                new SISTEMA().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SISTEMA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    //1 new AluminiumLookAndFeel());
+//                    //1 new GraphiteLookAndFeel()
+//                    //2 new AcrylLookAndFeel()
+//                    //3 new BernsteinLookAndFeel()
+//                    //4 new LunaLookAndFeel() //
+//                    //5 new McWinLookAndFeel()//
+//
+//                    //NimbusLookAndFeel
+//                    UIManager.setLookAndFeel(new NimbusLookAndFeel());
+//                } catch (UnsupportedLookAndFeelException ex) {
+//                    Logger.getLogger(SISTEMA.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                new SISTEMA().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FECHA_HORA;

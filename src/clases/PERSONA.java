@@ -14,7 +14,7 @@ public abstract class PERSONA {
     private String genero;
     private String correo;
 
-    public PERSONA() {
+   public PERSONA() {
     }
 
     public PERSONA(String cedula, String nombre, String apellido, String direccion, String telefono, Date fecha_nac, Date fecha_reg, String genero, String correo) {

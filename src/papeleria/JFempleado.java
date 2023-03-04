@@ -1,4 +1,5 @@
 package papeleria;
+
 import clases.Empleado;
 import com.db4o.ObjectSet;
 import java.awt.Color;
@@ -11,16 +12,17 @@ import otros.fechas;
 import otros.validar;
 
 public class JFempleado extends javax.swing.JFrame {
+
     public static String forma = "";
     public ObjectSet resultado;
     Date fecha_nac;
     double xsueldo = 0;
-    
+
     public JFempleado() {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     public static void cambiar_diseño() {
         String titulo = "";
         Color color = null;
@@ -107,8 +109,8 @@ public class JFempleado extends javax.swing.JFrame {
             }
         }
     }
-      
-    public static void limpiar(){   
+
+    public static void limpiar() {
         cedula.setText("");
         nombre.setText("");
         apellido.setText("");
@@ -119,14 +121,15 @@ public class JFempleado extends javax.swing.JFrame {
         correo.setText("");
         direccion.setText("");
     }
-    public void llenar(String ced){
+
+    public void llenar(String ced) {
         base.abrir();
-        Empleado emp = new Empleado(0,ced, null, null, null, null, null, null, null, null);
+        Empleado emp = new Empleado(0, ced, null, null, null, null, null, null, null, null);
         resultado = base.gettear(emp);
         if (resultado.isEmpty()) {
             getToolkit().beep();
-            JOptionPane.showMessageDialog(rootPane, "¡El empleado '"+ced+"' no existe!");
-        } else{
+            JOptionPane.showMessageDialog(rootPane, "¡El empleado '" + ced + "' no existe!");
+        } else {
             emp = (Empleado) resultado.next();
             cedula.setText(emp.getCedula());
             nombre.setText(emp.getNombre());
@@ -141,12 +144,13 @@ public class JFempleado extends javax.swing.JFrame {
         }
         base.cerrar();
     }
+
     public void registrar() {
         base.abrir();
         Empleado emp = new Empleado(0, cedula.getText(), null, null, null, null, null, null, null, null);
         if (base.gettear(emp).isEmpty()) {
             emp = new Empleado(Double.parseDouble(sueldo.getText()), cedula.getText(), nombre.getText(), apellido.getText(),
-                     direccion.getText(), telefono.getText(), fecha_nac, fechas.obtener_fecha(), genero.getSelectedItem().toString(), correo.getText());
+                    direccion.getText(), telefono.getText(), fecha_nac, fechas.obtener_fecha(), genero.getSelectedItem().toString(), correo.getText());
             base.settear(emp);
             JOptionPane.showMessageDialog(null, "¡Registrado correctamente!");
             SISTEMA.actualizado = false;
@@ -157,6 +161,7 @@ public class JFempleado extends javax.swing.JFrame {
         }
         base.cerrar();
     }
+
     public void modificar() {
         base.abrir();
         Empleado emp = new Empleado(0, cedula.getText(), null, null, null, null, null, null, null, null);
@@ -166,7 +171,7 @@ public class JFempleado extends javax.swing.JFrame {
             emp.setNombre(nombre.getText());
             emp.setApellido(apellido.getText());
             emp.setFecha_nac(fecha_nac);
-            emp.setGenero(genero.getSelectedItem().toString());          
+            emp.setGenero(genero.getSelectedItem().toString());
             emp.setTelefono(telefono.getText());
             emp.setCorreo(correo.getText());
             emp.setDireccion(direccion.getText());
@@ -178,7 +183,7 @@ public class JFempleado extends javax.swing.JFrame {
         SISTEMA.actualizado = false;
         this.dispose();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -260,6 +265,11 @@ public class JFempleado extends javax.swing.JFrame {
         jb_Ejecutar.setText("¡Registrar!");
         jb_Ejecutar.setBorder(null);
         jb_Ejecutar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jb_Ejecutar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_EjecutarMouseClicked(evt);
+            }
+        });
         jb_Ejecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_EjecutarActionPerformed(evt);
@@ -419,7 +429,7 @@ public class JFempleado extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             xsueldo = 0;
         }
-        try {           
+        try {
             fecha_nac = nacimiento.getDate();
             if (cedula.getText().equals("") || nombre.getText().equals("") || apellido.getText().equals("")
                     || genero.getSelectedIndex() == 0 || sueldo.getText().equals("")
@@ -431,11 +441,11 @@ public class JFempleado extends javax.swing.JFrame {
                 boolean nac_corr = validar.V_edad(nacimiento.getDate());
                 boolean tel_corr = validar.V_telefono(telefono.getText());
                 boolean email_corr = validar.V_correo(correo);
-                
-                if (ced_corr && nac_corr && tel_corr && email_corr && xsueldo>0) {                
+
+                if (ced_corr && nac_corr && tel_corr && email_corr && xsueldo > 0) {
                     if (forma.equals("registrar")) {
                         registrar();
-                    } else if(forma.equals("modificar")){
+                    } else if (forma.equals("modificar")) {
                         modificar();
                     }
                 } else {
@@ -452,7 +462,7 @@ public class JFempleado extends javax.swing.JFrame {
                     if (!email_corr) {
                         JOptionPane.showMessageDialog(null, "¡Correo incorrecto!");
                     }
-                    if (xsueldo==0) {
+                    if (xsueldo == 0) {
                         JOptionPane.showMessageDialog(null, "¡Sueldo incorrecto!");
                     }
                 }
@@ -461,29 +471,29 @@ public class JFempleado extends javax.swing.JFrame {
             getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "¡Fecha de nacimiento incorrecta!");
         }
-    
+
 
     }//GEN-LAST:event_jb_EjecutarActionPerformed
 
     private void cedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyPressed
-        validar.V_numero(cedula,10);
+        validar.V_numero(cedula, 10);
     }//GEN-LAST:event_cedulaKeyPressed
 
     private void nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyPressed
-        validar.V_letras(nombre,20);
+        validar.V_letras(nombre, 20);
     }//GEN-LAST:event_nombreKeyPressed
 
     private void apellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoKeyPressed
-        validar.V_letras(apellido,20);
+        validar.V_letras(apellido, 20);
     }//GEN-LAST:event_apellidoKeyPressed
 
     private void telefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoKeyPressed
-        validar.V_numero(telefono,10);
-        
+        validar.V_numero(telefono, 10);
+
     }//GEN-LAST:event_telefonoKeyPressed
 
     private void direccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_direccionKeyPressed
-        validar.nombre_compuesto(direccion,50);
+        validar.nombre_compuesto(direccion, 50);
     }//GEN-LAST:event_direccionKeyPressed
 
     private void correoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoKeyPressed
@@ -499,7 +509,7 @@ public class JFempleado extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_cerrarMouseClicked
 
     private void sueldoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sueldoKeyPressed
-        validar.dinero(sueldo,6);
+        validar.dinero(sueldo, 6);
     }//GEN-LAST:event_sueldoKeyPressed
 
     private void sueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sueldoActionPerformed
@@ -510,71 +520,75 @@ public class JFempleado extends javax.swing.JFrame {
         /*
         SISTEMA.MENU.setSelectedIndex(4);
         this.setVisible(false);
-        */
+         */
     }//GEN-LAST:event_sueldoMouseClicked
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void jb_EjecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_EjecutarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_EjecutarMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFempleado().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Windows".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(JFempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new JFempleado().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField apellido;

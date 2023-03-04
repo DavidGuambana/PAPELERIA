@@ -8,6 +8,7 @@ import com.db4o.ext.IncompatibleFileFormatException;
 import com.db4o.ext.OldFormatException;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
+import clases.Empleado;
 
 public class base {
 
@@ -15,7 +16,7 @@ public class base {
 
     public static void abrir() {
         try {
-            bd = Db4o.openFile("C:\\Users\\davic\\OneDrive\\Escritorio\\Proyectos_bd\\Papeleria.yap");
+            bd = Db4o.openFile("C:\\Users\\FRANKLIN\\Downloads\\Papeleria\\BASE PAPELERIA\\Papeleria.yap");
         } catch (DatabaseFileLockedException | DatabaseReadOnlyException | Db4oIOException | IncompatibleFileFormatException | OldFormatException e) {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "¡Error al abrir la base de datos!", null, JOptionPane.ERROR_MESSAGE);
@@ -40,9 +41,33 @@ public class base {
     public static void settear(Object obj) {
         bd.set(obj);
     }
-    
-    public static void eliminar(Object obj){
+
+    public static void eliminar(Object obj) {
         bd.delete(obj);
+    }
+
+    private void open() {
+        try {
+            this.bd = Db4o.openFile("C:\\Users\\FRANKLIN\\Downloads\\Papeleria\\BASE PAPELERIA\\Papeleria.yap");
+        } catch (DatabaseFileLockedException | DatabaseReadOnlyException | Db4oIOException | IncompatibleFileFormatException | OldFormatException e) {
+            System.out.println(e);
+        }
+    }
+
+    public boolean Buscar_Emple(String ced) {
+        this.open();
+        boolean valido = false;
+        double Ced = Double.parseDouble(ced);
+        Empleado encontrado = new Empleado(Ced);
+        ObjectSet resultados = this.bd.get(encontrado);
+        if (!resultados.isEmpty()) {
+            encontrado = (Empleado) resultados.next();
+            if (encontrado.getCedula().equalsIgnoreCase(ced)) {
+                valido = true;
+            }
+        }
+        this.bd.close();
+        return valido;
     }
 
 }
