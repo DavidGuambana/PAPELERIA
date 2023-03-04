@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import papeleria.JFlogin;
 import papeleria.SISTEMA;
 
 
@@ -34,9 +35,8 @@ public class Play {
                 Splashz.jLabel1.setText(i+"%");
                 Splashz.jProgressBar.setValue(i);
                 if (i == 100) {
-                    loading.dispose();
-                    SISTEMA aplicacion = new SISTEMA();
-                    aplicacion.setVisible(true);
+                    JFlogin sesión = new JFlogin();
+                    sesión.setVisible(true);
                     
                 }
             }

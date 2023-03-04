@@ -8,6 +8,7 @@ import clases.Descuento;
 import clases.Detalle_fac;
 import clases.Empleado;
 import clases.Encabezado_fac;
+import clases.Pago_prov;
 import clases.Producto;
 import clases.Proveedor;
 import com.db4o.ObjectSet;
@@ -38,7 +39,7 @@ import otros.fechas;
 public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
     //variables que guardan el número de registros:
-    public static int cat, ciu, cli, des, det, emp, enc, gas, pap, pro, prov;
+    public static int cat, ciu, cli, des, det, emp, enc, pag, pro, prov;
 
     //otras variables útiles:
     public static boolean actualizado = false;
@@ -46,7 +47,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     ObjectSet resultado2;
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
-    
+    public static String modo_prov = "";
     
     ArrayList<String> detalles = new ArrayList<>();
     JButton boton1 = new JButton();
@@ -65,7 +66,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static JFcliente JFcli = new JFcliente(); //fr3
     public static JFdescuento JFdes = new JFdescuento();//fr4
     public static JFempleado JFemp = new JFempleado();//fr6
-
+    public static JFpagos JFpag = new JFpagos();//8
     public static JFproducto JFpro = new JFproducto();//fr9
     public static JFproveedor JFprov = new JFproveedor(); //fr10
 
@@ -230,6 +231,18 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     
                     break;
                 case 8: //pagos a proveedores
+                    String[] colum_pag = {"Numero de pago", "Valor", "Cedula empleado", "Ruc proveedor", "Descripcion", "Fecha", "Estado"};
+                    tabla = new DefaultTableModel(null, colum_pag);
+                    Pago_prov pago = new Pago_prov(0,0, null, null, null, null, "ACTIVO");
+                    resultado = base.gettear(pago);
+                    for (int j = 0; j < resultado.size(); j++) {
+                        pago = (Pago_prov) resultado.next();
+                        tabla.addRow(new Object[]{pago.getCodigo(),pago.getValor(),pago.getCedula_emp(),pago.getRUC_prov(),pago.getDescripcion(),
+                            fechas.transformar_fecha(pago.getFecha_reg()),pago.getEstado()});
+                    }
+                    JTpagos.setModel(tabla);
+                    pag = resultado.size();
+                    res_num_pag.setText("Resultados: " + pag + " de " + pag);
                     break;
                 case 9://productos
                     JTproductos.setDefaultRenderer(Object.class, new ImagenTabla());
@@ -364,17 +377,20 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         //no se puede eliminar los pagos a proveedores
                         break;
                     case 7: //ocultar factura
-                        /*
                         Encabezado_fac en = new Encabezado_fac(Integer.parseInt(VF_CODIGO.getText()),null, null, 0,null);
                         resultado = base.gettear(en);
                         if (!resultado.isEmpty()) {
-                            pr = (Producto) resultado.next();
-                            base.eliminar(pr);
-                            reiniciar_factura(); //por precaución
+                            en = (Encabezado_fac) resultado.next();
+                            en.setEstado("INACTIVO");
+                            base.settear(en);
                         }
-                        */
                         break;
                     case 8: //ocultar pago a proveedor
+                        Pago_prov modi = new Pago_prov(Integer.parseInt(jlCodigo_pag.getText()), 0, null, null, null, null, null);
+                        resultado = base.gettear(modi);
+                        modi = (Pago_prov) resultado.next();
+                        modi.setEstado("INACTIVO");
+                        base.settear(modi);
                         break;
                     case 9: //eliminar producto
                         Producto pr = new Producto(Integer.parseInt(jlCodigo_pro.getText()), null, 0, 0, null, null, null, null);
@@ -663,7 +679,37 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         R2_B5 = new javax.swing.JLabel();
         R2_A5 = new javax.swing.JLabel();
         subir_1 = new javax.swing.JLabel();
-        JPgastos = new javax.swing.JPanel();
+        JPpagos = new javax.swing.JPanel();
+        res_num_pag = new javax.swing.JLabel();
+        jpDatos_pro1 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jlR7 = new javax.swing.JLabel();
+        jb_Eliminar_pag = new javax.swing.JButton();
+        jbModificar_pag = new javax.swing.JButton();
+        jlC5 = new javax.swing.JLabel();
+        jlF4 = new javax.swing.JLabel();
+        jlCodigo_pag = new javax.swing.JLabel();
+        jlPrecio_pag = new javax.swing.JLabel();
+        jlReg_pag = new javax.swing.JLabel();
+        jSeparator20 = new javax.swing.JSeparator();
+        jbRegistrar_pag = new javax.swing.JButton();
+        jlProveedor_pag = new javax.swing.JLabel();
+        jlE18 = new javax.swing.JLabel();
+        jSeparator21 = new javax.swing.JSeparator();
+        jlE19 = new javax.swing.JLabel();
+        jlceduempleado = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtaDescripcion_pag = new javax.swing.JTextArea();
+        jlN7 = new javax.swing.JLabel();
+        jlE20 = new javax.swing.JLabel();
+        jlempleado_nom = new javax.swing.JLabel();
+        jcBuscar_pag = new javax.swing.JComboBox<>();
+        jLabel57 = new javax.swing.JLabel();
+        jtBuscar_pag = new javax.swing.JTextField();
+        lim_pag = new javax.swing.JLabel();
+        jsTabla_pro1 = new javax.swing.JScrollPane();
+        JTpagos = new javax.swing.JTable();
+        jl_titulo15 = new javax.swing.JLabel();
         JPcategorias = new javax.swing.JPanel();
         jl_titulo5 = new javax.swing.JLabel();
         jpDatos_cat = new javax.swing.JPanel();
@@ -2444,22 +2490,371 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         INICIO.addTab("VENTAS", jScrollPanew);
 
-        JPgastos.setBackground(new java.awt.Color(204, 255, 255));
-        JPgastos.setMaximumSize(new java.awt.Dimension(980, 1125));
-        JPgastos.setMinimumSize(new java.awt.Dimension(980, 1125));
+        JPpagos.setBackground(new java.awt.Color(204, 255, 255));
 
-        javax.swing.GroupLayout JPgastosLayout = new javax.swing.GroupLayout(JPgastos);
-        JPgastos.setLayout(JPgastosLayout);
-        JPgastosLayout.setHorizontalGroup(
-            JPgastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1075, Short.MAX_VALUE)
+        res_num_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        res_num_pag.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        res_num_pag.setText("Resultados: 0 de 0");
+
+        jpDatos_pro1.setBackground(new java.awt.Color(255, 255, 255));
+        jpDatos_pro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        jpDatos_pro1.setMaximumSize(new java.awt.Dimension(275, 408));
+        jpDatos_pro1.setMinimumSize(new java.awt.Dimension(275, 408));
+        jpDatos_pro1.setPreferredSize(new java.awt.Dimension(275, 408));
+
+        jLabel29.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Pago seleccionado:");
+
+        jlR7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlR7.setForeground(new java.awt.Color(51, 51, 51));
+        jlR7.setText("Código:");
+
+        jb_Eliminar_pag.setBackground(new java.awt.Color(255, 0, 51));
+        jb_Eliminar_pag.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jb_Eliminar_pag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        jb_Eliminar_pag.setText(" Eliminar");
+        jb_Eliminar_pag.setBorder(null);
+        jb_Eliminar_pag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jb_Eliminar_pag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jb_Eliminar_pagMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jb_Eliminar_pagMouseExited(evt);
+            }
+        });
+        jb_Eliminar_pag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Eliminar_pagActionPerformed(evt);
+            }
+        });
+
+        jbModificar_pag.setBackground(new java.awt.Color(0, 153, 255));
+        jbModificar_pag.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jbModificar_pag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jbModificar_pag.setText(" Modificar");
+        jbModificar_pag.setBorder(null);
+        jbModificar_pag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbModificar_pag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbModificar_pagMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbModificar_pagMouseExited(evt);
+            }
+        });
+        jbModificar_pag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificar_pagActionPerformed(evt);
+            }
+        });
+
+        jlC5.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlC5.setForeground(new java.awt.Color(51, 51, 51));
+        jlC5.setText("Monto: $");
+
+        jlF4.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlF4.setForeground(new java.awt.Color(51, 51, 51));
+        jlF4.setText("Fecha de registro:");
+
+        jlCodigo_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlCodigo_pag.setText(" ");
+
+        jlPrecio_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlPrecio_pag.setText(" ");
+
+        jlReg_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlReg_pag.setText(" ");
+
+        jSeparator20.setForeground(new java.awt.Color(0, 0, 0));
+
+        jbRegistrar_pag.setBackground(new java.awt.Color(0, 204, 102));
+        jbRegistrar_pag.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jbRegistrar_pag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
+        jbRegistrar_pag.setText("Agregar");
+        jbRegistrar_pag.setBorder(null);
+        jbRegistrar_pag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbRegistrar_pag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbRegistrar_pagMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbRegistrar_pagMouseExited(evt);
+            }
+        });
+        jbRegistrar_pag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrar_pagActionPerformed(evt);
+            }
+        });
+
+        jlProveedor_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlProveedor_pag.setText(" ");
+
+        jlE18.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlE18.setForeground(new java.awt.Color(51, 51, 51));
+        jlE18.setText("Proveedor:");
+
+        jSeparator21.setForeground(new java.awt.Color(0, 0, 0));
+
+        jlE19.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlE19.setForeground(new java.awt.Color(51, 51, 51));
+        jlE19.setText("Cedula:");
+
+        jlceduempleado.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlceduempleado.setText(" ");
+
+        jScrollPane3.setBorder(null);
+
+        jtaDescripcion_pag.setEditable(false);
+        jtaDescripcion_pag.setColumns(20);
+        jtaDescripcion_pag.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jtaDescripcion_pag.setLineWrap(true);
+        jtaDescripcion_pag.setRows(5);
+        jtaDescripcion_pag.setWrapStyleWord(true);
+        jtaDescripcion_pag.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 0, 14))); // NOI18N
+        jtaDescripcion_pag.setFocusable(false);
+        jScrollPane3.setViewportView(jtaDescripcion_pag);
+
+        jlN7.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlN7.setText("Descripción:");
+
+        jlE20.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jlE20.setForeground(new java.awt.Color(51, 51, 51));
+        jlE20.setText("Nombre:");
+
+        jlempleado_nom.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        jlempleado_nom.setText(" ");
+
+        javax.swing.GroupLayout jpDatos_pro1Layout = new javax.swing.GroupLayout(jpDatos_pro1);
+        jpDatos_pro1.setLayout(jpDatos_pro1Layout);
+        jpDatos_pro1Layout.setHorizontalGroup(
+            jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                .addGap(278, 278, 278)
+                .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                        .addComponent(jlR7)
+                        .addGap(6, 6, 6)
+                        .addComponent(jlCodigo_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                        .addComponent(jlE18)
+                        .addGap(6, 6, 6)
+                        .addComponent(jlProveedor_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                        .addComponent(jlE20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlempleado_nom, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                        .addComponent(jlE19)
+                        .addGap(6, 6, 6)
+                        .addComponent(jlceduempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                        .addComponent(jlC5)
+                        .addGap(6, 6, 6)
+                        .addComponent(jlPrecio_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlN7)
+                    .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_pro1Layout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(jbModificar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jb_Eliminar_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbRegistrar_pag, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_pro1Layout.createSequentialGroup()
+                            .addComponent(jlF4)
+                            .addGap(6, 6, 6)
+                            .addComponent(jlReg_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        JPgastosLayout.setVerticalGroup(
-            JPgastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1125, Short.MAX_VALUE)
+        jpDatos_pro1Layout.setVerticalGroup(
+            jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                .addComponent(jLabel29)
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlR7)
+                    .addComponent(jlCodigo_pag))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlProveedor_pag)
+                    .addComponent(jlE18))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlE20)
+                    .addComponent(jlempleado_nom))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlE19)
+                    .addComponent(jlceduempleado))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlC5)
+                    .addComponent(jlPrecio_pag))
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlF4)
+                    .addComponent(jlReg_pag))
+                .addGap(4, 4, 4)
+                .addComponent(jlN7)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jbRegistrar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_Eliminar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        INICIO.addTab("GASTOS", JPgastos);
+        jcBuscar_pag.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jcBuscar_pag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Valor", "Empleado", "RUC", "Descripcion", "F. Registro", "Estado", "Proveedor" }));
+        jcBuscar_pag.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcBuscar_pagItemStateChanged(evt);
+            }
+        });
+
+        jLabel57.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
+        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel57.setText("Buscar pago por");
+
+        jtBuscar_pag.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jtBuscar_pag.setText("Buscar");
+        jtBuscar_pag.setMinimumSize(new java.awt.Dimension(317, 31));
+        jtBuscar_pag.setPreferredSize(new java.awt.Dimension(317, 35));
+        jtBuscar_pag.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jtBuscar_pag.setSelectionColor(new java.awt.Color(153, 204, 255));
+        jtBuscar_pag.setSelectionEnd(0);
+        jtBuscar_pag.setSelectionStart(0);
+        jtBuscar_pag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtBuscar_pagMouseClicked(evt);
+            }
+        });
+        jtBuscar_pag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBuscar_pagActionPerformed(evt);
+            }
+        });
+        jtBuscar_pag.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtBuscar_pagKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtBuscar_pagKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtBuscar_pagKeyTyped(evt);
+            }
+        });
+
+        lim_pag.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
+        lim_pag.setForeground(new java.awt.Color(0, 102, 102));
+        lim_pag.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lim_pag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/close.png"))); // NOI18N
+        lim_pag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lim_pag.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lim_pagMouseClicked(evt);
+            }
+        });
+
+        JTpagos = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        JTpagos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        JTpagos.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        JTpagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JTpagos.setFocusable(false);
+        JTpagos.setGridColor(new java.awt.Color(255, 255, 255));
+        JTpagos.setOpaque(false);
+        JTpagos.setRowHeight(60);
+        JTpagos.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        JTpagos.getTableHeader().setResizingAllowed(false);
+        JTpagos.getTableHeader().setReorderingAllowed(false);
+        jsTabla_pro1.setViewportView(JTpagos);
+
+        jl_titulo15.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jl_titulo15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/table_icon_128243.png"))); // NOI18N
+        jl_titulo15.setText("Lista de pagos");
+        jl_titulo15.setIconTextGap(10);
+        jl_titulo15.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout JPpagosLayout = new javax.swing.GroupLayout(JPpagos);
+        JPpagos.setLayout(JPpagosLayout);
+        JPpagosLayout.setHorizontalGroup(
+            JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPpagosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPpagosLayout.createSequentialGroup()
+                        .addComponent(jl_titulo15, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JPpagosLayout.createSequentialGroup()
+                                .addComponent(jLabel57)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcBuscar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtBuscar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(res_num_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jsTabla_pro1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)))
+                .addGap(0, 0, 0)
+                .addComponent(lim_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jpDatos_pro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        JPpagosLayout.setVerticalGroup(
+            JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPpagosLayout.createSequentialGroup()
+                .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPpagosLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(JPpagosLayout.createSequentialGroup()
+                                .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jcBuscar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JPpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lim_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtBuscar_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jl_titulo15, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jsTabla_pro1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(res_num_pag))
+                    .addGroup(JPpagosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jpDatos_pro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        INICIO.addTab("PAGOS A PROVEEDORES", JPpagos);
 
         MENU.addTab("INICIO", INICIO);
 
@@ -4939,13 +5334,21 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEnviar_provActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviar_provActionPerformed
+        if (modo_prov.equals("producto")) {
         if (!jlRUC.getText().equals(" ")) {
             JFproducto.jt_proveedor.setText(jlRUC.getText());
             SISTEMA.MENU.setSelectedIndex(6);
             JFpro.setVisible(true);
+            
         } else {
             getToolkit().beep();
             JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
+        }    
+        }else if (modo_prov.equals("pagos_prov")) {
+         JFpagos.jt_proveedor.setText(jlRUC.getText());
+            SISTEMA.MENU.setSelectedIndex(0);
+            INICIO.setSelectedIndex(2);       
+            JFpag.setVisible(true);   
         }
     }//GEN-LAST:event_jbEnviar_provActionPerformed
 
@@ -5455,9 +5858,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
     private void jbEnviar_cli1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviar_cli1ActionPerformed
         if (!jlCedula_emp.getText().equals(" ")) {
-            /*
-            
-             */
+            JFpagos.jt_empleado.setText(jlCedula_emp.getText());
+            MENU.setSelectedIndex(0);
+            INICIO.setSelectedIndex(2);
+            JFpag.setVisible(true);
+
         } else {
             getToolkit().beep();
             JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
@@ -5667,8 +6072,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jbModificar_proMouseExited
 
     private void jbModificar_proActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificar_proActionPerformed
-        if (!jlCodigo_pro.getText().equals(" ")) {
-            JFproducto.forma = "modificar";
+        modo_prov = "producto";
+        if (!jlCodigo_pro.getText().equals(" ")) {JFproducto.forma = "modificar";
             JFproducto.cambiar_diseño();
             JFpro.llenar(Integer.parseInt(jlCodigo_pro.getText()));
         } else {
@@ -5686,6 +6091,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jbRegistrar_proMouseExited
 
     private void jbRegistrar_proActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrar_proActionPerformed
+        modo_prov = "producto";
         JFproducto.forma = "registrar";
         JFproducto.cambiar_diseño();
         JFproducto.limpiar();
@@ -6011,13 +6417,110 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
     private void jbEliminar_cat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar_cat1ActionPerformed
         if (VF_CODIGO.getText().equals(" ")) {
-            eliminar(1);
+            eliminar(7);
         }
     }//GEN-LAST:event_jbEliminar_cat1ActionPerformed
 
     private void subir_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_subir_1MouseClicked
         jScrollPanew.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_subir_1MouseClicked
+
+    private void jb_Eliminar_pagMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_Eliminar_pagMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_Eliminar_pagMouseEntered
+
+    private void jb_Eliminar_pagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_Eliminar_pagMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_Eliminar_pagMouseExited
+
+    private void jb_Eliminar_pagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Eliminar_pagActionPerformed
+        if (!jlCodigo_pag.getText().equals(" ")) {
+            eliminar(8);
+        } else {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
+        }
+    }//GEN-LAST:event_jb_Eliminar_pagActionPerformed
+
+    private void jbModificar_pagMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificar_pagMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbModificar_pagMouseEntered
+
+    private void jbModificar_pagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbModificar_pagMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbModificar_pagMouseExited
+
+    private void jbModificar_pagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificar_pagActionPerformed
+        modo_prov = "pagos_prov";
+        if (!jlCodigo_pag.getText().equals(" ")) {
+            JFpag.forma = "modificar";
+            JFpag.cambiar_diseño();
+            JFpag.llenar(Integer.parseInt(jlCodigo_pag.getText()));
+            modo_prov = "pagos_prov";
+        }else {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
+        }
+    }//GEN-LAST:event_jbModificar_pagActionPerformed
+
+    private void jbRegistrar_pagMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrar_pagMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRegistrar_pagMouseEntered
+
+    private void jbRegistrar_pagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrar_pagMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRegistrar_pagMouseExited
+
+    private void jbRegistrar_pagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrar_pagActionPerformed
+        modo_prov = "pagos_prov";
+        JFpagos.forma = "registrar";
+        JFpagos.cambiar_diseño();
+        JFpagos.limpiar();
+        JFpag.setVisible(true);
+    }//GEN-LAST:event_jbRegistrar_pagActionPerformed
+
+    private void jcBuscar_pagItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcBuscar_pagItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcBuscar_pagItemStateChanged
+
+    private void jtBuscar_pagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtBuscar_pagMouseClicked
+        if (jtBuscar_pag.getText().equals("Buscar")) {
+            jtBuscar_pag.select(0, 0);
+        }
+    }//GEN-LAST:event_jtBuscar_pagMouseClicked
+
+    private void jtBuscar_pagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBuscar_pagActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_pagActionPerformed
+
+    private void jtBuscar_pagKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_pagKeyPressed
+        if (jtBuscar_pag.getText().equals("Buscar")) {
+            jtBuscar_pag.setText("");
+            lim_pag.setVisible(true);
+        }
+    }//GEN-LAST:event_jtBuscar_pagKeyPressed
+
+    private void jtBuscar_pagKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_pagKeyReleased
+        if (!jtBuscar_pag.getText().equals("")) {
+            buscar(JTpagos, jtBuscar_pag, res_num_pag, pag, jcBuscar_pag);
+        } else {
+            lim_pag.setVisible(false);
+            jtBuscar_pag.setText("Buscar");
+            jtBuscar_pag.select(0, 0);
+            visualizar();
+        }
+    }//GEN-LAST:event_jtBuscar_pagKeyReleased
+
+    private void jtBuscar_pagKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtBuscar_pagKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtBuscar_pagKeyTyped
+
+    private void lim_pagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lim_pagMouseClicked
+        lim_pag.setVisible(false);
+        jtBuscar_pag.setText("Buscar");
+        jtBuscar_pag.select(0, 0);
+        visualizar();
+    }//GEN-LAST:event_lim_pagMouseClicked
 
     
     public void InsertarIcono(JButton bot, String ruta){ //insertar icono en boton:
@@ -6129,9 +6632,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     jlReg_emp.setText(JTempleados.getValueAt(JTempleados.getSelectedRow(), 9).toString());
                 }
                 if (Mouse_evt.getClickCount() == 2) {
-                    /*
-                    
-                    */
+                    JFpagos.jt_empleado.setText(jlCedula_emp.getText());
+                    MENU.setSelectedIndex(0);
+                    INICIO.setSelectedIndex(2);
+                    JFpag.setVisible(true);
                 }
             }
         });
@@ -6168,8 +6672,29 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
             }
         });
         
-        
-        
+        JTpagos.addMouseListener(new MouseAdapter() { //pagos a prov(8)
+            @Override
+            public void mousePressed(MouseEvent Mouse_evt) {
+                if (Mouse_evt.getClickCount() == 1) {
+                    jlCodigo_pag.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 0).toString());
+                    jlPrecio_pag.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 1).toString());
+                    jlceduempleado.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 2).toString());
+                    jlProveedor_pag.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 3).toString());
+                    jtaDescripcion_pag.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 4).toString());
+                    jlReg_pag.setText(JTpagos.getValueAt(JTpagos.getSelectedRow(), 5).toString());
+
+                    base.abrir();
+                    Empleado c = new Empleado(0, jlceduempleado.getText(), null, null, null, null, null, null, null, null); 
+                    System.out.println(c);
+                    resultado = base.gettear(c);
+                    System.out.println(resultado.size());
+                    c = (Empleado) resultado.next();                
+                    jlempleado_nom.setText(c.getNombre()+" "+c.getApellido());
+                    base.cerrar();
+                }
+            }
+        });
+
         JTproductos.addMouseListener(new MouseAdapter() { //productos(9)
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
@@ -6495,7 +7020,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel JPempleados;
     private javax.swing.JPanel JPencabezado2;
     private javax.swing.JPanel JPfactura;
-    private javax.swing.JPanel JPgastos;
+    private javax.swing.JPanel JPpagos;
     private javax.swing.JPanel JPproductos;
     private javax.swing.JPanel JPproveedores;
     private javax.swing.JPanel JPventas;
@@ -6507,6 +7032,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public transient javax.swing.JTable JTdetalle;
     public static javax.swing.JTable JTempleados;
     private javax.swing.JTable JTenc_fac;
+    public static javax.swing.JTable JTpagos;
     public static javax.swing.JTable JTproductos;
     public static javax.swing.JTable JTproveedores;
     public static javax.swing.JTabbedPane MENU;
@@ -6552,7 +7078,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel R3_T2;
     private javax.swing.JLabel R3_T3;
     private javax.swing.JLabel SALIR;
-    private javax.swing.JLabel USUARIO;
+    public static javax.swing.JLabel USUARIO;
     public static javax.swing.JLabel V0;
     private javax.swing.JLabel VF_CEDULA;
     private javax.swing.JLabel VF_CODIGO;
@@ -6598,6 +7124,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel33;
@@ -6626,6 +7153,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -6651,6 +7179,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPanew;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -6664,6 +7193,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -6686,6 +7217,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jbModificar_cli;
     private javax.swing.JButton jbModificar_cli1;
     private javax.swing.JButton jbModificar_des;
+    private javax.swing.JButton jbModificar_pag;
     private javax.swing.JButton jbModificar_pro;
     private javax.swing.JButton jbModificar_prov;
     private javax.swing.JButton jbRegistrar_cat;
@@ -6693,10 +7225,12 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jbRegistrar_cli;
     private javax.swing.JButton jbRegistrar_cli1;
     private javax.swing.JButton jbRegistrar_des;
+    private javax.swing.JButton jbRegistrar_pag;
     private javax.swing.JButton jbRegistrar_pro;
     private javax.swing.JButton jbRegistrar_prov;
     private javax.swing.JButton jb_Eliminar_cli;
     private javax.swing.JButton jb_Eliminar_cli1;
+    private javax.swing.JButton jb_Eliminar_pag;
     private javax.swing.JButton jb_Eliminar_pro;
     private javax.swing.JButton jb_Eliminar_prov;
     private javax.swing.JComboBox<String> jcBuscar_cat;
@@ -6706,6 +7240,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox<String> jcBuscar_det;
     private javax.swing.JComboBox<String> jcBuscar_emp;
     private javax.swing.JComboBox<String> jcBuscar_enc;
+    private javax.swing.JComboBox<String> jcBuscar_pag;
     private javax.swing.JComboBox<String> jcBuscar_pro;
     private javax.swing.JComboBox<String> jcBuscar_prov;
     private javax.swing.JLabel jlAgregar_fac;
@@ -6716,11 +7251,13 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlC2;
     private javax.swing.JLabel jlC3;
     private javax.swing.JLabel jlC4;
+    private javax.swing.JLabel jlC5;
     private javax.swing.JLabel jlCategoria_pro;
     private javax.swing.JLabel jlCedula_cli;
     private javax.swing.JLabel jlCedula_emp;
     private javax.swing.JLabel jlCiudad;
     private javax.swing.JLabel jlCodigo_ciu;
+    private javax.swing.JLabel jlCodigo_pag;
     private javax.swing.JLabel jlCodigo_pro;
     private javax.swing.JLabel jlCorreo_cli;
     private javax.swing.JLabel jlCorreo_emp;
@@ -6734,7 +7271,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlE13;
     private javax.swing.JLabel jlE15;
     private javax.swing.JLabel jlE16;
+    private javax.swing.JLabel jlE18;
+    private javax.swing.JLabel jlE19;
     private javax.swing.JLabel jlE2;
+    private javax.swing.JLabel jlE20;
     private javax.swing.JLabel jlE3;
     private javax.swing.JLabel jlE4;
     private javax.swing.JLabel jlE5;
@@ -6747,6 +7287,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlF1;
     private javax.swing.JLabel jlF2;
     private javax.swing.JLabel jlF3;
+    private javax.swing.JLabel jlF4;
     private javax.swing.JLabel jlFecha_reg;
     private javax.swing.JLabel jlGen_emp;
     private javax.swing.JLabel jlGen_emp1;
@@ -6759,6 +7300,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlN4;
     private javax.swing.JLabel jlN5;
     private javax.swing.JLabel jlN6;
+    private javax.swing.JLabel jlN7;
     private javax.swing.JLabel jlNac_cli;
     private javax.swing.JLabel jlNac_emp;
     private javax.swing.JLabel jlNombre;
@@ -6769,7 +7311,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlNombre_emp;
     private javax.swing.JLabel jlNombre_pro;
     private javax.swing.JLabel jlPorcentaje_des;
+    private javax.swing.JLabel jlPrecio_pag;
     private javax.swing.JLabel jlPrecio_pro;
+    private javax.swing.JLabel jlProveedor_pag;
     private javax.swing.JLabel jlProveedor_pro;
     private javax.swing.JLabel jlProvincia_ciu;
     private javax.swing.JLabel jlR;
@@ -6779,9 +7323,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlR4;
     private javax.swing.JLabel jlR5;
     private javax.swing.JLabel jlR6;
+    private javax.swing.JLabel jlR7;
     private javax.swing.JLabel jlRUC;
     private javax.swing.JLabel jlReg_cli;
     private javax.swing.JLabel jlReg_emp;
+    private javax.swing.JLabel jlReg_pag;
     private javax.swing.JLabel jlReg_pro;
     private javax.swing.JLabel jlSubtotal;
     private javax.swing.JLabel jlSueldo_emp;
@@ -6803,6 +7349,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jl_titulo12;
     private javax.swing.JLabel jl_titulo13;
     private javax.swing.JLabel jl_titulo14;
+    private javax.swing.JLabel jl_titulo15;
     private javax.swing.JLabel jl_titulo5;
     private javax.swing.JLabel jl_titulo6;
     private javax.swing.JLabel jl_titulo7;
@@ -6810,12 +7357,15 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jl_titulo9;
     private javax.swing.JLabel jl_total;
     private javax.swing.JLabel jl_total1;
+    private javax.swing.JLabel jlceduempleado;
+    private javax.swing.JLabel jlempleado_nom;
     public static javax.swing.JPanel jpDatos_cat;
     public static javax.swing.JPanel jpDatos_cat1;
     public static javax.swing.JPanel jpDatos_cli;
     public static javax.swing.JPanel jpDatos_des;
     public static javax.swing.JPanel jpDatos_emp;
     public static javax.swing.JPanel jpDatos_pro;
+    public static javax.swing.JPanel jpDatos_pro1;
     public static javax.swing.JPanel jpDatos_prov;
     private javax.swing.JScrollPane jsTabla_cat;
     private javax.swing.JScrollPane jsTabla_cat3;
@@ -6828,6 +7378,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jsTabla_ciu3;
     private javax.swing.JScrollPane jsTabla_des;
     private javax.swing.JScrollPane jsTabla_pro;
+    private javax.swing.JScrollPane jsTabla_pro1;
     public static javax.swing.JTextField jtBuscar_cat;
     public static javax.swing.JTextField jtBuscar_ciu;
     public static javax.swing.JTextField jtBuscar_cli;
@@ -6835,9 +7386,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JTextField jtBuscar_det;
     public static javax.swing.JTextField jtBuscar_emp;
     public static javax.swing.JTextField jtBuscar_enc;
+    public static javax.swing.JTextField jtBuscar_pag;
     public static javax.swing.JTextField jtBuscar_pro;
     public static javax.swing.JTextField jtBuscar_prov;
     public static javax.swing.JTextArea jtaDescripcion_cat;
+    public static javax.swing.JTextArea jtaDescripcion_pag;
     private javax.swing.JLabel lim_cat;
     private javax.swing.JLabel lim_ciu;
     private javax.swing.JLabel lim_cli;
@@ -6845,6 +7398,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel lim_det;
     private javax.swing.JLabel lim_emp;
     private javax.swing.JLabel lim_enc;
+    private javax.swing.JLabel lim_pag;
     private javax.swing.JLabel lim_pro;
     private javax.swing.JLabel lim_prov;
     private javax.swing.JLabel res_num_cat;
@@ -6854,6 +7408,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel res_num_det;
     private javax.swing.JLabel res_num_emp;
     private javax.swing.JLabel res_num_enc;
+    private javax.swing.JLabel res_num_pag;
     private javax.swing.JLabel res_num_pro;
     private javax.swing.JLabel res_num_prov;
     public static javax.swing.JLabel sistema_titulo;
