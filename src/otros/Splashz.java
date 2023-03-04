@@ -32,7 +32,7 @@ public class Splashz extends javax.swing.JFrame {
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, 50));
 
         jProgressBar.setBackground(new java.awt.Color(204, 204, 204));
-        jProgressBar.setForeground(new java.awt.Color(0, 204, 204));
+        jProgressBar.setForeground(new java.awt.Color(0, 0, 0));
         jPanel3.add(jProgressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 308, 386, 48));
 
         jlCargando.setFont(new java.awt.Font("Jokerman", 1, 24)); // NOI18N
