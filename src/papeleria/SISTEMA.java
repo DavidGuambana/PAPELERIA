@@ -17,7 +17,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
@@ -365,6 +364,15 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         //no se puede eliminar los pagos a proveedores
                         break;
                     case 7: //ocultar factura
+                        /*
+                        Encabezado_fac en = new Encabezado_fac(Integer.parseInt(VF_CODIGO.getText()),null, null, 0,null);
+                        resultado = base.gettear(en);
+                        if (!resultado.isEmpty()) {
+                            pr = (Producto) resultado.next();
+                            base.eliminar(pr);
+                            reiniciar_factura(); //por precaución
+                        }
+                        */
                         break;
                     case 8: //ocultar pago a proveedor
                         break;
@@ -1376,7 +1384,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     .addGroup(JPfacturaLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         JPfacturaLayout.setVerticalGroup(
             JPfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1469,69 +1477,35 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel21.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel21.setText("RUC:");
+        jPanel9.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 11, -1, -1));
 
         VF_RUC.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         VF_RUC.setText("0000000000001");
+        jPanel9.add(VF_RUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 11, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel41.setText("F A C T U R A");
+        jPanel9.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 44, -1, -1));
 
         jLabel42.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel42.setText("No.");
+        jPanel9.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 84, -1, -1));
 
         VF_CODIGO.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         VF_CODIGO.setText(" ");
+        jPanel9.add(VF_CODIGO, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 90, -1));
 
         VF_FECHA.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         VF_FECHA.setText(" ");
+        jPanel9.add(VF_FECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 117, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel44.setText("Fecha de emisión:");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel44)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(VF_FECHA))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel42)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(VF_CODIGO))
-                    .addComponent(jLabel41)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(VF_RUC)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(VF_RUC))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel41)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel42)
-                    .addComponent(VF_CODIGO))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel44)
-                    .addComponent(VF_FECHA))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel9.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 117, -1, -1));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -1660,10 +1634,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGap(9, 9, 9)
                 .addGroup(VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(VISTA_FACTURALayout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlAgregar_fac, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
+                        .addGap(53, 53, 53))
                     .addComponent(jsTabla_cat3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
@@ -1676,13 +1650,13 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGroup(VISTA_FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlAgregar_fac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jsTabla_cat3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         JPventas.add(VISTA_FACTURA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
@@ -6036,8 +6010,8 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jbEliminar_cat1MouseExited
 
     private void jbEliminar_cat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar_cat1ActionPerformed
-        if (rootPaneCheckingEnabled) {
-            
+        if (VF_CODIGO.getText().equals(" ")) {
+            eliminar(1);
         }
     }//GEN-LAST:event_jbEliminar_cat1ActionPerformed
 
