@@ -33,6 +33,7 @@ import otros.BotonTabla;
 import otros.Clientes_Facturas;
 import otros.Codigos;
 import otros.ImagenTabla;
+import otros.Productos_Detalles;
 import otros.fechas;
 
 public class SISTEMA extends javax.swing.JFrame implements Runnable {
@@ -2020,6 +2021,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         R1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 21, 119, 35));
 
+        R1_A1.setBackground(new java.awt.Color(255, 255, 255));
         R1_A1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         R1_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         R1_A1.setText("0");
@@ -2027,6 +2029,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         R1_A1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         R1.add(R1_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 56, 119, 35));
 
+        R1_B1.setBackground(new java.awt.Color(255, 255, 255));
         R1_B1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         R1_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         R1_B1.setText("0");
@@ -2034,6 +2037,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         R1_B1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         R1.add(R1_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 56, 165, 35));
 
+        R1_C1.setBackground(new java.awt.Color(255, 255, 255));
         R1_C1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         R1_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         R1_C1.setText("0");
@@ -6376,9 +6380,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public void resumen() {
         int clientes_con_fac = 0;
         int clientes_sin_fac = 0;
-        ArrayList clientes_top = new ArrayList<>();
-
+        
         //CLIENTES CON MÁS COMPRAS:
+        ArrayList clientes_top = new ArrayList<>();
         Cliente c = new Cliente(null, null, null, null, null, null, null, null, null, null);
         resultado = base.gettear(c);
         for (int i = 0; i < resultado.size(); i++) {
@@ -6421,6 +6425,50 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     R1_A5.setText(x.getCedula());
                     R1_B5.setText(x.getNombre() + " " + x.getApellido());
                     R1_C5.setText("" + x.getNum_fac());
+                    break;
+            }
+        }
+        
+        //PRODUCTOS MÁS VENDIDOS:
+        ArrayList productos_top = new ArrayList<>();
+        Producto p = new Producto(0, null, 0, 0, null, null, null, null);
+        resultado = base.gettear(p);
+        for (int i = 0; i < resultado.size(); i++) {
+            p = (Producto) resultado.next();
+            Detalle_fac det_pro = new Detalle_fac(0,p.getCodigo(),0,0,0);
+            ObjectSet res = base.gettear(det_pro);
+            if (!res.isEmpty()) {
+                productos_top.add(new Productos_Detalles(p.getCodigo(),p.getNombre(),res.size()));
+            }
+        } //OREDENA DE MAYOR A MENOR DEPENDIENDO EL NÚMERO DE VENTAS(DETALLES)
+        Collections.sort(productos_top, (Productos_Detalles p1, Productos_Detalles p2) -> Integer.valueOf(p2.getVentas()).compareTo(p1.getVentas()));
+        for (int i = 1; i <= productos_top.size(); i++) {
+            Productos_Detalles x = (Productos_Detalles) productos_top.get(i - 1);
+            switch (i) {
+                case 1:
+                    R2_A1.setText(""+x.getCodigo());
+                    R2_B1.setText(x.getNombre());
+                    R2_C1.setText("" + x.getVentas());
+                    break;
+                case 2:
+                    R2_A2.setText(""+x.getCodigo());
+                    R2_B2.setText(x.getNombre());
+                    R2_C2.setText("" + x.getVentas());
+                    break;
+                case 3:
+                    R2_A3.setText(""+x.getCodigo());
+                    R2_B3.setText(x.getNombre());
+                    R2_C3.setText("" + x.getVentas());
+                    break;
+                case 4:
+                    R2_A4.setText(""+x.getCodigo());
+                    R2_B4.setText(x.getNombre());
+                    R2_C4.setText("" + x.getVentas());
+                    break;
+                case 5:
+                    R2_A5.setText(""+x.getCodigo());
+                    R2_B5.setText(x.getNombre());
+                    R2_C5.setText("" + x.getVentas());
                     break;
             }
         }
