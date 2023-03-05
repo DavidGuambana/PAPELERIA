@@ -174,6 +174,9 @@
               <Properties>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jScrollPane.getVerticalScrollBar().setUnitIncrement(16);"/>
+              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="FACTURAR">
@@ -996,6 +999,9 @@
                   <Dimension value="[1149, 702]"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jScrollPanew.getVerticalScrollBar().setUnitIncrement(16);"/>
+              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="VENTAS">
@@ -1489,9 +1495,6 @@
                                 <Property name="rowHeight" type="int" value="30"/>
                                 <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="33" green="33" red="33" type="rgb"/>
-                                </Property>
-                                <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
@@ -4868,7 +4871,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="lim_ciu" min="-2" pref="16" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" pref="33" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Component id="jpDatos_cat1" min="-2" pref="322" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
@@ -5169,7 +5172,7 @@
                       <Font name="Yu Gothic UI" size="18" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Categor&#xed;a seleccionada:"/>
+                    <Property name="text" type="java.lang.String" value="Ciudad seleccionada:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator13">
@@ -7413,7 +7416,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="10" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator17" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -7925,7 +7928,7 @@
                                   </Group>
                                   <Component id="jsTabla_cat6" min="-2" pref="595" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="22" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jpDatos_prov" min="-2" pref="303" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
@@ -8047,7 +8050,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator5" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -8106,7 +8109,7 @@
                               <Component id="jb_Eliminar_prov" alignment="0" max="32767" attributes="0"/>
                               <Component id="jbModificar_prov" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="21" max="32767" attributes="0"/>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

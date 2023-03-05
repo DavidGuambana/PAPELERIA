@@ -37,7 +37,7 @@ import otros.Productos_Detalles;
 import otros.fechas;
 
 public class SISTEMA extends javax.swing.JFrame implements Runnable {
-
+     
     //variables que guardan el número de registros:
     public static int cat, ciu, cli, des, det, emp, enc, pag, pro, prov;
 
@@ -45,6 +45,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static boolean actualizado = false;
     ObjectSet resultado;
     ObjectSet resultado2;
+    ObjectSet resultado3;
     DefaultTableModel tabla = null, tabla_detalle = null;
     TableRowSorter sorter;
     public static String modo_prov = "";
@@ -77,6 +78,9 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }
 
     public final void iniciar() {
+        
+                       
+                        
         
         //para la fecha y hora
         hilo = new Thread(this);
@@ -194,6 +198,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     det = resultado.size();
                     res_num_det.setText("Resultados: " + det + " de " + det);
                     
+                    
                     break;
                 case 6: //empleados
                     String[] colum_emp = {"Cédula", "Nombre", "Apellido", "F. Nacimiento", "Género", "Teléfono", "Correo", "Dirección", "Sueldo", "F. Registro"};
@@ -219,10 +224,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         for (int j = 0; j < resultado.size(); j++) {
                             en = (Encabezado_fac) resultado.next();
                             tabla.addRow(new Object[]{en.getCodigo(), en.getCedula_cli(), fechas.transformar_fecha(en.getFecha()), en.getTotal(), en.getEstado()});
-
                         }
-                    } else {
-                        Codigos.reiniciar_codigo("Encabezado_fac");
                     }
                     
                     JTenc_fac.setModel(tabla);
@@ -338,17 +340,22 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         resultado = base.gettear(cl);
                         Encabezado_fac fact = new Encabezado_fac(0, jlCedula_cli.getText(), null, 0, null);
                         resultado2 = base.gettear(fact);
+//                        Encabezado_fac factanull = new Encabezado_fac(0, jlCedula_cli.getText(), null, 0, "INACTIVO");
+//                        resultado3 = base.gettear(factanull);
+
                         if (resultado2.isEmpty()) {
                             cl = (Cliente) resultado.next();
                             base.eliminar(cl);
-                            if (cl.getCedula().equals(enc_cedula.getText())) {
-                                reiniciar_factura();
-                            }
                             limpiar(clase);
+//                        } else if (resultado3.size() >= 1) {
+//                            cl = (Cliente) resultado.next();
+//                            base.eliminar(cl);
+//                            limpiar(clase);
                         } else {
                             JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Factura asignado!");
                             eliminado = false;
                         }
+//                       
                         break;
                     case 4: //eliminar descuento
                         Descuento d = new Descuento(jlNombre_des.getText(), 0);
@@ -363,46 +370,96 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                             JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Cliente asignado!");
                             eliminado = false;
                         }
-
+resumen();
                         break;
                     case 6: //eliminar empleado
                         Empleado e = new Empleado(0, jlCedula_emp.getText(), null, null, null, null, null, null, null, null);
                         resultado = base.gettear(e);
-                        e = (Empleado) resultado.next();
-                        base.eliminar(e);
-                        /*
-                         pendiente las reglas de integridad
-                        limpiar(clase);
-                        */
-                        //no se puede eliminar los pagos a proveedores
+                        Pago_prov elimin = new Pago_prov(0, 0, jlCedula_emp.getText(), null, null, null, null);
+                        resultado2=base.gettear(elimin);
+                        if (resultado.isEmpty()&&resultado2.isEmpty()) {
+                         e = (Empleado) resultado.next();
+                        base.eliminar(e); 
+                         limpiar(clase);
+                        }else{
+                         JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un gasto asignado!");
+                         eliminado = false;   
+                        }
+ 
+                      
                         break;
                     case 7: //ocultar factura
-                        Encabezado_fac en = new Encabezado_fac(Integer.parseInt(VF_CODIGO.getText()),null, null, 0,null);
+                        Encabezado_fac en = new Encabezado_fac(Integer.parseInt(VF_CODIGO.getText()), null, null, 0, null);
                         resultado = base.gettear(en);
-                        if (!resultado.isEmpty()) {
-                            en = (Encabezado_fac) resultado.next();
-                            en.setEstado("INACTIVO");
-                            base.settear(en);
-                        }
+                        en = (Encabezado_fac) resultado.next();
+                        en.setEstado("INACTIVO");
+                        base.settear(en);
+                        limpiar(clase); 
+                        
+                        
+                        
+//                        PARA ELIMINAR MANUELMENTE
+//                        Encabezado_fac en = new Encabezado_fac(0, null, null, 0, null);
+//                        resultado = base.gettear(en);
+//                        en=(Encabezado_fac)resultado.next();
+//                        base.eliminar(en);
+                        
+                        ////////////////////
+//                        Detalle_fac de = new Detalle_fac(0, 0, 0, 0, 0);
+//                        resultado = base.gettear(de);
+//                         for (int j = 0; j < resultado.size(); j++) {
+//                          de=(Detalle_fac)resultado.next();
+//                          base.eliminar(de); 
+////                        }
+//                         resumen();
+                        
+                        
+////                         PARA INACTIVAR MANUELMENE
+//                        Encabezado_fac en = new Encabezado_fac(0, null, null, 0, null);
+//                        resultado = base.gettear(en);
+//                        en = (Encabezado_fac) resultado.next();
+//                        en.setEstado("INACTIVO");
+//                        base.settear(en);
+//                        System.out.println(en.toString());
+                       
+                      
+                        
+                        
+                        
                         break;
                     case 8: //ocultar pago a proveedor
-                        Pago_prov modi = new Pago_prov(Integer.parseInt(jlCodigo_pag.getText()), 0, null, null, null, null, null);
-                        resultado = base.gettear(modi);
-                        modi = (Pago_prov) resultado.next();
-                        modi.setEstado("INACTIVO");
-                        base.settear(modi);
+//                        Pago_prov modi = new Pago_prov(Integer.parseInt(jlCodigo_pag.getText()), 0, null, null, null, null, null);
+//                        resultado = base.gettear(modi);
+//                        modi = (Pago_prov) resultado.next();
+//                        modi.setEstado("INACTIVO");
+//                        base.settear(modi);
+                        /////////////////////
+                        Pago_prov eli = new Pago_prov(Integer.parseInt(jlCodigo_pag.getText()), 0, null, null, null, null, null);
+                        resultado=base.gettear(eli);
+                        eli=(Pago_prov)resultado.next();
+                        JOptionPane.showMessageDialog(null, "¡Eliminado correctamente!");
+                       
+                        
+                        /////////////////////
+                        
+                        
                         break;
+                        //
+                        
+                        
                     case 9: //eliminar producto
                         Producto pr = new Producto(Integer.parseInt(jlCodigo_pro.getText()), null, 0, 0, null, null, null, null);
                         resultado = base.gettear(pr);
                         Detalle_fac enca = new Detalle_fac(0, Integer.parseInt(jlCodigo_pro.getText()), 0, 0,0);
                         resultado2 = base.gettear(enca);
+                       
+                        
                         if (resultado2.isEmpty()) {
                             pr = (Producto) resultado.next();
                             base.eliminar(pr);
                             reiniciar_factura(); //por precaución
                         } else {
-                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que se encuantra en una factura!");
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que se encuantra en una factura o asignaga a un proveedor!");
                             eliminado = false;
                         }
 
@@ -412,12 +469,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         resultado = base.gettear(p);
                         Producto pr2 = new Producto(0, null, 0, 0, null, null, jlRUC.getText(), null);
                         resultado2 = base.gettear(pr2);
-                        if (resultado2.isEmpty()) {
+                        Pago_prov pr3 = new Pago_prov(0, 0, null, jlRUC.getText(), null, null, null);
+                        resultado3 = base.gettear(pr3);
+
+                        if (resultado2.isEmpty() && resultado3.isEmpty()) {
                             p = (Proveedor) resultado.next();
                             base.eliminar(p);
+                            limpiar(clase);
                         } else {
-                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Producto asignado!");
+                            JOptionPane.showMessageDialog(null, "!No es posible eliminar el registro ya que cuenta con un Producto asignado o un gasto!");
                             eliminado = false;
+
                         }
 
                         break;
@@ -1445,6 +1507,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jScrollPane.setViewportView(JPfactura);
 
         INICIO.addTab("FACTURAR", jScrollPane);
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         jScrollPanew.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPanew.setPreferredSize(new java.awt.Dimension(1149, 702));
@@ -1621,7 +1684,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         VF_DETALLES.setOpaque(false);
         VF_DETALLES.setRowHeight(30);
         VF_DETALLES.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        VF_DETALLES.setSelectionForeground(new java.awt.Color(255, 255, 255));
         VF_DETALLES.getTableHeader().setResizingAllowed(false);
         VF_DETALLES.getTableHeader().setReorderingAllowed(false);
         VF_DETALLES.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2489,6 +2551,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jScrollPanew.setViewportView(JPventas);
 
         INICIO.addTab("VENTAS", jScrollPanew);
+        jScrollPanew.getVerticalScrollBar().setUnitIncrement(16);
 
         JPpagos.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -3264,7 +3327,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         jLabel20.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Categoría seleccionada:");
+        jLabel20.setText("Ciudad seleccionada:");
 
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -3460,7 +3523,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     .addComponent(jsTabla_ciu, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(lim_ciu, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 33, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jpDatos_cat1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -4652,7 +4715,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                             .addComponent(jlR6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jlCodigo_pro, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator17)
         );
         jpDatos_proLayout.setVerticalGroup(
@@ -5022,7 +5085,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addGroup(jpDatos_provLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbEnviar_prov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jb_Eliminar_prov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addComponent(jSeparator5)
         );
         jpDatos_provLayout.setVerticalGroup(
@@ -5069,7 +5132,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                 .addGroup(jpDatos_provLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_Eliminar_prov, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbModificar_prov, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jcBuscar_prov.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 16)); // NOI18N
@@ -5183,7 +5246,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jcBuscar_prov, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jsTabla_cat6, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jpDatos_prov, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))))
         );
@@ -6416,8 +6479,12 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jbEliminar_cat1MouseExited
 
     private void jbEliminar_cat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar_cat1ActionPerformed
-        if (VF_CODIGO.getText().equals(" ")) {
+     
+        if (!VF_CODIGO.getText().equals(" ")) {
             eliminar(7);
+        } else {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
         }
     }//GEN-LAST:event_jbEliminar_cat1ActionPerformed
 
@@ -6652,6 +6719,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     Cliente c = new Cliente(null, VF_CEDULA.getText(), null, null, null, null, null, null, null, null);
                     resultado = base.gettear(c);
                     c = (Cliente) resultado.next();
+                    
                     VF_NOMBRE_APELLIDO.setText(c.getNombre() + " " + c.getApellido());
                     VF_DIRECCION.setText(c.getDireccion());
                     VF_TELEFONO.setText(c.getTelefono());
@@ -6847,34 +6915,98 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         });
       
     }
-     public  void limpiar(int num){
+       public  void limpiar(int num){
       switch(num){
-          case 1 ://categoria
-           jlNombre_cat.setText(" ");
-           jtaDescripcion_cat.setText(" ");
-           
+          case 1://categoria
+              jlNombre_cat.setText(" ");
+              jtaDescripcion_cat.setText(" ");
+              break;
+          case 2://CIUDAD
+              jlCodigo_ciu.setText(" ");
+              jlNombre_ciu.setText(" ");
+              jlProvincia_ciu.setText(" "); 
           break;
-           case 2 :
+           case 3 ://CLIENTE
+               jlCedula_cli.setText(" ");
+               jlNombre_cli.setText(" ");
+               jlApellido_cli.setText(" ");
+               jlGenero_cli.setText(" ");
+               jlTelefono_cli.setText(" ");
+               jlCorreo_cli.setText(" ");
+               jlDireccion_cli.setText(" ");
+               jlDescuento_cli.setText(" ");
+               jlReg_cli.setText(" ");
           break;
-           case 3 :
+           case 4 ://DESCUENTO
+               jlNombre_des.setText(" ");
+               jlPorcentaje_des.setText(" ");
           break;
-           case 4 :
+           case 5 ://DETALLEFACT
+               
+               
+               
+               
           break;
-           case 5 :
+           case 6 ://EMPLEADO
+               jlCedula_emp.setText(" ");
+               jlNombre_emp.setText(" ");
+               jlApellido_emp.setText(" ");
+               jlNac_emp.setText(" ");
+               jlGenero_emp.setText(" ");
+               jlTelefono_emp.setText(" ");
+               jlCorreo_emp.setText(" ");
+               jlDireccion_emp.setText(" ");
+               jlSueldo_emp.setText(" ");
+               jlReg_emp.setText(" ");
+               
           break;
-           case 6 :
+           case 7 ://ENCABEZADO
+               VF_RUC.setText(" ");
+               VF_CODIGO.setText(" ");
+               VF_CEDULA.setText(" ");
+               VF_NOMBRE_APELLIDO.setText(" ");
+               VF_TELEFONO.setText(" ");
+               VF_DIRECCION.setText(" ");
+               VF_CORREO.setText(" ");
+               VF_TOTAL.setText(" ");
+               DefaultTableModel VF_DETALLES = new DefaultTableModel();
+               for (int i = 0; i < VF_DETALLES.getRowCount(); i++) {
+                   VF_DETALLES.removeRow(i);
+                   i -= 1;
+               }
+               
           break;
-           case 7 :
+           case 8 ://PAGO_PROVEEDOR
+               jlCodigo_pag.setText(" ");
+               jlProveedor_pag.setText(" ");
+               jlempleado_nom.setText(" ");
+               jlceduempleado.setText(" ");
+               jlPrecio_pag.setText(" ");
+               jlReg_pag.setText(" ");
+               jtaDescripcion_pag.setText(" ");
           break;
-           case 8 :
+           case 9 ://PRODUCTO
+               jlCodigo_pro.setText(" ");
+               jlNombre_pro.setText(" ");
+               jlPrecio_pro.setText(" ");
+               jlExistencias_pro.setText(" ");
+               jlCategoria_pro.setText(" ");
+               jlProveedor_pro.setText(" ");
+               jlReg_pro.setText(" ");
           break;
-           case 9 :
+           case 10 ://PROVEEDOR
+               jlRUC.setText(" ");
+               jlNombre.setText(" ");
+               jlCiudad.setText(" ");
+               jlTelefono.setText(" ");
+               jlEmail.setText(" ");
+               jlFecha_reg.setText(" "); 
+               
           break;
-            case 10:
-                break;
-
-        }
-    }
+          
+              
+      }   
+     }
 
     public void resumen() {
         int clientes_con_fac = 0;
