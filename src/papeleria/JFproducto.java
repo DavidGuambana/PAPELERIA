@@ -148,6 +148,7 @@ public class JFproducto extends javax.swing.JFrame {
                 jt_categoria.getText(), fechas.obtener_fecha(), jt_proveedor.getText(), url);
         base.settear(p);
         JOptionPane.showMessageDialog(null, "¡Registrado correctamente!");
+        limpiar();
         SISTEMA.actualizado = false;
         this.dispose();
         base.cerrar();
@@ -167,6 +168,7 @@ public class JFproducto extends javax.swing.JFrame {
             p.setUrl_imagen(url);
             base.settear(p);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
+            limpiar();
         }
         base.cerrar();
         SISTEMA.actualizado = false;

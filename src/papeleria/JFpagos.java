@@ -4,7 +4,6 @@ import clases.Pago_prov;
 import com.db4o.ObjectSet;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.Date;
 import javax.swing.JOptionPane;
 //import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -37,20 +36,20 @@ public class JFpagos extends javax.swing.JFrame {
             color = new Color(0,204,102);
             codigo.setVisible(false);
             jlCodigo.setVisible(false);
-            jl_titulo.setText("Registrar pagos a proveedores");
+            jl_titulo.setText("Registrar pago a proveedor");
             jb_Ejecutar.setText("¡Registrar!");
 
         } else if(forma.equals("modificar")){
             color = new Color(0, 153, 255);
             codigo.setVisible(true);
             jlCodigo.setVisible(true);
-            jl_titulo.setText("Modificar modificar pago a proveedor");
+            jl_titulo.setText("Modificar pago a proveedor");
             jb_Ejecutar.setText("¡Modificar!");
         }
         jb_Ejecutar.setBackground(color);
         jp_1.setBackground(color);
 
-        for (int i = 1; i <= 6; i++) {
+        for (int i = 1; i <= 4; i++) {
             switch (i) {
                 case 1:
                     titulo = "Proveedor:";
@@ -63,9 +62,6 @@ public class JFpagos extends javax.swing.JFrame {
                     break;
                 case 4:
                     titulo = "Descripcion:";
-                    break;
-                case 5:
-                    titulo = "Código:";
                     break;
                 
             }
@@ -87,12 +83,6 @@ public class JFpagos extends javax.swing.JFrame {
                 case 4:
                     jtDescripcion_pago.setBorder(tb);
                     break;
-                case 5:
-                    jlCodigo.setBorder(tb);
-                    break;
-                case 6:
-                    
-                    break;
             }
         }
     }
@@ -106,7 +96,7 @@ public class JFpagos extends javax.swing.JFrame {
 
     public void llenar(int cod) {
         base.abrir();
-        Pago_prov p = new Pago_prov(cod,0, null, null, null,null,null);
+        Pago_prov p = new Pago_prov(cod,0, null, null, null,null);
         resultado = base.gettear(p);
         if (resultado.isEmpty()) {
             getToolkit().beep();
@@ -127,7 +117,7 @@ public class JFpagos extends javax.swing.JFrame {
     public void registrar() {
         base.abrir();
         Pago_prov p = new Pago_prov(Codigos.obtener_codigo("Pago_prov"),Double.parseDouble(jt_precio.getText()),jt_empleado.getText(),jt_proveedor.getText()
-        ,jtDescripcion_pago.getText(),fechas.obtener_fecha(),"ACTIVO");       
+        ,jtDescripcion_pago.getText(),fechas.obtener_fecha());       
         base.settear(p);
         JOptionPane.showMessageDialog(null, "¡Registrado correctamente!");
         SISTEMA.actualizado = false;
@@ -137,7 +127,7 @@ public class JFpagos extends javax.swing.JFrame {
 
     public void modificar() {
         base.abrir();
-        Pago_prov p = new Pago_prov(0,0,null,null,null,null,null);     
+        Pago_prov p = new Pago_prov(0,0,null,null,null,null);     
         resultado = base.gettear(p);
         if (!resultado.isEmpty()) {
             p = (Pago_prov) resultado.next();
@@ -171,7 +161,10 @@ public class JFpagos extends javax.swing.JFrame {
         jtDescripcion_pago = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(364, 470));
+        setMinimumSize(new java.awt.Dimension(364, 470));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(364, 470));
 
         jp_1.setBackground(new java.awt.Color(0, 204, 102));
         jp_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -198,7 +191,7 @@ public class JFpagos extends javax.swing.JFrame {
             jp_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jl_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jl_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jl_cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -214,13 +207,16 @@ public class JFpagos extends javax.swing.JFrame {
 
         jp_2.setBackground(new java.awt.Color(255, 255, 255));
         jp_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jp_2.setMaximumSize(new java.awt.Dimension(364, 420));
+        jp_2.setMinimumSize(new java.awt.Dimension(364, 420));
+        jp_2.setPreferredSize(new java.awt.Dimension(364, 420));
 
         jt_proveedor.setEditable(false);
         jt_proveedor.setBackground(new java.awt.Color(255, 255, 255));
-        jt_proveedor.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
+        jt_proveedor.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         jt_proveedor.setForeground(new java.awt.Color(0, 153, 153));
         jt_proveedor.setText("¡Click para seleccionar!");
-        jt_proveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Proveedor:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
+        jt_proveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Proveedor (recibe):", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
         jt_proveedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jt_proveedorMouseClicked(evt);
@@ -252,7 +248,7 @@ public class JFpagos extends javax.swing.JFrame {
         codigo.setText("000");
 
         jt_precio.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        jt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precio:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
+        jt_precio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Monto:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
         jt_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_precioActionPerformed(evt);
@@ -269,7 +265,7 @@ public class JFpagos extends javax.swing.JFrame {
         jt_empleado.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
         jt_empleado.setForeground(new java.awt.Color(0, 153, 153));
         jt_empleado.setText("¡Click para seleccionar!");
-        jt_empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleado:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
+        jt_empleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleado (paga):", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Light", 0, 14), new java.awt.Color(0, 204, 102))); // NOI18N
         jt_empleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jt_empleadoMouseClicked(evt);
@@ -284,7 +280,7 @@ public class JFpagos extends javax.swing.JFrame {
         jScrollPane1.setBorder(null);
 
         jtDescripcion_pago.setColumns(20);
-        jtDescripcion_pago.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jtDescripcion_pago.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 16)); // NOI18N
         jtDescripcion_pago.setLineWrap(true);
         jtDescripcion_pago.setRows(5);
         jtDescripcion_pago.setWrapStyleWord(true);
@@ -303,56 +299,59 @@ public class JFpagos extends javax.swing.JFrame {
             .addGroup(jp_2Layout.createSequentialGroup()
                 .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(119, 119, 119)
                         .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jt_precio)
-                            .addComponent(jt_proveedor)
-                            .addComponent(jt_empleado)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jp_2Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jb_Ejecutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jp_2Layout.createSequentialGroup()
                                 .addComponent(jlCodigo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jb_Ejecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(22, 22, 22))
+                                .addGap(13, 13, 13)
+                                .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jp_2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jp_2Layout.createSequentialGroup()
+                                .addComponent(jt_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jt_empleado)
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jp_2Layout.setVerticalGroup(
             jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jt_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jt_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jt_precio)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jt_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jt_empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jp_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo))
-                .addGap(27, 27, 27)
+                .addGap(31, 31, 31)
                 .addComponent(jb_Ejecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
-            .addComponent(jp_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jp_2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jp_1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jp_1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jp_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(0, 0, 0)
+                .addComponent(jp_2, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -362,6 +361,29 @@ public class JFpagos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jl_cerrarMouseClicked
 
+    private void jtDescripcion_pagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDescripcion_pagoKeyPressed
+        validar.V_desc(jtDescripcion_pago, 50);
+    }//GEN-LAST:event_jtDescripcion_pagoKeyPressed
+
+    private void jt_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_empleadoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jt_empleadoActionPerformed
+
+    private void jt_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_empleadoMouseClicked
+        // TODO add your handling code here:
+        SISTEMA.MENU.setSelectedIndex(5);
+        this.setVisible(false);
+    }//GEN-LAST:event_jt_empleadoMouseClicked
+
+    private void jt_precioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_precioKeyPressed
+        validar.dinero(jt_precio,6);
+    }//GEN-LAST:event_jt_precioKeyPressed
+
+    private void jt_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_precioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_precioActionPerformed
+
     private void jb_EjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_EjecutarActionPerformed
         try {
             xprecio = Double.parseDouble(jt_precio.getText());
@@ -369,7 +391,7 @@ public class JFpagos extends javax.swing.JFrame {
             xprecio = 0;
         }
         if ( jt_precio.getText().equals("") || jtDescripcion_pago.getText().equals("")
-                ||jt_empleado.getText().equals("¡Click para seleccionar!")||jt_proveedor.getText().equals("¡Click para seleccionar!")) {
+            ||jt_empleado.getText().equals("¡Click para seleccionar!")||jt_proveedor.getText().equals("¡Click para seleccionar!")) {
             getToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "¡Aún hay campos por completar!");
         } else {
@@ -386,42 +408,18 @@ public class JFpagos extends javax.swing.JFrame {
                 jt_precio.setText("");
             }
         }
-        
-    }//GEN-LAST:event_jb_EjecutarActionPerformed
 
-    private void jt_proveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_proveedorMouseClicked
-        SISTEMA.MENU.setSelectedIndex(7);
-        this.setVisible(false);
-        
-        
-    }//GEN-LAST:event_jt_proveedorMouseClicked
+    }//GEN-LAST:event_jb_EjecutarActionPerformed
 
     private void jt_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_proveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jt_proveedorActionPerformed
 
-    private void jt_precioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_precioKeyPressed
-        validar.dinero(jt_precio,6);
-    }//GEN-LAST:event_jt_precioKeyPressed
-
-    private void jt_empleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_empleadoMouseClicked
-        // TODO add your handling code here:
-         SISTEMA.MENU.setSelectedIndex(5);
+    private void jt_proveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_proveedorMouseClicked
+        SISTEMA.MENU.setSelectedIndex(7);
         this.setVisible(false);
-    }//GEN-LAST:event_jt_empleadoMouseClicked
 
-    private void jt_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_empleadoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jt_empleadoActionPerformed
-
-    private void jtDescripcion_pagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDescripcion_pagoKeyPressed
-        validar.V_desc(jtDescripcion_pago, 50);
-    }//GEN-LAST:event_jtDescripcion_pagoKeyPressed
-
-    private void jt_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_precioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jt_precioActionPerformed
+    }//GEN-LAST:event_jt_proveedorMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

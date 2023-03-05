@@ -37,7 +37,7 @@ public class Play {
                 if (i == 100) {
                     JFlogin sesión = new JFlogin();
                     sesión.setVisible(true);
-                    
+                    loading.setVisible(false);
                 }
             }
         }catch(Exception e){

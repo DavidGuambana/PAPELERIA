@@ -7416,7 +7416,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="10" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator17" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -8050,7 +8050,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator5" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -8109,7 +8109,7 @@
                               <Component id="jb_Eliminar_prov" alignment="0" max="32767" attributes="0"/>
                               <Component id="jbModificar_prov" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="21" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

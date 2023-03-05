@@ -9,19 +9,17 @@ public class Pago_prov {
     private String RUC_prov;
     private String descripcion;
     private Date fecha_reg;
-    private String estado;
 
     public Pago_prov() {
     }
 
-    public Pago_prov(int codigo, double valor, String cedula_emp, String RUC_prov, String descripcion, Date fecha_reg, String estado) {
+    public Pago_prov(int codigo, double valor, String cedula_emp, String RUC_prov, String descripcion, Date fecha_reg) {
         this.codigo = codigo;
         this.valor = valor;
         this.cedula_emp = cedula_emp;
         this.RUC_prov = RUC_prov;
         this.descripcion = descripcion;
         this.fecha_reg = fecha_reg;
-        this.estado = estado;
     }
 
     public int getCodigo() {
@@ -72,14 +70,10 @@ public class Pago_prov {
         this.fecha_reg = fecha_reg;
     }
 
-    public String getEstado() {
-        return estado;
+    @Override
+    public String toString() {
+        return "Pago_prov{" + "codigo=" + codigo + ", valor=" + valor + ", cedula_emp=" + cedula_emp + ", RUC_prov=" + RUC_prov + ", descripcion=" + descripcion + ", fecha_reg=" + fecha_reg + '}';
     }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     
     
 }
