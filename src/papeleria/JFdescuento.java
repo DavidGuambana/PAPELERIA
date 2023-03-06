@@ -113,9 +113,9 @@ public class JFdescuento extends javax.swing.JFrame {
             base.settear(d);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
         }
-        base.cerrar();
         SISTEMA.actualizado = false;
         this.dispose();
+        base.cerrar();
     }
     
     

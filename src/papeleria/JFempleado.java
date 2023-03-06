@@ -175,9 +175,9 @@ public class JFempleado extends javax.swing.JFrame {
             base.settear(emp);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
         }
-        base.cerrar();
         SISTEMA.actualizado = false;
         this.dispose();
+        base.cerrar();
     }
     
     @SuppressWarnings("unchecked")

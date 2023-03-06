@@ -6413,12 +6413,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jbModificar_pagMouseExited
 
     private void jbModificar_pagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificar_pagActionPerformed
-        modo_prov = "pagos_prov";
         if (!jlCodigo_pag.getText().equals(" ")) {
-            JFpag.forma = "modificar";
-            JFpag.cambiar_diseño();
-            JFpag.llenar(Integer.parseInt(jlCodigo_pag.getText()));
             modo_prov = "pagos_prov";
+            JFpagos.forma = "modificar";
+            JFpagos.cambiar_diseño();
+            JFpag.llenar(Integer.parseInt(jlCodigo_pag.getText()));
         }else {
             getToolkit().beep();
             JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");

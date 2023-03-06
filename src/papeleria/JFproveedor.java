@@ -139,9 +139,9 @@ public class JFproveedor extends javax.swing.JFrame {
             base.settear(p);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
         }
-        base.cerrar();
         SISTEMA.actualizado = false;
         this.dispose();
+        base.cerrar();
     }
 
     @SuppressWarnings("unchecked")

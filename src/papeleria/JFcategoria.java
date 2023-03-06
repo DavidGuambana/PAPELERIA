@@ -114,9 +114,9 @@ public class JFcategoria extends javax.swing.JFrame {
             base.settear(c);
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
         }
-        base.cerrar();
         SISTEMA.actualizado = false;
         this.dispose();
+        base.cerrar();
     }
 
     @SuppressWarnings("unchecked")

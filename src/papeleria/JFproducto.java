@@ -170,9 +170,9 @@ public class JFproducto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "¡Modificado correctamente!");
             limpiar();
         }
-        base.cerrar();
         SISTEMA.actualizado = false;
         this.dispose();
+        base.cerrar();
     }
 
 
