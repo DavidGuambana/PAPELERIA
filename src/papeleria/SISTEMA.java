@@ -6961,21 +6961,30 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         
         //PRODUCTOS MÁS VENDIDOS:
         ArrayList productos_top = new ArrayList<>();
+        
         Producto p = new Producto(0, null, 0, 0, null, null, null, null);
         resultado = base.gettear(p);
+
         for (int i = 0; i < resultado.size(); i++) {
-            p = (Producto) resultado.next();
-            Detalle_fac det_pro = new Detalle_fac(0,p.getCodigo(),0,0,0);
-            ObjectSet res = base.gettear(det_pro);
-            if (!res.isEmpty()) {
-                det_pro = (Detalle_fac) res.next();
-                Encabezado_fac fac_act = new Encabezado_fac(det_pro.getCodigo_fac(), null, null, 0, "ACTIVO");
-                res = base.gettear(fac_act);
+            int ventas = 0;
+            p = (Producto)resultado.next();
+            Encabezado_fac fac_act = new Encabezado_fac(0, null, null, 0, "ACTIVO");
+            ObjectSet res1 = base.gettear(fac_act);
+            for (int j = 0; j < res1.size(); j++) {
+                fac_act = (Encabezado_fac) res1.next();
+                Detalle_fac det_pro = new Detalle_fac(0, p.getCodigo(), 0, 0, fac_act.getCodigo());
+                ObjectSet res = base.gettear(det_pro);
                 if (!res.isEmpty()) {
-                    productos_top.add(new Productos_Detalles(p.getCodigo(), p.getNombre(), res.size()));
+                   ventas++; 
                 }
             }
-        } //OREDENA DE MAYOR A MENOR DEPENDIENDO EL NÚMERO DE VENTAS(DETALLES)
+            if (ventas >0) {
+                productos_top.add(new Productos_Detalles(p.getCodigo(), p.getNombre(), ventas));
+            }
+            
+        }
+        
+        //OREDENA DE MAYOR A MENOR DEPENDIENDO EL NÚMERO DE VENTAS(DETALLES)
         Collections.sort(productos_top, (Productos_Detalles p1, Productos_Detalles p2) -> Integer.valueOf(p2.getVentas()).compareTo(p1.getVentas()));
         for (int i = 1; i <= productos_top.size(); i++) {
             Productos_Detalles x = (Productos_Detalles) productos_top.get(i - 1);
