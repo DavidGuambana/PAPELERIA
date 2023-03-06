@@ -109,14 +109,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     //método para cargar los datos en las tablas:
     public void visualizar() {
         base.abrir();
-//        Encabezado_fac en = new Encabezado_fac(0, null, null, 0, null);
-//        resultado = base.gettear(en);
-//        for (int i = 0; i < resultado.size(); i++) {
-//            en = (Encabezado_fac) resultado.next();
-//            en.setEstado("ACTIVO");
-//            base.settear(en);
-//        }
-
         resumen();
         for (int i = 1; i <= 10; i++) {
             switch (i) {
