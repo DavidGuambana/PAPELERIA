@@ -6,8 +6,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import papeleria.JFlogin;
 import papeleria.SISTEMA;
-
-
 public class Play {
 
     public static void main(String[] args) throws ClassNotFoundException {

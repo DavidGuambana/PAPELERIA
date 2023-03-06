@@ -15,7 +15,7 @@ import otros.validar;
 
 public class JFproveedor extends javax.swing.JFrame {
     
-    public static String forma;
+    public static String forma = "registrar";
     public static ObjectSet resultado;
     public static String url;
     

@@ -21,7 +21,7 @@ public class JFproducto extends javax.swing.JFrame {
     public static ObjectSet resultado;
     public static String url;
     public static double xprecio;
-    public static String forma;
+    public static String forma = "registrar";
 
     public JFproducto() {
         initComponents();

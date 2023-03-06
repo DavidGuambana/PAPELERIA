@@ -69,7 +69,7 @@ public class JFlogin extends javax.swing.JFrame {
         login.setText("INICIAR SESIÓN");
         panelbackround.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
-        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtcedempleado.setForeground(new java.awt.Color(153, 153, 153));
         txtcedempleado.setBorder(null);
         txtcedempleado.addActionListener(new java.awt.event.ActionListener() {

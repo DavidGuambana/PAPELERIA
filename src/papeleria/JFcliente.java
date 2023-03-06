@@ -12,7 +12,7 @@ import otros.fechas;
 import otros.validar;
 
 public class JFcliente extends javax.swing.JFrame {
-    public static String forma = "";
+    public static String forma = "registrar";
     public ObjectSet resultado;
     Date fecha_nac;
     
