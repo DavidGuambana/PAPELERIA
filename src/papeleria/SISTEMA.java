@@ -1033,7 +1033,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel13.setText("Identificación:");
 
         enc_cedula.setEditable(false);
-        enc_cedula.setBackground(new java.awt.Color(255, 0, 0));
+        enc_cedula.setBackground(new java.awt.Color(51, 51, 51));
         enc_cedula.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         enc_cedula.setForeground(new java.awt.Color(0, 204, 204));
         enc_cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Click para seleccionar o cambiar cliente...", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -1083,7 +1083,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         jLabel18.setText("Correo electrónico:");
 
         fec_enc.setEditable(false);
-        fec_enc.setBackground(new java.awt.Color(255, 0, 0));
+        fec_enc.setBackground(new java.awt.Color(51, 51, 51));
         fec_enc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         fec_enc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Click para generar fecha de emisión...", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         fec_enc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2636,18 +2636,17 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                         .addGap(15, 15, 15)
                         .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlN7)
-                            .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jpDatos_pro1Layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
-                                    .addComponent(jbModificar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jb_Eliminar_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jbRegistrar_pag, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_pro1Layout.createSequentialGroup()
-                                    .addComponent(jlF4)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jlReg_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_pro1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jbModificar_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jb_Eliminar_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbRegistrar_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                                .addComponent(jlF4)
+                                .addGap(6, 6, 6)
+                                .addComponent(jlReg_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatos_pro1Layout.createSequentialGroup()
                                 .addComponent(jlE19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2656,15 +2655,14 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                                 .addComponent(jlC5)
                                 .addGap(6, 6, 6)
                                 .addComponent(jlPrecio_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatos_pro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpDatos_pro1Layout.createSequentialGroup()
-                                    .addComponent(jlE18)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jlProveedor_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(jpDatos_pro1Layout.createSequentialGroup()
-                                    .addComponent(jlR7)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jlCodigo_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpDatos_pro1Layout.createSequentialGroup()
+                                .addComponent(jlE18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlProveedor_pag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatos_pro1Layout.createSequentialGroup()
+                                .addComponent(jlR7)
+                                .addGap(6, 6, 6)
+                                .addComponent(jlCodigo_pag, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpDatos_pro1Layout.createSequentialGroup()
                                 .addComponent(jlE20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5525,6 +5523,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
             JFcliente.forma = "modificar";
             JFcliente.cambiar_diseño();
             JFcli.llenar(jlCedula_cli.getText());
+            reiniciar_factura(); //por precaución
         } else {
             getToolkit().beep();
             JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
@@ -5964,10 +5963,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
                             double xsubtotal = cantidad * (xprecio - ((descuento * xprecio) / 100));
                             total += xsubtotal;
-                            total = (Math.round(total * 100.0) / 100.0); //lo deja con 2 decimales
+                            total = (Math.rint(total * 100.0) / 100.0); //lo deja con 2 decimales
 
                             total_descuento += (xprecio * cantidad) - (xsubtotal);
-                            total_descuento = (Math.round(total_descuento * 100.0) / 100.0); //lo deja con 2 decimales
+                            total_descuento = (Math.rint(total_descuento * 100.0) / 100.0); //lo deja con 2 decimales
 
                             jl_num_det.setText("Detalles: " + num_det);
                             jl_total.setText("Total: $" + total);
@@ -6033,6 +6032,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         if (!jlCodigo_pro.getText().equals(" ")) {JFproducto.forma = "modificar";
             JFproducto.cambiar_diseño();
             JFpro.llenar(Integer.parseInt(jlCodigo_pro.getText()));
+            reiniciar_factura(); //por precaución
         } else {
             getToolkit().beep();
             JOptionPane.showMessageDialog(null, "!Ningun registro seleccionado!");
@@ -6693,10 +6693,10 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
                                     double xsubtotal = cantidad * (xprecio - ((descuento * xprecio) / 100));
                                     total += xsubtotal;
-                                    total = (Math.round(total * 100.0) / 100.0); //lo deja con 2 decimales
+                                    total = (Math.rint(total * 100.0) / 100.0); //lo deja con 2 decimales
 
                                     total_descuento += (xprecio * cantidad) - (xsubtotal);
-                                    total_descuento = (Math.round(total_descuento * 100.0) / 100.0); //lo deja con 2 decimales
+                                    total_descuento = (Math.rint(total_descuento * 100.0) / 100.0); //lo deja con 2 decimales
 
                                     jl_num_det.setText("Detalles: " + num_det);
                                     jl_total.setText("Total: $" + total);
