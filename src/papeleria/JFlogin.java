@@ -69,7 +69,7 @@ public class JFlogin extends javax.swing.JFrame {
         login.setText("INICIAR SESIÓN");
         panelbackround.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
-        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtcedempleado.setForeground(new java.awt.Color(153, 153, 153));
         txtcedempleado.setBorder(null);
         txtcedempleado.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +86,10 @@ public class JFlogin extends javax.swing.JFrame {
         panelbackround.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 400, 30));
 
         usuario1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        usuario1.setText("PIN:");
+        usuario1.setText("PIN: (el pin es 1234)");
         panelbackround.add(usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
 
-        passwordfield.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        passwordfield.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         passwordfield.setBorder(null);
         passwordfield.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

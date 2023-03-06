@@ -10,7 +10,7 @@ import papeleria.SISTEMA;
 
 public class Play {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
 
         try {
             //1 new AluminiumLookAndFeel());
@@ -24,8 +24,6 @@ public class Play {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(SISTEMA.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
         
         Splashz loading = new Splashz();
         loading.setVisible(true);
@@ -41,6 +39,12 @@ public class Play {
                 }
             }
         }catch(Exception e){
+        }
+        
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Play.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

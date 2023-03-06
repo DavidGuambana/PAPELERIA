@@ -512,12 +512,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jl_dinero2 = new javax.swing.JLabel();
-        v_dinero2 = new javax.swing.JLabel();
-        v_dinero4 = new javax.swing.JLabel();
-        jl_dinero4 = new javax.swing.JLabel();
-        jlE3 = new javax.swing.JLabel();
-        jlEmail3 = new javax.swing.JLabel();
         MENU = new javax.swing.JTabbedPane();
         INICIO = new javax.swing.JTabbedPane();
         jScrollPane = new javax.swing.JScrollPane();
@@ -931,35 +925,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         V0 = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
 
-        jl_dinero2.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
-        jl_dinero2.setForeground(new java.awt.Color(255, 255, 255));
-        jl_dinero2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_dinero2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dinero (1).png"))); // NOI18N
-        jl_dinero2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        v_dinero2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        v_dinero2.setForeground(new java.awt.Color(51, 51, 51));
-        v_dinero2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        v_dinero2.setText("000.00");
-
-        v_dinero4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        v_dinero4.setForeground(new java.awt.Color(51, 51, 51));
-        v_dinero4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        v_dinero4.setText("000.00");
-
-        jl_dinero4.setFont(new java.awt.Font("PMingLiU-ExtB", 0, 18)); // NOI18N
-        jl_dinero4.setForeground(new java.awt.Color(255, 255, 255));
-        jl_dinero4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jl_dinero4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dinero (1).png"))); // NOI18N
-        jl_dinero4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jlE3.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 14)); // NOI18N
-        jlE3.setForeground(new java.awt.Color(51, 51, 51));
-        jlE3.setText("Género");
-
-        jlEmail3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        jlEmail3.setText("(null)");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA PAPELERIA");
         setBackground(new java.awt.Color(0, 0, 0));
@@ -980,7 +945,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
         MENU.setPreferredSize(new java.awt.Dimension(980, 600));
 
         INICIO.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
-        INICIO.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        INICIO.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         INICIO.setMinimumSize(new java.awt.Dimension(1075, 600));
         INICIO.setPreferredSize(new java.awt.Dimension(1075, 600));
 
@@ -5279,7 +5244,7 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
 
         getContentPane().add(JPencabezado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 970, -1));
 
-        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_playa.jpeg"))); // NOI18N
+        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FONDO.jpeg"))); // NOI18N
         FONDO.setMaximumSize(new java.awt.Dimension(1020, 625));
         FONDO.setMinimumSize(new java.awt.Dimension(1020, 625));
         FONDO.setPreferredSize(new java.awt.Dimension(1020, 625));
@@ -7354,13 +7319,11 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlE19;
     private javax.swing.JLabel jlE2;
     private javax.swing.JLabel jlE20;
-    private javax.swing.JLabel jlE3;
     private javax.swing.JLabel jlE4;
     private javax.swing.JLabel jlE5;
     private javax.swing.JLabel jlE6;
     private javax.swing.JLabel jlE7;
     private javax.swing.JLabel jlEmail;
-    private javax.swing.JLabel jlEmail3;
     private javax.swing.JLabel jlExistencias_pro;
     private javax.swing.JLabel jlF;
     private javax.swing.JLabel jlF1;
@@ -7418,8 +7381,6 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jlTelefono_emp;
     private javax.swing.JLabel jlTotal;
     private javax.swing.JLabel jlTotal_descuento;
-    public static javax.swing.JLabel jl_dinero2;
-    public static javax.swing.JLabel jl_dinero4;
     private javax.swing.JLabel jl_num_det;
     private javax.swing.JLabel jl_num_det1;
     private javax.swing.JLabel jl_num_det2;
@@ -7504,7 +7465,5 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JLabel v4;
     public static javax.swing.JLabel v6;
     public static javax.swing.JLabel v9;
-    private javax.swing.JLabel v_dinero2;
-    private javax.swing.JLabel v_dinero4;
     // End of variables declaration//GEN-END:variables
 }
