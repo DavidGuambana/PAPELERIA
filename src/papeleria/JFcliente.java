@@ -477,7 +477,7 @@ public class JFcliente extends javax.swing.JFrame {
     }//GEN-LAST:event_telefonoKeyPressed
 
     private void direccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_direccionKeyPressed
-        validar.nombre_compuesto(direccion,50);
+        validar.nombre_compuesto(direccion,80);
     }//GEN-LAST:event_direccionKeyPressed
 
     private void correoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoKeyPressed

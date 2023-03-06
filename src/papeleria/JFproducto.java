@@ -477,7 +477,7 @@ public class JFproducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_subir_imagenMouseClicked
 
     private void jt_nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_nombreKeyPressed
-        validar.nombre_compuesto(jt_nombre,20);
+        validar.nombre_compuesto(jt_nombre,30);
     }//GEN-LAST:event_jt_nombreKeyPressed
 
     private void jt_precioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_precioKeyPressed

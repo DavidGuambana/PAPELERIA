@@ -361,7 +361,7 @@ public class JFpagos extends javax.swing.JFrame {
     }//GEN-LAST:event_jl_cerrarMouseClicked
 
     private void jtDescripcion_pagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDescripcion_pagoKeyPressed
-        validar.V_desc(jtDescripcion_pago, 50);
+        validar.V_desc(jtDescripcion_pago, 80);
     }//GEN-LAST:event_jtDescripcion_pagoKeyPressed
 
     private void jt_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_empleadoActionPerformed

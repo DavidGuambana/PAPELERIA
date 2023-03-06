@@ -292,7 +292,7 @@ public class JFcategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_nombreKeyPressed
 
     private void jta_descripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jta_descripcionKeyPressed
-        validar.V_desc(jta_descripcion, 50);
+        validar.V_desc(jta_descripcion, 80);
     }//GEN-LAST:event_jta_descripcionKeyPressed
 
     public static void main(String args[]) {
