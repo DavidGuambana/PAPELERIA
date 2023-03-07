@@ -290,7 +290,7 @@ public class JFdescuento extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_EjecutarActionPerformed
 
     private void nombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreKeyPressed
-        validar.V_letras(nombre,20);
+        validar.V_letras_sin_tilde(nombre,20);
     }//GEN-LAST:event_nombreKeyPressed
 
     private void porcentajeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_porcentajeStateChanged

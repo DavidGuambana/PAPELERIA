@@ -62,15 +62,15 @@ public class JFlogin extends javax.swing.JFrame {
         panelbackround.add(panelesquina, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 300, 370));
 
         usuario.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        usuario.setText("USUARIO:");
+        usuario.setText("USUARIO: (Cédula de identidad)");
         panelbackround.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
 
         login.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         login.setText("INICIAR SESIÓN");
         panelbackround.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
-        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtcedempleado.setForeground(new java.awt.Color(153, 153, 153));
+        txtcedempleado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtcedempleado.setForeground(new java.awt.Color(51, 51, 51));
         txtcedempleado.setBorder(null);
         txtcedempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +86,12 @@ public class JFlogin extends javax.swing.JFrame {
         panelbackround.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 400, 30));
 
         usuario1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        usuario1.setText("PIN: (el pin es 1234)");
+        usuario1.setText("PIN: (1234)");
         panelbackround.add(usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
 
-        passwordfield.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
+        passwordfield.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         passwordfield.setBorder(null);
+        passwordfield.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         passwordfield.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 passwordfieldKeyTyped(evt);
@@ -194,7 +195,7 @@ public class JFlogin extends javax.swing.JFrame {
             emp = (Empleado) res.next();
             SISTEMA.USUARIO.setText(emp.getNombre() + " " + emp.getApellido());
             sistema.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         } else {
             if (!passwordfield.getText().equals("1234")) {
                 JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA!");
