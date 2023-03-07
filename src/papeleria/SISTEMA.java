@@ -6148,14 +6148,12 @@ public class SISTEMA extends javax.swing.JFrame implements Runnable {
                     String[] colum_det = {"Código","C. Producto", "Cantidad", "Subtotal", "C. Factura"};
                     tabla = new DefaultTableModel(null, colum_det);
                     Detalle_fac DF = new Detalle_fac(0, 0, 0, 0, Integer.parseInt(VF_CODIGO.getText()));
-                    resultado = base.gettear(DF);
-                    
+                    resultado = base.gettear(DF);                  
                     for (int i = 0; i < resultado.size(); i++) {
                         
                         DF = (Detalle_fac) resultado.next();
                         
-                        
-                        
+                      
                         
                         tabla.addRow(new Object[]{DF.getCodigo(), DF.getCodigo_pro(), DF.getCant(), DF.getSubtotal(), DF.getCodigo_fac()});
 
